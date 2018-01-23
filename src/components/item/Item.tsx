@@ -21,12 +21,14 @@ const ActiveItem = StyledItems.extend`
 
 interface ItemProps {
   item: ItemType;
+  index: number;
+  currentIndex: number;
 }
 
 class Item extends React.Component<ItemProps, {}> {
   render() {
-    const { item } = this.props;
-    const { id, name, html_url, isActive } = item;
+    const { item, index, currentIndex } = this.props;
+    const { id, name, html_url } = item;
     const defaultItem = (
       <StyledItems key={id}>
         <a href={html_url}>{name}</a>
@@ -39,7 +41,7 @@ class Item extends React.Component<ItemProps, {}> {
       </ActiveItem>
     );
 
-    return isActive ? activeItem : defaultItem;
+    return index === currentIndex ? activeItem : defaultItem;
   }
 }
 
