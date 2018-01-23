@@ -1,9 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import Item from '../components/item/Item';
+import { ItemType } from '../model/item.model';
 
 const Container = styled.div`
   width: 240px;
-  height: 200px;
+  height: 160px;
 `;
 
 const Input = styled.input`
@@ -25,41 +27,34 @@ const Items = styled.ul`
   overflow-y: scroll;
 `;
 
-const Item = styled.li`
-  padding: 8px 8px;
-  border-bottom: 1px solid grey;
-  overflow-x: hidden;
-  white-space : nowrap;
-  text-overflow : ellipsis;
-`;
-
-const ActiveItem = Item.extend`
-  color: #fff;
-  background-color: #0366D6;
-  font-weight: bolder;
-  font-size: 14px;
-`;
+interface AppProps {}
 
 interface AppState {
-  values: Array<Item>;
+  items: ItemType[];
+  index: number;
 }
 
-type Item = {
-  id: number;
-  name: string;
-  html_url: string;
-};
-
-class App extends React.Component<{}, AppState> {
+class App extends React.Component<AppProps, AppState> {
   BASE_URL = `https://api.github.com/users`;
   NAME = `JaeYeopHan`;
+
+  constructor(props: AppProps) {
+    super(props);
+    this.state = {
+      index: 0,
+      items: [{id: 1, name: '', html_url: '', isActive: false}]
+    };
+  }
 
   async componentDidMount() {
     const response = await fetch(`${this.BASE_URL}/${this.NAME}/repos`);
     const repos = await response.json();
-    const values = repos.map(({id, name, html_url}: Item) => ({id, name, html_url}));
+    const items = repos.map(({id, name, html_url}: ItemType, idx: number) => {
+      const item = {id, name, html_url};
+      return idx === this.state.index ? {isActive: true, ...item} : {isActive: false, ...item};
+    });
 
-    await this.setStateAsync({values});
+    await this.setStateAsync({items, index: this.state.index});
   }
   
   setStateAsync(state: AppState) {
@@ -67,7 +62,10 @@ class App extends React.Component<{}, AppState> {
       this.setState(state, resolve);
     });
   }
+
   render() {
+    const { items } = this.state || {items: [{id: 1, name: '', html_url: '', isActive: false}]};
+
     return (
       <Container>
         <Input
@@ -75,8 +73,7 @@ class App extends React.Component<{}, AppState> {
           autoFocus={true}
         />
         <Items>
-          <ActiveItem>Active repo</ActiveItem>
-          <Item>repository</Item>
+          {items.map((item: ItemType) => (<Item item={item} />))}
         </Items>
       </Container>
     );
