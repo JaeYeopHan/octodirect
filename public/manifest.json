@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+
+  "name": "Octodirect",
+  "description": "Move to GitHub repository directly",
+  "version": "0.0.1",
+
+  "browser_action": {
+    "default_icon": "octodirect_icon.png",
+    "default_popup": "index.html"
+  }
+}
