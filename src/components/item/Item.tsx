@@ -10,6 +10,7 @@ const StyledItems = styled.li`
   overflow-x: hidden;
   white-space : nowrap;
   text-overflow : ellipsis;
+  color: #24292E;
 `;
 
 const ActiveItem = StyledItems.extend`
