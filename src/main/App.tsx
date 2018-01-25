@@ -5,7 +5,7 @@ import Input from '../components/input/Input';
 import { ItemType } from '../model/item.model';
 
 const Container = styled.div`
-  width: 240px;
+  width: 276px;
   height: 160px;
 `;
 
