@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { KeyUtils } from '../../utils/Key';
 
 const StyledInput = styled.input`
   position: fixed;
@@ -13,12 +14,6 @@ const StyledInput = styled.input`
     color: grey;
   }
 `;
-
-enum KEY {
-  ENTER = 13,
-  UP = 38,
-  DOWN = 40,
-}
 
 interface InputProps {
   placeholder: string;
@@ -34,13 +29,13 @@ class Input extends React.Component<InputProps> {
   handleKeyDown({keyCode, target}: any) {
     const { index, maxIndex, upIndex, downIndex } = this.props;
     
-    if (keyCode === KEY.UP && index > 0) {// up
+    if (KeyUtils.isCorrectUpKey(keyCode, index)) {// up
       downIndex(index);
       target.value = '';
-    } else if (keyCode === KEY.DOWN && index < maxIndex) {// down
+    } else if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {// down
       upIndex(index);
       target.value = '';
-    } else if (keyCode === KEY.ENTER && target.value !== '') {
+    } else if (KeyUtils.isCorrectEnterKey(keyCode, target.value)) {
       target.value = '';
       // TODO location.href = ''
     }
