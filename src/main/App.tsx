@@ -25,7 +25,7 @@ const Items = styled.ul`
   overflow-y: scroll;
 `;
 
-const Wrapper = Items.extend`
+const NotFound = Items.extend`
   font-size: 16px;
   text-align: center;
 `;
@@ -86,18 +86,32 @@ class App extends React.Component<AppProps, AppState> {
     this.setState({value, filtered, index: 0, maxIndex: filtered.length - 1});
   }
 
+  redirect() {
+    const { index, items } = this.state;
+    console.log(index);
+    console.log(items[index].html_url);
+
+    location.href = items[index].html_url;
+  }
+
   render() {
     const { filtered, value } = this.state;
     
     const notFoundElm = (
-      <Wrapper>
+      <NotFound>
         <div>We couldn’t find any repositories matching: </div>
         <div>'{value}'</div>
-      </Wrapper>
+      </NotFound>
     );
     const itemList = (
       <Items>
-        {filtered.map((item: ItemType, i) => (<Item key={i} item={item} index={i} currentIndex={this.state.index} />))}
+        {filtered.map((item: ItemType, i) => (
+          <Item
+            key={i}
+            item={item}
+            index={i}
+            currentIndex={this.state.index}
+          />))}
       </Items>
     );
 
@@ -110,6 +124,7 @@ class App extends React.Component<AppProps, AppState> {
           upIndex={(index: number) => this.updateState(index + 1)}
           downIndex={(index: number) => this.updateState(index - 1)}
           updateValue={(text: string) => this.updateValue(text)}
+          redirect={() => this.redirect()}
         />
         {value === '' ? notFoundElm : itemList}
       </Container>

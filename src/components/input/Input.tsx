@@ -22,12 +22,13 @@ interface InputProps {
   upIndex: (index: number) => void;
   downIndex: (index: number) => void;
   updateValue: (text: string) => void;
+  redirect: () => void;
 }
 
 class Input extends React.Component<InputProps> {
   // tslint:disable-next-line:no-any
   handleKeyDown({keyCode, target}: any) {
-    const { index, maxIndex, upIndex, downIndex } = this.props;
+    const { index, maxIndex, upIndex, downIndex, redirect } = this.props;
     
     if (KeyUtils.isCorrectUpKey(keyCode, index)) {// up
       downIndex(index);
@@ -37,7 +38,7 @@ class Input extends React.Component<InputProps> {
       target.value = '';
     } else if (KeyUtils.isCorrectEnterKey(keyCode, target.value)) {
       target.value = '';
-      // TODO location.href = ''
+      redirect();
     }
   }
 
