@@ -5,7 +5,7 @@ import Input from '../components/input/Input';
 import { ItemType } from '../model/item.model';
 
 const Container = styled.div`
-  width: 276px;
+  width: 280px;
   height: 160px;
 `;
 
@@ -14,7 +14,7 @@ const Items = styled.ul`
   top: 40px;
   margin: auto 4px;
   padding: 12px;
-  width: 100%;
+  width: calc(100% - 36px);
   height: 100%;
   font-size: 14px;
   font-weight: bold;
