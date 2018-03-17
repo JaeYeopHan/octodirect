@@ -65,7 +65,7 @@ class App extends React.Component<AppProps, AppState> {
     const items = repos.map(({id, name, html_url}: ItemType) => ({id, name, html_url}));
     await this.setStateAsync({...initialState, items});
   }
-  
+
   setStateAsync(state: AppState) {
     return new Promise((resolve) => {
       this.setState(state, resolve);
@@ -96,7 +96,7 @@ class App extends React.Component<AppProps, AppState> {
 
   render() {
     const { filtered, value } = this.state;
-    
+
     const notFoundElm = (
       <NotFound>
         <div>We couldn’t find any repositories matching: </div>
