@@ -26,7 +26,7 @@ const Button = styled.a`
 
 const Info = () => (
   <Container>
-    <Logo>Octodirect</Logo>
+    <Logo>@octodirect</Logo>
     <Button>Add permission</Button>
   </Container>
 );

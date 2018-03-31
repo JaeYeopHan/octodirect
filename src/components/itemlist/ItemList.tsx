@@ -10,7 +10,7 @@ export const Items = styled.ul`
   padding: 12px;
   width: calc(100% - 36px);
   height: 100%;
-  max-height: 210px;
+  max-height: 180px;
   font-size: 14px;
   font-weight: bold;
   color: #24292E;
@@ -26,10 +26,25 @@ interface ItemListProps {
 }
 
 class ItemList extends React.Component<ItemListProps, {}> {
+  private container: HTMLElement;
+
+  componentDidMount() {
+    this.container = document.querySelector('.item_list') as HTMLElement;
+  }
+
+  adjustScroll() {
+    if (!!this.container) {
+      this.container.scrollTop = this.props.index * 20;
+    }
+  }
+
   render() {
     const { filtered, index } = this.props;
     return (
-      <Items>
+      <Items
+        ref={() => this.adjustScroll()}
+        className="item_list"
+      >
         {filtered.map((item: ItemType, i) => (
           <Item
             key={i}

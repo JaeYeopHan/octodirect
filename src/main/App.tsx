@@ -55,7 +55,7 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   buildRequestInfo() {
-    return './mock/mock.json';
+    // return './mock/mock.json';
     // return `${this.BASE_URL}/${this.NAME}/repos`;
   }
 
