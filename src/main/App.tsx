@@ -83,8 +83,8 @@ class App extends React.Component<AppProps, AppState> {
           placeholder={this.state.placeholder}
           index={this.state.index}
           maxIndex={this.state.maxIndex}
-          upIndex={(index: number) => this.updateState(index + 1)}
-          downIndex={(index: number) => this.updateState(index - 1)}
+
+          updateState={(index: number) => this.updateState(index)}
           updateValue={(text: string) => this.updateValue(text)}
           redirect={() => this.redirect()}
         />
