@@ -1,33 +1,13 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Item from '../components/item/Item';
 import Input from '../components/input/Input';
 import { ItemType } from '../model/item.model';
+import NotFound from '../components/not-found/NotFound';
+import ItemList from '../components/itemlist/ItemList';
 
 const Container = styled.div`
   width: 280px;
   height: 160px;
-`;
-
-const Items = styled.ul`
-  position: relative;
-  top: 40px;
-  margin: auto 4px;
-  padding: 12px;
-  width: calc(100% - 36px);
-  height: 100%;
-  font-size: 14px;
-  font-weight: bold;
-  color: #24292E;
-  background-color: #FAFBFC;
-  border: solid 1px #E2E4E8;
-  border-radius: 3px;
-  overflow-y: scroll;
-`;
-
-const NotFound = Items.extend`
-  font-size: 16px;
-  text-align: center;
 `;
 
 interface AppProps {}
@@ -45,7 +25,7 @@ const initialState = {
   placeholder: `Find a repository`,
   index: 0,
   maxIndex: 0,
-  items: [{id: 1, name: '', html_url: ''}],
+  items: [{id: 1, name: '', htmlUrl: ''}],
   value: '',
   filtered: [],
 };
@@ -62,7 +42,7 @@ class App extends React.Component<AppProps, AppState> {
   async componentDidMount() {
     const response = await fetch(`${this.BASE_URL}/${this.NAME}/repos`);
     const repos = await response.json();
-    const items = repos.map(({id, name, html_url}: ItemType) => ({id, name, html_url}));
+    const items = repos.map(({id, name, htmlUrl}: ItemType) => ({id, name, htmlUrl}));
     await this.setStateAsync({...initialState, items});
   }
 
@@ -89,31 +69,13 @@ class App extends React.Component<AppProps, AppState> {
   redirect() {
     const { index, items } = this.state;
     console.log(index);
-    console.log(items[index].html_url);
+    console.log(items[index].htmlUrl);
 
-    location.href = items[index].html_url;
+    location.href = items[index].htmlUrl;
   }
 
   render() {
     const { filtered, value } = this.state;
-
-    const notFoundElm = (
-      <NotFound>
-        <div>We couldn’t find any repositories matching: </div>
-        <div>'{value}'</div>
-      </NotFound>
-    );
-    const itemList = (
-      <Items>
-        {filtered.map((item: ItemType, i) => (
-          <Item
-            key={i}
-            item={item}
-            index={i}
-            currentIndex={this.state.index}
-          />))}
-      </Items>
-    );
 
     return (
       <Container>
@@ -126,7 +88,11 @@ class App extends React.Component<AppProps, AppState> {
           updateValue={(text: string) => this.updateValue(text)}
           redirect={() => this.redirect()}
         />
-        {value === '' ? notFoundElm : itemList}
+        {
+          value === '' || filtered.length === 0
+          ? <NotFound value={value} />
+          : <ItemList filtered={filtered} index={this.state.index} />
+        }
       </Container>
     );
   }
