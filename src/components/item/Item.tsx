@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ItemType } from '../../model/item.model';
 
 const StyledItems = styled.li`
-  padding: 8px 8px;
+  padding: 10px 8px;
   height: 12px;
   border-bottom: 1px solid #DDDDDD;
   vertical-align: middle;

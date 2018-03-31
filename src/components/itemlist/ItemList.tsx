@@ -34,7 +34,7 @@ class ItemList extends React.Component<ItemListProps, {}> {
 
   adjustScroll() {
     if (!!this.container) {
-      this.container.scrollTop = this.props.index * 20;
+      this.container.scrollTop = this.props.index * 32;
     }
   }
 
