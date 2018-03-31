@@ -4,7 +4,9 @@ import { ItemType } from '../../model/item.model';
 
 const StyledItems = styled.li`
   padding: 8px 8px;
+  height: 12px;
   border-bottom: 1px solid #DDDDDD;
+  vertical-align: middle;
   font-size: 14px;
   font-weight: bold;
   overflow-x: hidden;

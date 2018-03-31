@@ -10,6 +10,7 @@ export const Items = styled.ul`
   padding: 12px;
   width: calc(100% - 36px);
   height: 100%;
+  max-height: 210px;
   font-size: 14px;
   font-weight: bold;
   color: #24292E;

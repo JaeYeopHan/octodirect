@@ -4,10 +4,17 @@ import Input from '../components/input/Input';
 import { ItemType } from '../model/item.model';
 import NotFound from '../components/not-found/NotFound';
 import ItemList from '../components/itemlist/ItemList';
+import Info from '../components/info/Info';
+import { repos as data } from './test';
 
 const Container = styled.div`
   width: 280px;
-  height: 160px;
+  height: 100%;
+`;
+
+const Content = styled.div`
+  margin-bottom: 12px;
+  height: calc(100% - 48px);
 `;
 
 interface AppProps {}
@@ -40,10 +47,16 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   async componentDidMount() {
-    const response = await fetch(`${this.BASE_URL}/${this.NAME}/repos`);
-    const repos = await response.json();
+    // const response = await fetch(this.buildRequestInfo());
+    // const repos = await response.json();
+    const repos = data;
     const items = repos.map(({id, name, htmlUrl}: ItemType) => ({id, name, htmlUrl}));
     await this.setStateAsync({...initialState, items});
+  }
+
+  buildRequestInfo() {
+    return './mock/mock.json';
+    // return `${this.BASE_URL}/${this.NAME}/repos`;
   }
 
   setStateAsync(state: AppState) {
@@ -88,11 +101,14 @@ class App extends React.Component<AppProps, AppState> {
           updateValue={(text: string) => this.updateValue(text)}
           redirect={() => this.redirect()}
         />
+        <Content>
         {
           value === '' || filtered.length === 0
           ? <NotFound value={value} />
           : <ItemList filtered={filtered} index={this.state.index} />
         }
+        </Content>
+        <Info />
       </Container>
     );
   }
