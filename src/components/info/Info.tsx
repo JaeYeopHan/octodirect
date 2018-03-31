@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
+  position: relative;
   width: calc(100% - 20px);
-  height: 36px;
   margin: auto;
   margin-top: 52px;
 `;

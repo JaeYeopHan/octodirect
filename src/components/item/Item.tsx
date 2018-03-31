@@ -41,6 +41,7 @@ const Item = ({ item, index, currentIndex }: ItemProps) => {
       <a href={htmlUrl}>{name}</a>
     </ActiveItem>
   );
+
   return index === currentIndex
     ? activeItem
     : defaultItem;
