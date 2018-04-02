@@ -1,3 +1,4 @@
+/* tslint:disable: no-any */
 import * as React from 'react';
 import styled from 'styled-components';
 import { KeyUtils } from '../../utils/Key';
@@ -19,22 +20,20 @@ interface InputProps {
   placeholder: string;
   index: number;
   maxIndex: number;
-  upIndex: (index: number) => void;
-  downIndex: (index: number) => void;
+  updateState: (index: number) => void;
   updateValue: (text: string) => void;
   redirect: () => void;
 }
 
 class Input extends React.Component<InputProps> {
-  // tslint:disable-next-line:no-any
   handleKeyDown({keyCode, target}: any) {
-    const { index, maxIndex, upIndex, downIndex, redirect } = this.props;
-    
+    const { index, maxIndex, updateState, redirect } = this.props;
+
     if (KeyUtils.isCorrectUpKey(keyCode, index)) {// up
-      downIndex(index);
+      updateState(index - 1);
       target.value = '';
     } else if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {// down
-      upIndex(index);
+      updateState(index + 1);
       target.value = '';
     } else if (KeyUtils.isCorrectEnterKey(keyCode, target.value)) {
       target.value = '';
@@ -42,9 +41,8 @@ class Input extends React.Component<InputProps> {
     }
   }
 
-  // tslint:disable-next-line:no-any
-  handleChange({target}: any) {
-    this.props.updateValue(target.value);
+  handleChange(e: any) {
+    this.props.updateValue(e.target.value);
   }
 
   render() {
@@ -52,9 +50,7 @@ class Input extends React.Component<InputProps> {
       <StyledInput
         placeholder={this.props.placeholder}
         autoFocus={true}
-        // tslint:disable-next-line:no-any
         onKeyDown={(e: any) => this.handleKeyDown(e)}
-        // tslint:disable-next-line:no-any
         onChange={(e: any) => this.handleChange(e)}
       />
     );

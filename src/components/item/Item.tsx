@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { ItemType } from '../../model/item.model';
 
 const StyledItems = styled.li`
-  padding: 8px 8px;
+  padding: 10px 8px;
+  height: 12px;
   border-bottom: 1px solid #DDDDDD;
+  vertical-align: middle;
   font-size: 14px;
   font-weight: bold;
   overflow-x: hidden;
@@ -26,24 +28,23 @@ interface ItemProps {
   currentIndex: number;
 }
 
-class Item extends React.Component<ItemProps, {}> {
-  render() {
-    const { item, index, currentIndex } = this.props;
-    const { id, name, html_url } = item;
-    const defaultItem = (
-      <StyledItems key={id}>
-        <a href={html_url}>{name}</a>
-        <a href={html_url}>{name}</a>
-      </StyledItems>
-    );
-    const activeItem = (
-      <ActiveItem key={id}>
-        <a href={html_url}>{name}</a>
-      </ActiveItem>
-    );
+const Item = ({ item, index, currentIndex }: ItemProps) => {
+  const { id, name, htmlUrl } = item;
+  const defaultItem = (
+    <StyledItems key={id}>
+      <a href={htmlUrl}>{name}</a>
+      <a href={htmlUrl}>{name}</a>
+    </StyledItems>
+  );
+  const activeItem = (
+    <ActiveItem key={id}>
+      <a href={htmlUrl}>{name}</a>
+    </ActiveItem>
+  );
 
-    return index === currentIndex ? activeItem : defaultItem;
-  }
-}
+  return index === currentIndex
+    ? activeItem
+    : defaultItem;
+};
 
 export default Item;
