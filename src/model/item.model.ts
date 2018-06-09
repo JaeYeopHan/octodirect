@@ -3,5 +3,3 @@ export type ItemType = {
   name: string;
   htmlUrl: string;
 };
-
-export default ItemType;
