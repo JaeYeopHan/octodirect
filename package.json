@@ -26,6 +26,7 @@
     "@types/react-dom": "^16.0.3",
     "@types/redux-saga": "^0.10.5",
     "styled-components": "^3.0.2",
+    "tslint-config-prettier": "^1.13.0",
     "typescript": "^2.6.2",
     "typescript-styled-plugin": "^0.4.0"
   }
