@@ -17,5 +17,5 @@ ReactDOM.render(
   <Provider store={store}>
     <App dispatch={store.dispatch} />
   </Provider>,
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root') as HTMLElement,
 );
