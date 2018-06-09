@@ -1,15 +1,40 @@
-import { Action, Reducer } from 'redux';
+import { FETCH_SUCCESS, FETCH_FAIL } from './../actions/repoAction';
+import { Reducer } from 'redux';
+import { ItemType } from '../model/item.model';
 
 interface RepoState {
-  list: string[];
+  list: ItemType[];
 }
+
 const initialState = {
-  list: []
+  list: [],
 };
 
 export const repoReducers: Reducer<RepoState> = (
   state: RepoState = initialState,
-  action: Action
-) => {
-  return state;
+  action,
+): RepoState => {
+  switch (action.type) {
+    case FETCH_SUCCESS:
+      return {
+        ...state,
+        list: refineData(action.repos),
+      };
+    case FETCH_FAIL:
+      return {
+        ...state,
+        list: [],
+      };
+
+    default:
+      return state;
+  }
 };
+
+function refineData(rawRepos: any[]) {
+  return rawRepos.map(({ id, name, htmlUrl }: ItemType) => ({
+    id,
+    name,
+    htmlUrl,
+  }));
+}

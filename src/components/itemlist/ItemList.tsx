@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Item from '../item/Item';
+import { connect } from 'react-redux';
 import { ItemType } from '../../model/item.model';
 
 export const Items = styled.ul`
@@ -21,33 +22,25 @@ export const Items = styled.ul`
 `;
 
 interface ItemListProps {
-  filtered: ItemType[];
-  index: number;
+  repos: any;
 }
 
-class ItemList extends React.Component<ItemListProps, {}> {
-  private container: HTMLElement;
-
-  componentDidMount() {
-    this.container = document.querySelector('.item_list') as HTMLElement;
-  }
-
-  adjustScroll() {
-    if (!!this.container) {
-      this.container.scrollTop = this.props.index * 32;
-    }
-  }
-
+class ItemList extends React.Component<ItemListProps> {
   render() {
-    const { filtered, index } = this.props;
+    const { list } = this.props.repos;
+
     return (
-      <Items ref={() => this.adjustScroll()} className="item_list">
-        {filtered.map((item: ItemType, i) => (
-          <Item key={i} item={item} index={i} currentIndex={index} />
+      <Items className="item_list">
+        {list.map((repo: ItemType, i: number) => (
+          <Item key={i} index={i} item={repo} />
         ))}
       </Items>
     );
   }
 }
 
-export default ItemList;
+const mapStateToProps = (state: ItemListProps) => ({
+  repos: state.repos,
+});
+
+export default connect(mapStateToProps)(ItemList);

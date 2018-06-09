@@ -15,20 +15,20 @@ const StyledItems = styled.li`
   color: #24292e;
 `;
 
-const ActiveItem = StyledItems.extend`
-  color: #fff;
-  background-color: #0366d6;
-  font-weight: bolder;
-  font-size: 14px;
-`;
+// const ActiveItem = StyledItems.extend`
+//   color: #fff;
+//   background-color: #0366d6;
+//   font-weight: bolder;
+//   font-size: 14px;
+// `;
 
 interface ItemProps {
   item: ItemType;
   index: number;
-  currentIndex: number;
+  // currentIndex: number;
 }
 
-const Item = ({ item, index, currentIndex }: ItemProps) => {
+const Item = ({ item, index }: ItemProps) => {
   const { id, name, htmlUrl } = item;
   const defaultItem = (
     <StyledItems key={id}>
@@ -36,13 +36,14 @@ const Item = ({ item, index, currentIndex }: ItemProps) => {
       <a href={htmlUrl}>{name}</a>
     </StyledItems>
   );
-  const activeItem = (
-    <ActiveItem key={id}>
-      <a href={htmlUrl}>{name}</a>
-    </ActiveItem>
-  );
+  // const activeItem = (
+  //   <ActiveItem key={id}>
+  //     <a href={htmlUrl}>{name}</a>
+  //   </ActiveItem>
+  // );
 
-  return index === currentIndex ? activeItem : defaultItem;
+  return defaultItem;
+  // return index === currentIndex ? activeItem : defaultItem;
 };
 
 export default Item;

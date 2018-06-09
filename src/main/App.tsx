@@ -1,23 +1,17 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import Input from '../components/input/Input';
 import { ItemType } from '../model/item.model';
-import NotFound from '../components/not-found/NotFound';
+// import NotFound from '../components/not-found/NotFound';
 import ItemList from '../components/itemlist/ItemList';
 import Info from '../components/info/Info';
-// import { repos as data } from './test';
+import { Content } from '../styled-components/Content';
+import { Container } from '../styled-components/Container';
+import { Dispatch } from 'redux';
+import { fetchReposRequest } from '../actions/repoAction';
 
-const Container = styled.div`
-  width: 280px;
-  height: 100%;
-`;
-
-const Content = styled.div`
-  margin-bottom: 12px;
-  height: calc(100% - 48px);
-`;
-
-interface AppProps {}
+interface AppProps {
+  dispatch: Dispatch;
+}
 
 interface AppState {
   placeholder: string;
@@ -34,34 +28,17 @@ const initialState = {
   maxIndex: 0,
   items: [{ id: 1, name: '', htmlUrl: '' }],
   value: '',
-  filtered: []
+  filtered: [],
 };
 
 class App extends React.Component<AppProps, AppState> {
-  BASE_URL = `https://api.github.com/users`;
-  NAME = `JaeYeopHan`;
-
   constructor(props: AppProps) {
     super(props);
     this.state = initialState;
   }
 
   async componentDidMount() {
-    const response = await fetch(`${this.BASE_URL}/${this.NAME}/repos`);
-    const repos = await response.json();
-    // const repos = data;
-    const items = repos.map(({ id, name, htmlUrl }: ItemType) => ({
-      id,
-      name,
-      htmlUrl
-    }));
-    await this.setStateAsync({ ...initialState, items });
-  }
-
-  setStateAsync(state: AppState) {
-    return new Promise(resolve => {
-      this.setState(state, resolve);
-    });
+    this.props.dispatch(fetchReposRequest());
   }
 
   updateState(newIndex: number) {
@@ -74,7 +51,7 @@ class App extends React.Component<AppProps, AppState> {
   updateValue(value: string) {
     const { items } = this.state;
     const filtered = items.filter(({ name }: { name: string }) =>
-      name.includes(value)
+      name.includes(value),
     );
 
     this.setState({ value, filtered, index: 0, maxIndex: filtered.length - 1 });
@@ -89,8 +66,6 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   render() {
-    const { filtered, value } = this.state;
-
     return (
       <Container>
         <Input
@@ -102,11 +77,11 @@ class App extends React.Component<AppProps, AppState> {
           redirect={() => this.redirect()}
         />
         <Content>
-          {value === '' || filtered.length === 0 ? (
+          {/* {value === '' || filtered.length === 0 ? (
             <NotFound value={value} />
-          ) : (
-            <ItemList filtered={filtered} index={this.state.index} />
-          )}
+          ) : ( */}
+          <ItemList />
+          {/* )} */}
         </Content>
         <Info />
       </Container>
