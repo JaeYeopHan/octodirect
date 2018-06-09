@@ -13,11 +13,11 @@ const Logo = styled.span`
 `;
 
 const Button = styled.a`
-  color: #0366D6;
+  color: #0366d6;
   float: right;
   font-size: 14px;
   :hover {
-    color: #0366D6;
+    color: #0366d6;
     text-decoration: none;
     cursor: pointer;
     font-weight: bold;

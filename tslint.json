@@ -58,7 +58,7 @@
     "semicolon": [true, "always"],
     "switch-default": true,
 
-    "trailing-comma": [false],
+    "trailing-comma": [true],
 
     "triple-equals": [true, "allow-null-check"],
     "typedef": [true, "parameter", "property-declaration"],

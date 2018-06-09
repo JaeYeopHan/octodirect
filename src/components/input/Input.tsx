@@ -26,13 +26,15 @@ interface InputProps {
 }
 
 class Input extends React.Component<InputProps> {
-  handleKeyDown({keyCode, target}: any) {
+  handleKeyDown({ keyCode, target }: any) {
     const { index, maxIndex, updateState, redirect } = this.props;
 
-    if (KeyUtils.isCorrectUpKey(keyCode, index)) {// up
+    if (KeyUtils.isCorrectUpKey(keyCode, index)) {
+      // up
       updateState(index - 1);
       target.value = '';
-    } else if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {// down
+    } else if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {
+      // down
       updateState(index + 1);
       target.value = '';
     } else if (KeyUtils.isCorrectEnterKey(keyCode, target.value)) {
@@ -46,7 +48,7 @@ class Input extends React.Component<InputProps> {
   }
 
   render() {
-    return(
+    return (
       <StyledInput
         placeholder={this.props.placeholder}
         autoFocus={true}

@@ -32,9 +32,9 @@ const initialState = {
   placeholder: `Find a repository`,
   index: 0,
   maxIndex: 0,
-  items: [{id: 1, name: '', htmlUrl: ''}],
+  items: [{ id: 1, name: '', htmlUrl: '' }],
   value: '',
-  filtered: [],
+  filtered: []
 };
 
 class App extends React.Component<AppProps, AppState> {
@@ -50,12 +50,16 @@ class App extends React.Component<AppProps, AppState> {
     const response = await fetch(`${this.BASE_URL}/${this.NAME}/repos`);
     const repos = await response.json();
     // const repos = data;
-    const items = repos.map(({id, name, htmlUrl}: ItemType) => ({id, name, htmlUrl}));
-    await this.setStateAsync({...initialState, items});
+    const items = repos.map(({ id, name, htmlUrl }: ItemType) => ({
+      id,
+      name,
+      htmlUrl
+    }));
+    await this.setStateAsync({ ...initialState, items });
   }
 
   setStateAsync(state: AppState) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       this.setState(state, resolve);
     });
   }
@@ -63,15 +67,17 @@ class App extends React.Component<AppProps, AppState> {
   updateState(newIndex: number) {
     const value = this.state.filtered[newIndex].name;
 
-    this.setState({index: newIndex});
-    this.setState({placeholder: value});
+    this.setState({ index: newIndex });
+    this.setState({ placeholder: value });
   }
 
   updateValue(value: string) {
     const { items } = this.state;
-    const filtered = items.filter(({name}: {name: string}) => name.includes(value));
+    const filtered = items.filter(({ name }: { name: string }) =>
+      name.includes(value)
+    );
 
-    this.setState({value, filtered, index: 0, maxIndex: filtered.length - 1});
+    this.setState({ value, filtered, index: 0, maxIndex: filtered.length - 1 });
   }
 
   redirect() {
@@ -91,17 +97,16 @@ class App extends React.Component<AppProps, AppState> {
           placeholder={this.state.placeholder}
           index={this.state.index}
           maxIndex={this.state.maxIndex}
-
           updateState={(index: number) => this.updateState(index)}
           updateValue={(text: string) => this.updateValue(text)}
           redirect={() => this.redirect()}
         />
         <Content>
-        {
-          value === '' || filtered.length === 0
-          ? <NotFound value={value} />
-          : <ItemList filtered={filtered} index={this.state.index} />
-        }
+          {value === '' || filtered.length === 0 ? (
+            <NotFound value={value} />
+          ) : (
+            <ItemList filtered={filtered} index={this.state.index} />
+          )}
         </Content>
         <Info />
       </Container>

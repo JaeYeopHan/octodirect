@@ -13,9 +13,9 @@ export const Items = styled.ul`
   max-height: 180px;
   font-size: 14px;
   font-weight: bold;
-  color: #24292E;
-  background-color: #FAFBFC;
-  border: solid 1px #E2E4E8;
+  color: #24292e;
+  background-color: #fafbfc;
+  border: solid 1px #e2e4e8;
   border-radius: 3px;
   overflow-y: scroll;
 `;
@@ -41,17 +41,10 @@ class ItemList extends React.Component<ItemListProps, {}> {
   render() {
     const { filtered, index } = this.props;
     return (
-      <Items
-        ref={() => this.adjustScroll()}
-        className="item_list"
-      >
+      <Items ref={() => this.adjustScroll()} className="item_list">
         {filtered.map((item: ItemType, i) => (
-          <Item
-            key={i}
-            item={item}
-            index={i}
-            currentIndex={index}
-          />))}
+          <Item key={i} item={item} index={i} currentIndex={index} />
+        ))}
       </Items>
     );
   }

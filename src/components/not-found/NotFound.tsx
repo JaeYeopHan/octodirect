@@ -7,7 +7,7 @@ const NotFoundElement = Items.extend`
   text-align: center;
 `;
 
-const NotFound = ({value}: {value: string}) => (
+const NotFound = ({ value }: { value: string }) => (
   <NotFoundElement>
     <div>We couldn’t find any repositories matching: </div>
     <div>'{value}'</div>

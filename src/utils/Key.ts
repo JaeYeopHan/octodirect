@@ -1,7 +1,7 @@
 enum KEY {
   ENTER = 13,
   UP = 38,
-  DOWN = 40,
+  DOWN = 40
 }
 
 export const KeyUtils = {

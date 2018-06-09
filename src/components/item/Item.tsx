@@ -5,19 +5,19 @@ import { ItemType } from '../../model/item.model';
 const StyledItems = styled.li`
   padding: 10px 8px;
   height: 12px;
-  border-bottom: 1px solid #DDDDDD;
+  border-bottom: 1px solid #dddddd;
   vertical-align: middle;
   font-size: 14px;
   font-weight: bold;
   overflow-x: hidden;
-  white-space : nowrap;
-  text-overflow : ellipsis;
-  color: #24292E;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #24292e;
 `;
 
 const ActiveItem = StyledItems.extend`
   color: #fff;
-  background-color: #0366D6;
+  background-color: #0366d6;
   font-weight: bolder;
   font-size: 14px;
 `;
@@ -42,9 +42,7 @@ const Item = ({ item, index, currentIndex }: ItemProps) => {
     </ActiveItem>
   );
 
-  return index === currentIndex
-    ? activeItem
-    : defaultItem;
+  return index === currentIndex ? activeItem : defaultItem;
 };
 
 export default Item;
