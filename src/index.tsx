@@ -5,7 +5,4 @@ import './static/styles/reset.css';
 
 // import { Provider } from 'mobx-react';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root') as HTMLElement
-);
+ReactDOM.render(<App />, document.getElementById('root') as HTMLElement);
