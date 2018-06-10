@@ -4,15 +4,28 @@ import { connect } from 'react-redux';
 import { ItemType } from '../../model/item.model';
 import { ItemsLayout } from '../../styled-components/ItemsLayout';
 import { NotFound } from '../not-found/NotFound';
+import { $ } from '../../utils/dom';
 
 interface ItemListProps {
   repos: any;
 }
 
+const fixScroll = (index: number) => {
+  const height = 33;
+  const boxHeight = 124;
+  const scrollElm: HTMLElement = $('#fix_scroll');
+
+  if (index >= 3 && scrollElm) {
+    const targetY = index * height - boxHeight;
+
+    scrollElm.scrollTop = targetY;
+  }
+};
+
 const ItemList = ({ repos }: ItemListProps) => {
   const { list, value, index } = repos;
   const Results = (
-    <ItemsLayout className="item_list">
+    <ItemsLayout id="fix_scroll">
       {list
         .filter((repo: ItemType) => repo.name.includes(value))
         .map((repo: ItemType, i: number) => (
@@ -22,6 +35,7 @@ const ItemList = ({ repos }: ItemListProps) => {
   );
   const NoResult = <NotFound value={value} />;
 
+  fixScroll(index);
   return list.length > 0 ? Results : NoResult;
 };
 
