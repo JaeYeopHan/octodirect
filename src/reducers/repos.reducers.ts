@@ -1,6 +1,6 @@
-import { FETCH_SUCCESS, FETCH_FAIL } from './../actions/repoAction';
 import { Reducer } from 'redux';
 import { ItemType } from '../model/item.model';
+import { FETCH_SUCCESS, FETCH_FAIL } from '../actions/actionTypes';
 
 interface RepoState {
   list: ItemType[];

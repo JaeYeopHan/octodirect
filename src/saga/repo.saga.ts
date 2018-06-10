@@ -1,6 +1,6 @@
 import { put } from 'redux-saga/effects';
 import { fetchRepos } from '../service/repo.service';
-import { FETCH_SUCCESS, FETCH_FAIL } from '../actions/repoAction';
+import { FETCH_SUCCESS, FETCH_FAIL } from '../actions/actionTypes';
 
 export function* fetch(action?: any): any {
   try {
