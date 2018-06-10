@@ -27,10 +27,10 @@ interface InputProps {
 
 class Input extends React.Component<InputProps> {
   handleKeyDown({ keyCode, target }: any) {
-    const { index } = this.props.repos;
+    const { index, maxIndex } = this.props.repos;
     if (KeyUtils.isCorrectUpKey(keyCode, index)) {
       this.props.onPressUpKey();
-    } else if (KeyUtils.isCorrectDownKey(keyCode, index)) {
+    } else if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {
       this.props.onPressDownKey();
     } else if (KeyUtils.isCorrectEnterKey(keyCode, target.value)) {
       console.log(target.value);

@@ -23,20 +23,18 @@ const fixScroll = (index: number) => {
 };
 
 const ItemList = ({ repos }: ItemListProps) => {
-  const { list, value, index } = repos;
+  const { filtered, value, index } = repos;
   const Results = (
     <ItemsLayout id="fix_scroll">
-      {list
-        .filter((repo: ItemType) => repo.name.includes(value))
-        .map((repo: ItemType, i: number) => (
-          <Item key={i} index={i} curIndex={index} item={repo} />
-        ))}
+      {filtered.map((repo: ItemType, i: number) => (
+        <Item key={i} index={i} curIndex={index} item={repo} />
+      ))}
     </ItemsLayout>
   );
   const NoResult = <NotFound value={value} />;
 
   fixScroll(index);
-  return list.length > 0 ? Results : NoResult;
+  return filtered.length > 0 ? Results : NoResult;
 };
 
 const mapStateToProps = (state: ItemListProps) => ({

@@ -33,7 +33,6 @@ const Item = ({ item, index, curIndex }: ItemProps) => {
   const defaultItem = (
     <StyledItems key={id}>
       <a href={htmlUrl}>{name}</a>
-      <a href={htmlUrl}>{name}</a>
     </StyledItems>
   );
   const activeItem = (

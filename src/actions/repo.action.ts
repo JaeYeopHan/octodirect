@@ -7,6 +7,7 @@ import {
 } from './actionTypes';
 
 export const fetchReposRequest = createAction(FETCH_REPOS_REQUEST);
+
 export const upIndex = createAction(INDEX_UP);
 export const downIndex = createAction(INDEX_DOWN);
 export const updateValue = createAction(UPDATE_VALUE);
