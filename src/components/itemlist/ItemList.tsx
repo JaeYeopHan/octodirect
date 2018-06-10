@@ -9,16 +9,21 @@ interface ItemListProps {
   repos: any;
 }
 
-const ItemList = ({ repos }: ItemListProps) =>
-  repos.list.length > 0 ? (
+const ItemList = ({ repos }: ItemListProps) => {
+  const { list, value, index } = repos;
+  const Results = (
     <ItemsLayout className="item_list">
-      {repos.list.map((repo: ItemType, i: number) => (
-        <Item key={i} index={i} curIndex={repos.index} item={repo} />
-      ))}
+      {list
+        .filter((repo: ItemType) => repo.name.includes(value))
+        .map((repo: ItemType, i: number) => (
+          <Item key={i} index={i} curIndex={index} item={repo} />
+        ))}
     </ItemsLayout>
-  ) : (
-    <NotFound value={`temporary value`} />
   );
+  const NoResult = <NotFound value={value} />;
+
+  return list.length > 0 ? Results : NoResult;
+};
 
 const mapStateToProps = (state: ItemListProps) => ({
   repos: state.repos,

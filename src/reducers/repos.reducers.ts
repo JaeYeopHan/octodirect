@@ -5,16 +5,19 @@ import {
   FETCH_FAIL,
   INDEX_UP,
   INDEX_DOWN,
+  UPDATE_VALUE,
 } from '../actions/actionTypes';
 
 interface RepoState {
   list: ItemType[];
   index: number;
+  value: string;
 }
 
 const initialState = {
   list: [],
   index: 0,
+  value: '',
 };
 
 export const reposReducers: Reducer<RepoState> = (
@@ -42,6 +45,12 @@ export const reposReducers: Reducer<RepoState> = (
       return {
         ...state,
         index: state.index - 1,
+      };
+
+    case UPDATE_VALUE:
+      return {
+        ...state,
+        value: action.payload,
       };
     default:
       return state;

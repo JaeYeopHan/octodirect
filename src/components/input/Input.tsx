@@ -2,7 +2,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { upIndex, downIndex } from '../../actions/repo.action';
+import { upIndex, downIndex, updateValue } from '../../actions/repo.action';
 import { KeyUtils } from '../../utils/Key';
 
 const StyledInput = styled.input`
@@ -22,6 +22,7 @@ interface InputProps {
   repos: any;
   onPressUpKey: () => void;
   onPressDownKey: () => void;
+  onChange: (value: string) => void;
 }
 
 class Input extends React.Component<InputProps> {
@@ -38,7 +39,7 @@ class Input extends React.Component<InputProps> {
   }
 
   handleChange(e: any) {
-    // this.props.updateValue(e.target.value);
+    this.props.onChange(e.target.value);
   }
 
   render() {
@@ -60,6 +61,7 @@ const mapStateToProps = (state: InputProps) => ({
 const mapDispatchToProps = (dispatch: any) => ({
   onPressUpKey: () => dispatch(downIndex()),
   onPressDownKey: () => dispatch(upIndex()),
+  onChange: (value: string) => dispatch(updateValue(value)),
 });
 
 export default connect(
