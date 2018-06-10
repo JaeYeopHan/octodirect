@@ -10,7 +10,7 @@ const initialState = {
   list: [],
 };
 
-export const repoReducers: Reducer<RepoState> = (
+export const reposReducers: Reducer<RepoState> = (
   state: RepoState = initialState,
   action,
 ): RepoState => {
