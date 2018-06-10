@@ -1,13 +1,20 @@
 import { Reducer } from 'redux';
 import { ItemType } from '../model/item.model';
-import { FETCH_SUCCESS, FETCH_FAIL } from '../actions/actionTypes';
+import {
+  FETCH_SUCCESS,
+  FETCH_FAIL,
+  INDEX_UP,
+  INDEX_DOWN,
+} from '../actions/actionTypes';
 
 interface RepoState {
   list: ItemType[];
+  index: number;
 }
 
 const initialState = {
   list: [],
+  index: 0,
 };
 
 export const reposReducers: Reducer<RepoState> = (
@@ -26,6 +33,16 @@ export const reposReducers: Reducer<RepoState> = (
         list: [],
       };
 
+    case INDEX_UP:
+      return {
+        ...state,
+        index: state.index + 1,
+      };
+    case INDEX_DOWN:
+      return {
+        ...state,
+        index: state.index - 1,
+      };
     default:
       return state;
   }

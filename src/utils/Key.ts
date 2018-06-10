@@ -9,7 +9,7 @@ export const KeyUtils = {
     return keyCode === KEY.UP && index > 0;
   },
 
-  isCorrectDownKey: (keyCode: number, index: number, maxIndex: number) => {
+  isCorrectDownKey: (keyCode: number, index: number, maxIndex: number = 30) => {
     return keyCode === KEY.DOWN && index < maxIndex;
   },
 

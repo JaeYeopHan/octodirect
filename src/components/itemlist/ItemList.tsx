@@ -13,7 +13,7 @@ const ItemList = ({ repos }: ItemListProps) =>
   repos.list.length > 0 ? (
     <ItemsLayout className="item_list">
       {repos.list.map((repo: ItemType, i: number) => (
-        <Item key={i} index={i} item={repo} />
+        <Item key={i} index={i} curIndex={repos.index} item={repo} />
       ))}
     </ItemsLayout>
   ) : (

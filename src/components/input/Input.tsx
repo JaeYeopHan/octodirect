@@ -1,7 +1,10 @@
 /* tslint:disable: no-any */
 import * as React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { upIndex, downIndex } from '../../actions/repo.action';
 import { KeyUtils } from '../../utils/Key';
+// import { KeyUtils } from '../../utils/Key';
 
 const StyledInput = styled.input`
   position: fixed;
@@ -16,41 +19,41 @@ const StyledInput = styled.input`
   }
 `;
 
+// interface InputProps {
+//   placeholder: string;
+//   index: number;
+//   maxIndex: number;
+//   updateState: (index: number) => void;
+//   updateValue: (text: string) => void;
+// }
+
 interface InputProps {
-  placeholder: string;
-  index: number;
-  maxIndex: number;
-  updateState: (index: number) => void;
-  updateValue: (text: string) => void;
-  redirect: () => void;
+  repos: any;
+  onPressUpKey: () => void;
+  onPressDownKey: () => void;
 }
 
 class Input extends React.Component<InputProps> {
   handleKeyDown({ keyCode, target }: any) {
-    const { index, maxIndex, updateState, redirect } = this.props;
-
+    const { index } = this.props.repos;
     if (KeyUtils.isCorrectUpKey(keyCode, index)) {
-      // up
-      updateState(index - 1);
-      target.value = '';
-    } else if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {
-      // down
-      updateState(index + 1);
-      target.value = '';
+      this.props.onPressUpKey();
+    } else if (KeyUtils.isCorrectDownKey(keyCode, index)) {
+      this.props.onPressDownKey();
     } else if (KeyUtils.isCorrectEnterKey(keyCode, target.value)) {
+      console.log(target.value);
       target.value = '';
-      redirect();
     }
   }
 
   handleChange(e: any) {
-    this.props.updateValue(e.target.value);
+    // this.props.updateValue(e.target.value);
   }
 
   render() {
     return (
       <StyledInput
-        placeholder={this.props.placeholder}
+        placeholder={'Find a repository'}
         autoFocus={true}
         onKeyDown={(e: any) => this.handleKeyDown(e)}
         onChange={(e: any) => this.handleChange(e)}
@@ -59,4 +62,16 @@ class Input extends React.Component<InputProps> {
   }
 }
 
-export default Input;
+const mapStateToProps = (state: InputProps) => ({
+  repos: state.repos,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  onPressUpKey: () => dispatch(downIndex()),
+  onPressDownKey: () => dispatch(upIndex()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Input);

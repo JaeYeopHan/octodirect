@@ -15,20 +15,20 @@ const StyledItems = styled.li`
   color: #24292e;
 `;
 
-// const ActiveItem = StyledItems.extend`
-//   color: #fff;
-//   background-color: #0366d6;
-//   font-weight: bolder;
-//   font-size: 14px;
-// `;
+const ActiveItem = StyledItems.extend`
+  color: #fff;
+  background-color: #0366d6;
+  font-weight: bolder;
+  font-size: 14px;
+`;
 
 interface ItemProps {
   item: ItemType;
   index: number;
-  // currentIndex: number;
+  curIndex: number;
 }
 
-const Item = ({ item, index }: ItemProps) => {
+const Item = ({ item, index, curIndex }: ItemProps) => {
   const { id, name, htmlUrl } = item;
   const defaultItem = (
     <StyledItems key={id}>
@@ -36,14 +36,13 @@ const Item = ({ item, index }: ItemProps) => {
       <a href={htmlUrl}>{name}</a>
     </StyledItems>
   );
-  // const activeItem = (
-  //   <ActiveItem key={id}>
-  //     <a href={htmlUrl}>{name}</a>
-  //   </ActiveItem>
-  // );
+  const activeItem = (
+    <ActiveItem key={id}>
+      <a href={htmlUrl}>{name}</a>
+    </ActiveItem>
+  );
 
-  return defaultItem;
-  // return index === currentIndex ? activeItem : defaultItem;
+  return index === curIndex ? activeItem : defaultItem;
 };
 
 export default Item;
