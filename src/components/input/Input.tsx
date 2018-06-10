@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { upIndex, downIndex } from '../../actions/repo.action';
 import { KeyUtils } from '../../utils/Key';
-// import { KeyUtils } from '../../utils/Key';
 
 const StyledInput = styled.input`
   position: fixed;
@@ -18,14 +17,6 @@ const StyledInput = styled.input`
     color: grey;
   }
 `;
-
-// interface InputProps {
-//   placeholder: string;
-//   index: number;
-//   maxIndex: number;
-//   updateState: (index: number) => void;
-//   updateValue: (text: string) => void;
-// }
 
 interface InputProps {
   repos: any;

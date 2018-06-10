@@ -11,20 +11,9 @@ interface AppProps {
   dispatch: Dispatch;
 }
 
-interface AppState {
-  placeholder: string;
-  value: string;
-}
-
-const initialState = {
-  placeholder: `Find a repository`,
-  value: '',
-};
-
-class App extends React.Component<AppProps, AppState> {
+class App extends React.Component<AppProps, {}> {
   constructor(props: AppProps) {
     super(props);
-    this.state = initialState;
   }
 
   async componentDidMount() {
