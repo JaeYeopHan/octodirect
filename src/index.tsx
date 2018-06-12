@@ -18,7 +18,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 middlewares.push(sagaMiddleware);
 
-const store = compose(applyMiddleware(...middlewares))(createStore)(reducer);
+const composeEnhancers =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  reducer,
+  composeEnhancers(applyMiddleware(...middlewares)),
+);
 
 sagaMiddleware.run(saga);
 
