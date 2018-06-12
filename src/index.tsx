@@ -29,7 +29,7 @@ sagaMiddleware.run(saga);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App dispatch={store.dispatch} />
+    <App />
   </Provider>,
   document.getElementById('root') as HTMLElement,
 );

@@ -5,9 +5,10 @@ import { ItemType } from '../../model/item.model';
 import { ItemsLayout } from '../../styled-components/ItemsLayout';
 import { NotFound } from '../not-found/NotFound';
 import { $ } from '../../utils/dom';
+import { RepoState } from '../../reducers/repos.reducers';
 
 interface ItemListProps {
-  repos: any;
+  repos: RepoState;
 }
 
 const fixScroll = (index: number) => {
@@ -22,7 +23,7 @@ const fixScroll = (index: number) => {
   }
 };
 
-const ItemList = ({ repos }: ItemListProps) => {
+const ItemList: React.SFC<ItemListProps> = ({ repos }) => {
   const { filtered, value, index } = repos;
   const Results = (
     <ItemsLayout id="fix_scroll">

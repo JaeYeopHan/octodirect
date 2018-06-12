@@ -3,14 +3,11 @@ import Input from '../components/input/Input';
 import ItemList from '../components/itemlist/ItemList';
 import Info from '../components/info/Info';
 import { Container } from '../styled-components/Container';
-import { Dispatch } from 'redux';
 
-const App = ({ dispatch }: { dispatch: Dispatch }) => (
+export default () => (
   <Container>
     <Input />
     <ItemList />
     <Info />
   </Container>
 );
-
-export default App;

@@ -1,9 +1,9 @@
-/* tslint:disable: no-any */
 import * as React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { upIndex, downIndex, updateValue } from '../../actions/repo.action';
 import { KeyUtils } from '../../utils/Key';
+import { RepoState } from '../../reducers/repos.reducers';
 
 const StyledInput = styled.input`
   position: fixed;
@@ -19,30 +19,34 @@ const StyledInput = styled.input`
 `;
 
 interface InputProps {
-  repos: any;
+  repos: RepoState;
   onPressUpKey: () => void;
   onPressDownKey: () => void;
   onChange: (value: string) => void;
 }
 
 class Input extends React.Component<InputProps> {
-  handleKeyDown({ keyCode, target }: any) {
+  handleKeyDown({
+    keyCode,
+    currentTarget,
+  }: React.KeyboardEvent<HTMLInputElement>): void {
     const { index, maxIndex } = this.props.repos;
+
     if (KeyUtils.isCorrectUpKey(keyCode, index)) {
       this.props.onPressUpKey();
     } else if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {
       this.props.onPressDownKey();
-    } else if (KeyUtils.isCorrectEnterKey(keyCode, target.value)) {
-      console.log(target.value);
-      target.value = '';
+    } else if (KeyUtils.isCorrectEnterKey(keyCode, currentTarget.value)) {
+      console.log(currentTarget.value);
+      currentTarget.value = '';
     }
   }
 
-  handleChange(e: any) {
-    this.props.onChange(e.target.value);
+  handleChange({ currentTarget }: React.KeyboardEvent<HTMLInputElement>): void {
+    this.props.onChange(currentTarget.value);
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <StyledInput
         placeholder={'Find a repository'}

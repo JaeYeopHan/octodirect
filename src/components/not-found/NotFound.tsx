@@ -7,7 +7,7 @@ const NotFoundElement = ItemsLayout.extend`
   text-align: center;
 `;
 
-export const NotFound = ({ value }: { value: string }) => (
+export const NotFound: React.SFC<{ value: string }> = ({ value }) => (
   <NotFoundElement>
     <div>We couldn’t find any repositories matching: </div>
     <div>'{value}'</div>

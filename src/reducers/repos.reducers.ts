@@ -8,7 +8,7 @@ import {
   UPDATE_VALUE,
 } from '../actions/actionTypes';
 
-interface RepoState {
+export interface RepoState {
   readonly list: ItemType[];
   readonly filtered: ItemType[];
   readonly index: number;
