@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Item } from '../item/Item';
 import { ItemType } from '../../model/item.model';
 import { ItemsLayout } from '../../styled-components/ItemsLayout';

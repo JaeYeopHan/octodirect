@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ItemsLayout } from '../../styled-components/ItemsLayout';
 
 const NotFoundElement = ItemsLayout.extend`
