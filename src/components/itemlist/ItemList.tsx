@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Item from '../item/Item';
-import { connect } from 'react-redux';
 import { ItemType } from '../../model/item.model';
 import { ItemsLayout } from '../../styled-components/ItemsLayout';
 import { NotFound } from '../not-found/NotFound';
@@ -34,12 +33,8 @@ const ItemList: React.SFC<ItemListProps> = ({ repos }) => {
   );
   const NoResult = <NotFound value={value} />;
 
-  fixScroll(index);
+  fixScroll(index); // FIXME: Currently, Dom select when every render.
   return filtered.length > 0 ? Results : NoResult;
 };
 
-const mapStateToProps = (state: ItemListProps) => ({
-  repos: state.repos,
-});
-
-export default connect(mapStateToProps)(ItemList);
+export default ItemList;
