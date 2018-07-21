@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { ItemType } from '../model/item.model';
+import { Readonly } from '../types';
 import {
   FETCH_SUCCESS,
   FETCH_FAIL,
@@ -9,11 +10,11 @@ import {
 } from '../actions/actionTypes';
 
 export interface RepoState {
-  readonly list: ItemType[];
-  readonly filtered: ItemType[];
-  readonly index: number;
-  readonly maxIndex: number;
-  readonly value: string;
+  list: ItemType[];
+  filtered: ItemType[];
+  index: number;
+  maxIndex: number;
+  value: string;
 }
 
 const initialState = {
@@ -24,7 +25,7 @@ const initialState = {
   maxIndex: 0,
 };
 
-export const reposReducers: Reducer<RepoState> = (
+export const reposReducers: Reducer<Readonly<RepoState>> = (
   state: RepoState = initialState,
   action,
 ): RepoState => {
