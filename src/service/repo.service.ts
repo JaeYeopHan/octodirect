@@ -1,4 +1,4 @@
-import { repos as repoMock } from '../main/test';
+import { repos as repoMock } from './mock';
 
 export async function fetchRepos() {
   if (process.env.NODE_ENV === 'development') {
