@@ -5,7 +5,7 @@ import { Input } from '../components/input/Input';
 import { ItemList } from '../components/itemlist/ItemList';
 import { Info } from '../components/info/Info';
 import { RepoState } from '../reducers/repos.reducers';
-import { upIndex, downIndex, updateValue } from '../actions/repo.action';
+import { upIndex, downIndex, updateValue } from '../actions/repos.action';
 
 interface AppContainerProps {
   repos: RepoState;
