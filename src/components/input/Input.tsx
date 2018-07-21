@@ -1,7 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { upIndex, downIndex, updateValue } from '../../actions/repo.action';
 import { KeyUtils } from '../../utils/Key';
 import { RepoState } from '../../reducers/repos.reducers';
 
@@ -58,17 +56,4 @@ class Input extends React.Component<InputProps> {
   }
 }
 
-const mapStateToProps = (state: InputProps) => ({
-  repos: state.repos,
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  onPressUpKey: () => dispatch(downIndex()),
-  onPressDownKey: () => dispatch(upIndex()),
-  onChange: (value: string) => dispatch(updateValue(value)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Input);
+export default Input;
