@@ -2,12 +2,12 @@ import * as React from 'react';
 import Input from '../components/input/Input';
 import ItemList from '../components/itemlist/ItemList';
 import Info from '../components/info/Info';
-import { Container } from '../styled-components/Container';
+import { AppLayout } from '../styled-components/AppLayout';
 
 export default () => (
-  <Container>
+  <AppLayout>
     <Input />
     <ItemList />
     <Info />
-  </Container>
+  </AppLayout>
 );

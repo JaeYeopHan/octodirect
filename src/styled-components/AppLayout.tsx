@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const AppLayout = styled.div`
   width: 280px;
   height: 100%;
 `;
