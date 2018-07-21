@@ -47,3 +47,8 @@ This is Chrome extension app. This help to move your GitHub Repository directly.
 </br>
 
 ## LICENSE
+
+<p align="center">✌️</p>
+<p align="center">
+<sub><sup>A little project by <a href="https://jbee-resume.now.sh/">@Jbee</a></sup></sub>
+</p>
