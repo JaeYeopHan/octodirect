@@ -2,8 +2,9 @@
     <img src="" alt="">
 </div>
 
-# Octodirect
+# Octodirect (in progress)
 
+[![Build Status](https://travis-ci.org/JaeYeopHan/octodirect.svg?branch=master)](https://travis-ci.org/JaeYeopHan/octodirect)
 [![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.png?v=101)](https://github.com/ellerbrock/typescript-badges/)
 [![status](https://img.shields.io/badge/status-work%20in%20progress-orange.svg)](https://github.com/JaeYeopHan/octocard/issues)
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
@@ -16,7 +17,7 @@ This is Chrome extension app. This help to move your GitHub Repository directly.
 
 #### Live Demo
 
-- [Octodirect](#octodirect)
+- [Octodirect (in progress)](#octodirect-in-progress)
       - [Live Demo](#live-demo)
   - [SetUp](#setup)
   - [Usage](#usage)
