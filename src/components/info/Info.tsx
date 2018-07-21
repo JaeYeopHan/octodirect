@@ -24,11 +24,9 @@ const Button = styled.a`
   }
 `;
 
-const Info: React.SFC = () => (
+export const Info: React.SFC = () => (
   <Container>
     <Logo>@octodirect</Logo>
     <Button>Add permission</Button>
   </Container>
 );
-
-export default Info;

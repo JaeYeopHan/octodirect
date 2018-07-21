@@ -27,7 +27,7 @@ interface ItemProps {
   curIndex: number;
 }
 
-const Item: React.SFC<ItemProps> = ({ item, index, curIndex }) => {
+export const Item: React.SFC<ItemProps> = ({ item, index, curIndex }) => {
   const { id, name, htmlUrl } = item;
   const defaultItem = (
     <DefaultItem key={id}>
@@ -42,5 +42,3 @@ const Item: React.SFC<ItemProps> = ({ item, index, curIndex }) => {
 
   return index === curIndex ? activeItem : defaultItem;
 };
-
-export default Item;

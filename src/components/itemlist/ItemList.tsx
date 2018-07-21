@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Item from '../item/Item';
+import { Item } from '../item/Item';
 import { ItemType } from '../../model/item.model';
 import { ItemsLayout } from '../../styled-components/ItemsLayout';
 import { NotFound } from '../not-found/NotFound';
@@ -22,7 +22,7 @@ const fixScroll = (index: number) => {
   }
 };
 
-const ItemList: React.SFC<ItemListProps> = ({ repos }) => {
+export const ItemList: React.SFC<ItemListProps> = ({ repos }) => {
   const { filtered, value, index } = repos;
   const Results = (
     <ItemsLayout id="fix_scroll">
@@ -36,5 +36,3 @@ const ItemList: React.SFC<ItemListProps> = ({ repos }) => {
   fixScroll(index); // FIXME: Currently, Dom select when every render.
   return filtered.length > 0 ? Results : NoResult;
 };
-
-export default ItemList;

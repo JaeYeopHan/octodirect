@@ -23,7 +23,7 @@ interface InputProps {
   onChange: (value: string) => void;
 }
 
-class Input extends React.Component<InputProps> {
+export class Input extends React.Component<InputProps> {
   handleKeyDown({
     keyCode,
     currentTarget,
@@ -55,5 +55,3 @@ class Input extends React.Component<InputProps> {
     );
   }
 }
-
-export default Input;

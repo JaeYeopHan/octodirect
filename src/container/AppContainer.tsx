@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import Input from '../components/input/Input';
-import ItemList from '../components/itemlist/ItemList';
-import Info from '../components/info/Info';
+import { Input } from '../components/input/Input';
+import { ItemList } from '../components/itemlist/ItemList';
+import { Info } from '../components/info/Info';
 import { RepoState } from '../reducers/repos.reducers';
 import { upIndex, downIndex, updateValue } from '../actions/repo.action';
 
