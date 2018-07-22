@@ -1,36 +1,7 @@
-export type Partial<T> = { [P in keyof T]?: T[P] };
+export type FunctionType = (...args: any[]) => any;
 
-/**
- * Make all properties in T required
- */
-export type Required<T> = { [P in keyof T]-?: T[P] };
+export type ActionCreatorsMapObject = { [actionCreator: string]: FunctionType };
 
-/**
- * Make all properties in T readonly
- */
-export type Readonly<T> = { readonly [P in keyof T]: T[P] };
-
-/**
- * From T pick a set of properties K
- */
-export type Pick<T, K extends keyof T> = { [P in K]: T[P] };
-
-/**
- * Construct a type with a set of properties K of type T
- */
-export type Record<K extends keyof any, T> = { [P in K]: T };
-
-/**
- * Exclude from T those types that are assignable to U
- */
-export type Exclude<T, U> = T extends U ? never : T;
-
-/**
- * Extract from T those types that are assignable to U
- */
-export type Extract<T, U> = T extends U ? T : never;
-
-/**
- * Exclude null and undefined from T
- */
-export type NonNullable<T> = T extends null | undefined ? never : T;
+export type ActionsUnion<A extends ActionCreatorsMapObject> = ReturnType<
+  A[keyof A]
+>;

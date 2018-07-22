@@ -5,7 +5,7 @@ import { Input } from '../components/input/Input';
 import { ItemList } from '../components/itemlist/ItemList';
 import { Info } from '../components/info/Info';
 import { RepoState } from '../reducers/repos.reducers';
-import { upIndex, downIndex, updateValue } from '../actions/repos.action';
+import { actions } from '../actions/actions';
 
 interface AppContainerProps {
   repos: RepoState;
@@ -38,9 +38,9 @@ const mapStateToProps = (state: AppContainerProps) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  onPressUpKey: () => dispatch(downIndex()),
-  onPressDownKey: () => dispatch(upIndex()),
-  onChange: (value: string) => dispatch(updateValue(value)),
+  onPressUpKey: () => dispatch(actions.decrementIndex()),
+  onPressDownKey: () => dispatch(actions.incrementIndex()),
+  onChange: (value: string) => dispatch(actions.updateValue(value)),
 });
 
 export default connect(
