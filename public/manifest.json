@@ -6,14 +6,24 @@
   "version": "0.0.1",
 
   "browser_action": {
-    "default_icon": "octodirect_icon.png",
+    "default_icon": "octodirect_48.png",
     "default_popup": "index.html"
   },
+
+  "icons": {
+    "16": "octodirect_16.png",
+    "48": "octodirect_48.png",
+    "128": "octodirect_128.png"
+  },
+
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+Shift+K",
-        "mac": "Command+Shift+K"
+        "windows": "Alt+Shift+K",
+        "linux": "Alt+Shift+K",
+        "chromeos": "Alt+Shift+K",
+        "mac": "Command+Shift+K",
+        "default": "Ctrl+Shift+K"
       },
       "description": "open_popup",
       "global": true
