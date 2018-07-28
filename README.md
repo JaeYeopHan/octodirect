@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="" alt="">
+    <img src="./assets/octodirect_logo.png" width="240px" alt="octodirect-logo">
 </div>
 
 # Octodirect (in progress)
