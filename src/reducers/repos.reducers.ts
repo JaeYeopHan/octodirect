@@ -45,7 +45,7 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
         index: state.index + 1,
       };
 
-    case ActionTypes.INCREMENT_INDEX:
+    case ActionTypes.DECREMENT_INDEX:
       return {
         ...state,
         index: state.index - 1,
