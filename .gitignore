@@ -24,4 +24,4 @@ yarn-error.log*
 .coveralls.yml
 
 # jest
-__snapshot__
+/src/**/__snapshots__
