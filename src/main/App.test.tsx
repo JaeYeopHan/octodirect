@@ -1,10 +1,13 @@
-// import React from 'react';
-// import App from './App';
+import React from 'react';
+import App from './App';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
-// import renderer from 'react-test-renderer';
+configure({ adapter: new Adapter() });
 
-it('renders without crashing', () => {
-  // const rendered = renderer.create(<App />).toJSON();
-  // expect(rendered).toBeTruthy();
-  expect(true).toBeTruthy();
+describe('<App /> shallow rendering', () => {
+  it('Render AppContainer', () => {
+    const wrapper = shallow(<App />);
+    console.log(wrapper.html());
+  });
 });

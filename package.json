@@ -13,13 +13,16 @@
   },
   "scripts": {
     "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build && cp ./src/static/images/octodirect_icon.png ./build/",
+    "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
+    "typesync": "npx typesync && npm install",
     "coveralls": "react-scripts-ts test --env=jsdom --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "devDependencies": {
     "@types/chrome": "0.0.58",
+    "@types/enzyme": "^3.1.12",
+    "@types/enzyme-adapter-react-16": "^1.0.2",
     "@types/jest": "^22.0.1",
     "@types/node": "^9.3.0",
     "@types/react": "^16.3.17",
@@ -28,6 +31,8 @@
     "@types/react-test-renderer": "^16.0.1",
     "@types/redux-logger": "^3.0.6",
     "@types/redux-saga": "^0.10.5",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^23.4.1",
     "react-test-renderer": "^16.4.1",
     "styled-components": "^3.3.2",
