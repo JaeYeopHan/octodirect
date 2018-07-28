@@ -22,3 +22,6 @@ yarn-error.log*
 
 # coveralls
 .coveralls.yml
+
+# jest
+__snapshot__
