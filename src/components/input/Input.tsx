@@ -28,15 +28,23 @@ export class Input extends React.Component<InputProps> {
     keyCode,
     currentTarget,
   }: React.KeyboardEvent<HTMLInputElement>): void {
-    const { index, maxIndex } = this.props.repos;
-    console.log(currentTarget.value);
+    const { index, maxIndex, filtered } = this.props.repos;
 
     if (KeyUtils.isCorrectUpKey(keyCode, index)) {
       this.props.onPressUpKey();
     } else if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {
       this.props.onPressDownKey();
-    } else if (KeyUtils.isCorrectEnterKey(keyCode, currentTarget.value)) {
-      currentTarget.value = '';
+    } else if (KeyUtils.isCorrectEnterKey(keyCode, currentTarget.placeholder)) {
+      const selectedItem = filtered[index];
+      const targetUrl = selectedItem.htmlUrl;
+
+      if (process.env.NODE_ENV === 'development') {
+        console.log(targetUrl);
+      } else {
+        chrome.tabs.create({ url: targetUrl });
+        currentTarget.placeholder = '';
+        setTimeout(() => window.close, 300);
+      }
     }
   }
 

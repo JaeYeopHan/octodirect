@@ -26,6 +26,7 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
     case ActionTypes.FETCH_SUCCESS: {
       const list = refineData(action.payload);
 
+      console.log(list);
       return {
         ...state,
         list,
@@ -90,7 +91,7 @@ function refineData(rawRepos: any[]): ItemType[] {
   if (!rawRepos) {
     return [];
   }
-  return rawRepos.map(({ id, name, htmlUrl }: ItemType) => ({
+  return rawRepos.map(({ id, name, html_url: htmlUrl }) => ({
     id,
     name,
     htmlUrl,
