@@ -29,13 +29,13 @@ export class Input extends React.Component<InputProps> {
     currentTarget,
   }: React.KeyboardEvent<HTMLInputElement>): void {
     const { index, maxIndex } = this.props.repos;
+    console.log(currentTarget.value);
 
     if (KeyUtils.isCorrectUpKey(keyCode, index)) {
       this.props.onPressUpKey();
     } else if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {
       this.props.onPressDownKey();
     } else if (KeyUtils.isCorrectEnterKey(keyCode, currentTarget.value)) {
-      console.log(currentTarget.value);
       currentTarget.value = '';
     }
   }
@@ -45,9 +45,11 @@ export class Input extends React.Component<InputProps> {
   }
 
   render(): JSX.Element {
+    const { value } = this.props.repos;
+
     return (
       <StyledInput
-        placeholder={'Find a repository'}
+        placeholder={value ? value : 'Find a repository'}
         autoFocus={true}
         onKeyDown={(e: any) => this.handleKeyDown(e)}
         onChange={(e: any) => this.handleChange(e)}

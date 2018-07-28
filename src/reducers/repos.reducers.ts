@@ -23,7 +23,7 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
   action: Actions,
 ): RepoState => {
   switch (action.type) {
-    case ActionTypes.FETCH_SUCCESS:
+    case ActionTypes.FETCH_SUCCESS: {
       const list = refineData(action.payload);
 
       return {
@@ -32,26 +32,38 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
         filtered: list,
         maxIndex: list.length - 1,
       };
+    }
 
-    case ActionTypes.FETCH_FAIL:
+    case ActionTypes.FETCH_FAIL: {
       return {
         ...state,
         list: [],
       };
+    }
 
-    case ActionTypes.INCREMENT_INDEX:
+    case ActionTypes.INCREMENT_INDEX: {
+      const changedIndex = state.index + 1;
+      const selectedValue = state.list[changedIndex].name;
+
       return {
         ...state,
-        index: state.index + 1,
+        index: changedIndex,
+        value: selectedValue,
       };
+    }
 
-    case ActionTypes.DECREMENT_INDEX:
+    case ActionTypes.DECREMENT_INDEX: {
+      const changedIndex = state.index - 1;
+      const selectedValue = state.list[changedIndex].name;
+
       return {
         ...state,
-        index: state.index - 1,
+        index: changedIndex,
+        value: selectedValue,
       };
+    }
 
-    case ActionTypes.UPDATE_VALUE:
+    case ActionTypes.UPDATE_VALUE: {
       const filtered = filterList(state.list, action.payload);
 
       return {
@@ -60,6 +72,7 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
         filtered,
         maxIndex: filtered.length - 1,
       };
+    }
 
     default:
       return state;
