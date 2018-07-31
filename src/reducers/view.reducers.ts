@@ -3,12 +3,12 @@ import { Reducer } from 'redux';
 
 type ViewType = 'main' | 'setting';
 
-interface ViewState {
-  view: ViewType;
+export interface ViewState {
+  type: ViewType;
 }
 
 const initialState: ViewState = {
-  view: 'main',
+  type: 'main',
 };
 
 export const viewReducers: Reducer<Readonly<ViewState>> = (
@@ -17,9 +17,9 @@ export const viewReducers: Reducer<Readonly<ViewState>> = (
 ) => {
   switch (action.type) {
     case ActionTypes.TOGGLE_VIEW:
-      const currentViewType = state.view;
+      const currentViewType = state.type;
       const nextViewType = currentViewType === 'main' ? 'setting' : 'main';
-      return { ...state, ...{ view: nextViewType } };
+      return { ...state, ...{ type: nextViewType } };
     default:
       return state;
   }

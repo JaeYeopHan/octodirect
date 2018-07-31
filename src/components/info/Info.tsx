@@ -25,11 +25,15 @@ const Button = styled.a`
   }
 `;
 
-export const Info: React.SFC = () => (
+interface InfoProps {
+  onClickButton: () => void;
+}
+
+export const Info: React.SFC<InfoProps> = ({ onClickButton }) => (
   <Container>
     <Logo>
       octodirect<a href="http://github.com/JaeYeopHan">@Jbee</a>
     </Logo>
-    <Button>Setting</Button>
+    <Button onClick={onClickButton}>Setting</Button>
   </Container>
 );

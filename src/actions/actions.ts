@@ -11,6 +11,7 @@ export const enum ActionTypes {
   DECREMENT_INDEX = 'DECREMENT_INDEX',
 
   UPDATE_VALUE = 'UPDATE_VALUE',
+  TOGGLE_VIEW = 'TOGGLE_VIEW',
 }
 
 export const actions = {
@@ -23,6 +24,7 @@ export const actions = {
   fetchSuccess: (repos: ItemType[]) =>
     createAction(ActionTypes.FETCH_SUCCESS, repos),
   fetchFail: (error: string) => createAction(ActionTypes.FETCH_FAIL, error),
+  toggleView: () => createAction(ActionTypes.TOGGLE_VIEW),
 };
 
 export type Actions = ActionsUnion<typeof actions>;
