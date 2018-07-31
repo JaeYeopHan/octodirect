@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Input } from '../components/main-view/input/Input';
 import { ItemList } from '../components/main-view/itemlist/ItemList';
 import { Info } from '../components/main-view/info/Info';
+import { InputSpace } from '../components/setting-view/InputSpace';
 import { RepoState } from '../reducers/repos.reducers';
 import { actions } from '../actions/actions';
 import { ViewState } from '../reducers/view.reducers';
@@ -40,7 +41,11 @@ class AppContainer extends React.Component<AppContainerProps> {
         <Info onClickButton={onClickButton} />
       </React.Fragment>
     );
-    const SettingView: JSX.Element = <div>Setting view</div>;
+    const SettingView: JSX.Element = (
+      <div>
+        <InputSpace />
+      </div>
+    );
 
     return view.type === 'main' ? MainView : SettingView;
   }
