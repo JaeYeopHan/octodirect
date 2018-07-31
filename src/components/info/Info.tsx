@@ -9,7 +9,9 @@ const Container = styled.div`
 `;
 
 const Logo = styled.span`
+  margin-left: 10px;
   font-size: 14px;
+  color: #666;
 `;
 
 const Button = styled.a`
@@ -20,13 +22,14 @@ const Button = styled.a`
     color: #0366d6;
     text-decoration: none;
     cursor: pointer;
-    font-weight: bold;
   }
 `;
 
 export const Info: React.SFC = () => (
   <Container>
-    <Logo>@octodirect</Logo>
-    <Button>Add permission</Button>
+    <Logo>
+      octodirect<a href="http://github.com/JaeYeopHan">@Jbee</a>
+    </Logo>
+    <Button>Setting</Button>
   </Container>
 );
