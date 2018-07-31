@@ -8,6 +8,7 @@ import { InputSpace } from '../components/setting-view/InputSpace';
 import { RepoState } from '../reducers/repos.reducers';
 import { actions } from '../actions/actions';
 import { ViewState } from '../reducers/view.reducers';
+import { UserInfo } from '../service/userInfo.service';
 
 interface AppContainerProps {
   repos: RepoState;
@@ -15,7 +16,8 @@ interface AppContainerProps {
   onPressUpKey: () => void;
   onPressDownKey: () => void;
   onChange: (value: string) => void;
-  onClickButton: () => void;
+  onToggleView: () => void;
+  onClickSubmit: (info: UserInfo) => void;
 }
 
 class AppContainer extends React.Component<AppContainerProps> {
@@ -26,7 +28,8 @@ class AppContainer extends React.Component<AppContainerProps> {
       onPressUpKey,
       onPressDownKey,
       onChange,
-      onClickButton,
+      onToggleView,
+      onClickSubmit,
     } = this.props;
 
     const MainView: JSX.Element = (
@@ -38,11 +41,12 @@ class AppContainer extends React.Component<AppContainerProps> {
           onChange={onChange}
         />
         <ItemList repos={repos} />
-        <Info onClickButton={onClickButton} />
+        <Info onToggleView={onToggleView} />
       </React.Fragment>
     );
+
     const SettingView: JSX.Element = (
-      <InputSpace onClickSubmit={onClickButton} />
+      <InputSpace onClickSubmit={onClickSubmit} onClickClose={onToggleView} />
     );
 
     return view.type === 'main' ? MainView : SettingView;
@@ -58,7 +62,8 @@ const mapDispatchToProps = (dispatch: any) => ({
   onPressUpKey: () => dispatch(actions.decrementIndex()),
   onPressDownKey: () => dispatch(actions.incrementIndex()),
   onChange: (value: string) => dispatch(actions.updateValue(value)),
-  onClickButton: () => dispatch(actions.toggleView()),
+  onToggleView: () => dispatch(actions.toggleView()),
+  onClickSubmit: (info: UserInfo) => dispatch(actions.insertUserInfo(info)),
 });
 
 export default connect(

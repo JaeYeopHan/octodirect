@@ -1,3 +1,4 @@
+import { UserInfo } from './../service/userInfo.service';
 import { createAction } from './createAction';
 import { ActionsUnion } from '../types';
 import { ItemType } from '../model/item.model';
@@ -12,6 +13,8 @@ export const enum ActionTypes {
 
   UPDATE_VALUE = 'UPDATE_VALUE',
   TOGGLE_VIEW = 'TOGGLE_VIEW',
+
+  INSERT_USERINFO = 'INSERT_USERINFO',
 }
 
 export const actions = {
@@ -25,6 +28,8 @@ export const actions = {
     createAction(ActionTypes.FETCH_SUCCESS, repos),
   fetchFail: (error: string) => createAction(ActionTypes.FETCH_FAIL, error),
   toggleView: () => createAction(ActionTypes.TOGGLE_VIEW),
+  insertUserInfo: (info: UserInfo) =>
+    createAction(ActionTypes.INSERT_USERINFO, info),
 };
 
 export type Actions = ActionsUnion<typeof actions>;

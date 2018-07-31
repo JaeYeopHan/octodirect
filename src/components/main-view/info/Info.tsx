@@ -26,14 +26,14 @@ const Button = styled.a`
 `;
 
 interface InfoProps {
-  onClickButton: () => void;
+  onToggleView: () => void;
 }
 
-export const Info: React.SFC<InfoProps> = ({ onClickButton }) => (
+export const Info: React.SFC<InfoProps> = ({ onToggleView }) => (
   <Container>
     <Logo>
       octodirect<a href="http://github.com/JaeYeopHan">@Jbee</a>
     </Logo>
-    <Button onClick={onClickButton}>Setting</Button>
+    <Button onClick={onToggleView}>Setting</Button>
   </Container>
 );
