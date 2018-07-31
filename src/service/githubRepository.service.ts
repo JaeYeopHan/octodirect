@@ -1,26 +1,29 @@
-const query = `query {
-  user(login: "USER_NAME") {
-    repositories(last: 100) {
-      edges {
-        node {
-          id
-          name
-          url
+import { getUserInfoToLocalStorage, UserInfo } from './userInfo.service';
+
+export const fetchGitHubRepository = async () => {
+  const info = getUserInfoToLocalStorage();
+  const name = (info as UserInfo).name;
+  const token = (info as UserInfo).token;
+
+  const query = `query {
+    user(login: ${name}) {
+      repositories(last: 100) {
+        edges {
+          node {
+            id
+            name
+            url
+          }
         }
       }
     }
-  }
-}`;
-
-const accessToken = 'ACCESS_TOKEN';
-
-export const fetchGitHubRepository = async () => {
+  }`;
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ query }),
   });

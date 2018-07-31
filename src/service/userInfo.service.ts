@@ -6,7 +6,7 @@ export interface UserInfo {
 }
 
 export function setUserInfoToLocalStorage(info: UserInfo) {
-  LocalStorage.setData<UserInfo>(info);
+  return LocalStorage.setData<UserInfo>(info);
 }
 
 export function getUserInfoToLocalStorage(): UserInfo | string {

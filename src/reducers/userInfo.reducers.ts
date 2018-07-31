@@ -1,4 +1,7 @@
-import { UserInfo } from './../service/userInfo.service';
+import {
+  UserInfo,
+  setUserInfoToLocalStorage,
+} from './../service/userInfo.service';
 import { Actions, ActionTypes } from './../actions/actions';
 import { Reducer } from 'redux';
 
@@ -10,13 +13,16 @@ const initialState: UserInfoState = {
   info: {},
 };
 
-export const UserInfoReducers: Reducer<Readonly<UserInfoState>> = (
+export const userInfoReducers: Reducer<Readonly<UserInfoState>> = (
   state: UserInfoState = initialState,
   action: Actions,
 ) => {
   switch (action.type) {
     case ActionTypes.INSERT_USERINFO:
       const info = action.payload;
+
+      setUserInfoToLocalStorage(info);
+
       return {
         ...state,
         ...{
