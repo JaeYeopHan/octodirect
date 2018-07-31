@@ -42,9 +42,7 @@ class AppContainer extends React.Component<AppContainerProps> {
       </React.Fragment>
     );
     const SettingView: JSX.Element = (
-      <div>
-        <InputSpace />
-      </div>
+      <InputSpace onClickSubmit={onClickButton} />
     );
 
     return view.type === 'main' ? MainView : SettingView;
