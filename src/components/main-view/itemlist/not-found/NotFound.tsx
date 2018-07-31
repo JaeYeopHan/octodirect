@@ -1,5 +1,5 @@
 import React from 'react';
-import { ItemsLayout } from '../../styled-components/ItemsLayout';
+import { ItemsLayout } from '../../../../styled-components/ItemsLayout';
 
 const NotFoundElement = ItemsLayout.extend`
   height: 210px;

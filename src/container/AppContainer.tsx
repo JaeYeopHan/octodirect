@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Input } from '../components/input/Input';
-import { ItemList } from '../components/itemlist/ItemList';
-import { Info } from '../components/info/Info';
+import { Input } from '../components/main-view/input/Input';
+import { ItemList } from '../components/main-view/itemlist/ItemList';
+import { Info } from '../components/main-view/info/Info';
 import { RepoState } from '../reducers/repos.reducers';
 import { actions } from '../actions/actions';
 import { ViewState } from '../reducers/view.reducers';

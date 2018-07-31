@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ItemType } from '../../model/item.model';
+import { ItemType } from '../../../model/item.model';
 
 const DefaultItem = styled.li`
   padding: 10px 8px;

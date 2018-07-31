@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { KeyUtils } from '../../utils/Key';
-import { RepoState } from '../../reducers/repos.reducers';
+import { KeyUtils } from '../../../utils/Key';
+import { RepoState } from '../../../reducers/repos.reducers';
 
 const StyledInput = styled.input`
   position: fixed;
