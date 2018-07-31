@@ -1,6 +1,16 @@
+import { repos as repoMock } from './mock';
 import { getUserInfoToLocalStorage, UserInfo } from './userInfo.service';
 
+export interface RepositoryInfo {
+  id: string;
+  name: string;
+  url: string;
+}
+
 export const fetchGitHubRepository = async () => {
+  if (process.env.NODE_ENV === 'development') {
+    return repoMock;
+  }
   const info = getUserInfoToLocalStorage();
   const name = (info as UserInfo).name;
   const token = (info as UserInfo).token;
@@ -28,7 +38,8 @@ export const fetchGitHubRepository = async () => {
     body: JSON.stringify({ query }),
   });
   const json = await response.json();
-  console.log(json.data.user.repositories.edges);
 
-  return json.data.user.repositories.edges;
+  return json.data.user.repositories.edges.map(
+    ({ node }: { node: RepositoryInfo }) => node,
+  );
 };

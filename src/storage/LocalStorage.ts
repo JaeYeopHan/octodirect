@@ -3,7 +3,7 @@ const localStorageKey = '#__octodirect_extension_key__#';
 export class LocalStorage {
   public static getData<T>(): T | void {
     const rawData = window.localStorage.getItem(localStorageKey);
-    if (rawData) {
+    if (!rawData) {
       return;
     } else {
       return JSON.parse(rawData as string);

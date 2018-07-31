@@ -1,6 +1,7 @@
 import { ActionTypes, Actions } from './../actions/actions';
 import { Reducer } from 'redux';
 import { ItemType } from '../model/item.model';
+import { RepositoryInfo } from '../service/githubRepository.service';
 
 export interface RepoState {
   list: ItemType[];
@@ -86,11 +87,11 @@ function filterList(repos: ItemType[], value: string): ItemType[] {
   return repos.filter((repo: ItemType) => repo.name.includes(value));
 }
 
-function refineData(rawRepos: any[]): ItemType[] {
+function refineData(rawRepos: RepositoryInfo[]): ItemType[] {
   if (!rawRepos) {
     return [];
   }
-  return rawRepos.map(({ id, name, html_url: htmlUrl }) => ({
+  return rawRepos.map(({ id, name, url: htmlUrl }: RepositoryInfo) => ({
     id,
     name,
     htmlUrl,
