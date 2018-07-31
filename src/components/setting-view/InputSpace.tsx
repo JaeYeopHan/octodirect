@@ -1,6 +1,11 @@
 import React from 'react';
-// @ts-ignore
-import { Heading, Button, TextInput, TextInputField } from 'evergreen-ui';
+import {
+  Heading,
+  Button,
+  TextInputField,
+  CloseIcon,
+  // @ts-ignore
+} from 'evergreen-ui';
 import styled from 'styled-components';
 
 const SettingViewLayout = styled.div`
@@ -15,12 +20,19 @@ const Head = styled.div`
   margin-bottom: 12px;
 `;
 
+const IconLayout = styled.div`
+  float: right;
+`;
+
 interface InputSpaceProps {
   onClickSubmit: () => void;
 }
 
 export const InputSpace: React.SFC<InputSpaceProps> = ({ onClickSubmit }) => (
   <SettingViewLayout>
+    <IconLayout>
+      <CloseIcon onClick={onClickSubmit} />
+    </IconLayout>
     <Head>
       <Heading>Setting</Heading>
     </Head>
