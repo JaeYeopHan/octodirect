@@ -14,7 +14,7 @@ const query = `query {
 
 const accessToken = 'ACCESS_TOKEN';
 
-export const fetchRepos = async () => {
+export const fetchGitHubRepository = async () => {
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {

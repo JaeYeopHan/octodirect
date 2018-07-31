@@ -26,7 +26,6 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
     case ActionTypes.FETCH_SUCCESS: {
       const list = refineData(action.payload);
 
-      console.log(list);
       return {
         ...state,
         list,
