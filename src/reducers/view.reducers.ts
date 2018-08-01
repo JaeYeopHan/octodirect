@@ -18,9 +18,13 @@ export const viewReducers: Reducer<Readonly<ViewState>> = (
   switch (action.type) {
     case ActionTypes.TOGGLE_VIEW:
       const currentViewType = state.type;
-      const nextViewType = currentViewType === 'main' ? 'setting' : 'main';
+      const nextViewType = convertViewType(currentViewType);
       return { ...state, ...{ type: nextViewType } };
     default:
       return state;
   }
 };
+
+function convertViewType(currentViewType: string): ViewType {
+  return currentViewType === 'main' ? 'setting' : 'main';
+}
