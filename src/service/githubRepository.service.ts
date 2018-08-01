@@ -7,7 +7,7 @@ export interface RepositoryInfo {
   url: string;
 }
 
-export const fetchGitHubRepository = async () => {
+export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
   if (process.env.NODE_ENV === 'development') {
     return repoMock;
   }
