@@ -16,7 +16,7 @@
     "128": "octodirect_128.png"
   },
 
-  "permissions": ["activeTab", "tabs"],
+  "permissions": ["activeTab", "tabs", "history", "storage"],
 
   "commands": {
     "_execute_browser_action": {
