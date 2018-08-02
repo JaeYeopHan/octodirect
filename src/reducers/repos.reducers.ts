@@ -71,6 +71,7 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
         ...state,
         value: action.payload,
         filtered,
+        index: 0,
         maxIndex: filtered.length - 1,
       };
     }

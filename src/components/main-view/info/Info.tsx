@@ -6,15 +6,17 @@ const Container = styled.div`
   width: calc(100% - 20px);
   margin: auto;
   margin-top: 52px;
+  margin-bottom: 8px;
 `;
 
 const Logo = styled.span`
-  margin-left: 10px;
+  margin-left: 8px;
   font-size: 14px;
   color: #666;
 `;
 
 const Button = styled.a`
+  margin-left: 8px;
   color: #0366d6;
   float: right;
   font-size: 14px;
