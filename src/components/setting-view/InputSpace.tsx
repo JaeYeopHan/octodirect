@@ -4,6 +4,7 @@ import {
   Button,
   TextInputField,
   CloseIcon,
+  toaster,
   // @ts-ignore
 } from 'evergreen-ui';
 import styled from 'styled-components';
@@ -65,13 +66,20 @@ export class InputSpace extends Component<InputSpaceProps> {
       storageToken === token
     ) {
       ButtonSection = (
-        <Button onClick={() => this.handleSubmit()} appearance="green">
+        <Button onClick={onClickClose} appearance="green">
           Done
         </Button>
       );
     } else {
       ButtonSection = (
-        <Button onClick={() => this.handleSubmit()}>Submit</Button>
+        <Button
+          onClick={() => {
+            this.handleSubmit();
+            toaster.success('Complete to connect!');
+          }}
+        >
+          Submit
+        </Button>
       );
     }
 
