@@ -9,10 +9,12 @@ import { RepoState } from '../reducers/repos.reducers';
 import { actions } from '../actions/actions';
 import { ViewState } from '../reducers/view.reducers';
 import { UserInfo } from '../service/userInfo.service';
+import { UserInfoState } from '../reducers/userInfo.reducers';
 
 interface AppContainerProps {
   repos: RepoState;
   view: ViewState;
+  userInfo: UserInfoState;
   onPressUpKey: () => void;
   onPressDownKey: () => void;
   onChange: (value: string) => void;
@@ -25,6 +27,7 @@ class AppContainer extends React.Component<AppContainerProps> {
     const {
       repos,
       view,
+      userInfo,
       onPressUpKey,
       onPressDownKey,
       onChange,
@@ -46,7 +49,11 @@ class AppContainer extends React.Component<AppContainerProps> {
     );
 
     const SettingView: JSX.Element = (
-      <InputSpace onClickSubmit={onClickSubmit} onClickClose={onToggleView} />
+      <InputSpace
+        userInfo={userInfo}
+        onClickSubmit={onClickSubmit}
+        onClickClose={onToggleView}
+      />
     );
 
     return view.type === 'main' ? MainView : SettingView;
@@ -56,6 +63,7 @@ class AppContainer extends React.Component<AppContainerProps> {
 const mapStateToProps = (state: AppContainerProps) => ({
   repos: state.repos,
   view: state.view,
+  userInfo: state.userInfo,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

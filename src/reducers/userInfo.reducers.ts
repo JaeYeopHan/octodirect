@@ -1,6 +1,7 @@
 import {
   UserInfo,
   setUserInfoToLocalStorage,
+  getUserInfoToLocalStorage,
 } from './../service/userInfo.service';
 import { Actions, ActionTypes } from './../actions/actions';
 import { Reducer } from 'redux';
@@ -9,9 +10,17 @@ export interface UserInfoState {
   info: UserInfo;
 }
 
-const initialState: UserInfoState = {
-  info: {},
-};
+const userInfo = getUserInfoToLocalStorage();
+const initialState: UserInfoState = userInfo
+  ? {
+      info: userInfo,
+    }
+  : {
+      info: {
+        name: '',
+        token: '',
+      },
+    };
 
 export const userInfoReducers: Reducer<Readonly<UserInfoState>> = (
   state: UserInfoState = initialState,
@@ -29,6 +38,7 @@ export const userInfoReducers: Reducer<Readonly<UserInfoState>> = (
           info,
         },
       };
+
     default:
       return state;
   }

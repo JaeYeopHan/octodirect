@@ -8,6 +8,7 @@ import {
 } from 'evergreen-ui';
 import styled from 'styled-components';
 import { UserInfo } from '../../service/userInfo.service';
+import { UserInfoState } from '../../reducers/userInfo.reducers';
 
 const SettingViewLayout = styled.div`
   margin: 16px;
@@ -26,8 +27,10 @@ const IconLayout = styled.div`
 `;
 
 interface InputSpaceProps {
+  userInfo: UserInfoState;
   onClickSubmit: (info: UserInfo) => void;
   onClickClose: () => void;
+  // getUserInfo: () => void;
 }
 
 export class InputSpace extends Component<InputSpaceProps> {
@@ -35,6 +38,17 @@ export class InputSpace extends Component<InputSpaceProps> {
     name: '',
     token: '',
   };
+
+  componentDidMount() {
+    const userInfo = this.props.userInfo.info;
+
+    if (userInfo.name !== '' && userInfo.token !== '') {
+      this.setState({
+        name: userInfo.name,
+        token: userInfo.token,
+      });
+    }
+  }
 
   handleSubmit() {
     const { onClickSubmit } = this.props;
@@ -57,6 +71,7 @@ export class InputSpace extends Component<InputSpaceProps> {
 
   render() {
     const { onClickClose } = this.props;
+
     return (
       <SettingViewLayout>
         <IconLayout>
@@ -66,6 +81,7 @@ export class InputSpace extends Component<InputSpaceProps> {
           <Heading>Setting</Heading>
         </Head>
         <TextInputField
+          value={this.state.name}
           label="GitHub account"
           placeholder="owner'sname"
           inputHeight={32}
@@ -73,6 +89,7 @@ export class InputSpace extends Component<InputSpaceProps> {
           onChange={(e: any) => this.handleUpdateValue(e)}
         />
         <TextInputField
+          value={this.state.token}
           label="GitHub access token"
           description="Refer https://github.com/settings/tokens"
           placeholder="secret access token"
