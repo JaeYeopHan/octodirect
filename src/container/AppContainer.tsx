@@ -50,6 +50,7 @@ class AppContainer extends React.Component<AppContainerProps> {
 
     const SettingView: JSX.Element = (
       <InputSpace
+        repos={repos}
         userInfo={userInfo}
         onClickSubmit={onClickSubmit}
         onClickClose={onToggleView}

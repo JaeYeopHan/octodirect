@@ -9,6 +9,8 @@ import {
 import styled from 'styled-components';
 import { UserInfo } from '../../service/userInfo.service';
 import { UserInfoState } from '../../reducers/userInfo.reducers';
+import { RepoState } from '../../reducers/repos.reducers';
+import { FetchResponseType } from '../../saga/repos.saga';
 
 const SettingViewLayout = styled.div`
   margin: 16px;
@@ -27,10 +29,10 @@ const IconLayout = styled.div`
 `;
 
 interface InputSpaceProps {
+  repos: RepoState;
   userInfo: UserInfoState;
   onClickSubmit: (info: UserInfo) => void;
   onClickClose: () => void;
-  // getUserInfo: () => void;
 }
 
 export class InputSpace extends Component<InputSpaceProps> {
@@ -51,7 +53,27 @@ export class InputSpace extends Component<InputSpaceProps> {
   }
 
   render() {
-    const { onClickClose } = this.props;
+    const { onClickClose, repos, userInfo } = this.props;
+    const { name: storageName, token: storageToken } = userInfo.info;
+    const { name, token } = this.state;
+    const { fetchResponseType } = repos;
+    let ButtonSection;
+
+    if (
+      fetchResponseType === FetchResponseType.SUCCESS &&
+      storageName === name &&
+      storageToken === token
+    ) {
+      ButtonSection = (
+        <Button onClick={() => this.handleSubmit()} appearance="green">
+          Done
+        </Button>
+      );
+    } else {
+      ButtonSection = (
+        <Button onClick={() => this.handleSubmit()}>Submit</Button>
+      );
+    }
 
     return (
       <SettingViewLayout>
@@ -78,9 +100,7 @@ export class InputSpace extends Component<InputSpaceProps> {
           data-id="token"
           onChange={(e: any) => this.handleUpdateValue(e)}
         />
-        <Center>
-          <Button onClick={() => this.handleSubmit()}>Submit</Button>
-        </Center>
+        <Center>{ButtonSection}</Center>
       </SettingViewLayout>
     );
   }
