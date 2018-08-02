@@ -1,7 +1,7 @@
 import { UserInfo } from './../service/userInfo.service';
 import { createAction } from './createAction';
 import { ActionsUnion } from '../types';
-import { RepositoryInfo } from '../service/githubRepository.service';
+import { FetchDataResponse } from '../saga/repos.saga';
 
 export const enum ActionTypes {
   FETCH_REQUEST = 'FETCH_REQUEST',
@@ -24,10 +24,13 @@ export const actions = {
   updateValue: (value: string) => createAction(ActionTypes.UPDATE_VALUE, value),
 
   fetchRequest: () => createAction(ActionTypes.FETCH_REQUEST),
-  fetchSuccess: (repos: RepositoryInfo[]) =>
-    createAction(ActionTypes.FETCH_SUCCESS, repos),
-  fetchFail: (error: string) => createAction(ActionTypes.FETCH_FAIL, error),
+  fetchSuccess: (response: FetchDataResponse) =>
+    createAction(ActionTypes.FETCH_SUCCESS, response),
+  fetchFail: (response: FetchDataResponse) =>
+    createAction(ActionTypes.FETCH_FAIL, response),
+
   toggleView: () => createAction(ActionTypes.TOGGLE_VIEW),
+
   insertUserInfo: (info: UserInfo) =>
     createAction(ActionTypes.INSERT_USERINFO, info),
 };

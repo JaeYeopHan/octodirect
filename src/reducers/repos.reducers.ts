@@ -2,6 +2,7 @@ import { ActionTypes, Actions } from './../actions/actions';
 import { Reducer } from 'redux';
 import { ItemType } from '../model/item.model';
 import { RepositoryInfo } from '../service/githubRepository.service';
+import { FetchResponseType } from '../saga/repos.saga';
 
 export interface RepoState {
   list: ItemType[];
@@ -9,6 +10,7 @@ export interface RepoState {
   index: number;
   maxIndex: number;
   value: string;
+  fetchResponseType: FetchResponseType;
 }
 
 const initialState: RepoState = {
@@ -17,6 +19,7 @@ const initialState: RepoState = {
   index: 0,
   value: '',
   maxIndex: 0,
+  fetchResponseType: FetchResponseType.FETCH_READY,
 };
 
 export const reposReducers: Reducer<Readonly<RepoState>> = (
@@ -25,13 +28,15 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
 ): RepoState => {
   switch (action.type) {
     case ActionTypes.FETCH_SUCCESS: {
-      const list = refineData(action.payload);
+      const { response, data } = action.payload;
+      const list = refineData(data);
 
       return {
         ...state,
         list,
         filtered: list,
         maxIndex: list.length - 1,
+        fetchResponseType: response,
       };
     }
 
@@ -39,6 +44,7 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
       return {
         ...state,
         list: [],
+        fetchResponseType: FetchResponseType.UNKNOWN_ERROR,
       };
     }
 
