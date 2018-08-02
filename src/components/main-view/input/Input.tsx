@@ -24,17 +24,39 @@ interface InputProps {
 }
 
 export class Input extends React.Component<InputProps> {
-  handleKeyDown({
+  public render(): JSX.Element {
+    const { value } = this.props.repos;
+
+    return (
+      <StyledInput
+        placeholder={value ? value : 'Find a repository'}
+        autoFocus={true}
+        onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) =>
+          this.handleKeyDown(event)
+        }
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          this.handleChange(event)
+        }
+      />
+    );
+  }
+
+  private handleKeyDown({
     keyCode,
     currentTarget,
   }: React.KeyboardEvent<HTMLInputElement>): void {
     const { index, maxIndex, filtered } = this.props.repos;
 
     if (KeyUtils.isCorrectUpKey(keyCode, index)) {
-      this.props.onPressUpKey();
-    } else if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {
+      return this.props.onPressUpKey();
+    }
+
+    if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {
       this.props.onPressDownKey();
-    } else if (KeyUtils.isCorrectEnterKey(keyCode, currentTarget.placeholder)) {
+      return;
+    }
+
+    if (KeyUtils.isCorrectEnterKey(keyCode, currentTarget.placeholder)) {
       const selectedItem = filtered[index];
       const targetUrl = selectedItem.htmlUrl;
 
@@ -48,20 +70,9 @@ export class Input extends React.Component<InputProps> {
     }
   }
 
-  handleChange({ currentTarget }: React.KeyboardEvent<HTMLInputElement>): void {
-    this.props.onChange(currentTarget.value);
-  }
-
-  render(): JSX.Element {
-    const { value } = this.props.repos;
-
-    return (
-      <StyledInput
-        placeholder={value ? value : 'Find a repository'}
-        autoFocus={true}
-        onKeyDown={(e: any) => this.handleKeyDown(e)}
-        onChange={(e: any) => this.handleChange(e)}
-      />
-    );
+  private handleChange({
+    currentTarget,
+  }: React.ChangeEvent<HTMLInputElement>): void {
+    return this.props.onChange(currentTarget.value);
   }
 }

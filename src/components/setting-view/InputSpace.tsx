@@ -34,12 +34,12 @@ interface InputSpaceProps {
 }
 
 export class InputSpace extends Component<InputSpaceProps> {
-  state = {
+  public state = {
     name: '',
     token: '',
   };
 
-  componentDidMount() {
+  public componentDidMount() {
     const userInfo = this.props.userInfo.info;
 
     if (userInfo.name !== '' && userInfo.token !== '') {
@@ -48,25 +48,6 @@ export class InputSpace extends Component<InputSpaceProps> {
         token: userInfo.token,
       });
     }
-  }
-
-  handleSubmit() {
-    const { onClickSubmit } = this.props;
-    const { name, token } = this.state;
-
-    if (name !== '' && token !== '') {
-      onClickSubmit({ name, token });
-    }
-  }
-
-  handleUpdateValue(e: any) {
-    const target = e.target;
-    const key = target.dataset.id;
-    const value = target.value;
-
-    this.setState({
-      [key]: value,
-    });
   }
 
   render() {
@@ -102,5 +83,24 @@ export class InputSpace extends Component<InputSpaceProps> {
         </Center>
       </SettingViewLayout>
     );
+  }
+
+  private handleSubmit() {
+    const { onClickSubmit } = this.props;
+    const { name, token } = this.state;
+
+    if (name !== '' && token !== '') {
+      onClickSubmit({ name, token });
+    }
+  }
+
+  private handleUpdateValue(e: any) {
+    const target = e.target;
+    const key = target.dataset.id;
+    const value = target.value;
+
+    this.setState({
+      [key]: value,
+    });
   }
 }
