@@ -16,7 +16,7 @@ const Logo = styled.span`
 `;
 
 const Button = styled.a`
-  margin-left: 8px;
+  margin-right: 8px;
   color: #0366d6;
   float: right;
   font-size: 14px;
