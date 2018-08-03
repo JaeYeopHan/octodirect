@@ -14,13 +14,12 @@ interface ItemListProps {
 }
 
 const fixScroll = (index: number) => {
-  const height = 41;
-  const boxHeight = 124;
+  const height = 39;
+  const boxHeight = 80;
   const scrollElm: HTMLElement = $('#fix_scroll');
+  const targetY = index * height - boxHeight;
 
-  if (index >= 3 && scrollElm) {
-    const targetY = index * height - boxHeight;
-
+  if (scrollElm) {
     scrollElm.scrollTop = targetY;
   }
 };
