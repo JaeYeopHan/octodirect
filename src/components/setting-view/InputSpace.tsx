@@ -14,6 +14,7 @@ import { RepoState } from '../../reducers/repos.reducers';
 import { FetchResponseType } from '../../saga/repos.saga';
 
 const SettingViewLayout = styled.div`
+  position: relative;
   margin: 16px;
 `;
 
@@ -23,10 +24,13 @@ const Center = styled.div`
 
 const Head = styled.div`
   margin-bottom: 12px;
+  height: 100%;
 `;
 
 const IconLayout = styled.div`
-  float: right;
+  position: absolute;
+  right: -5px;
+  top: -5px;
 `;
 
 interface InputSpaceProps {
@@ -89,7 +93,7 @@ export class InputSpace extends Component<InputSpaceProps> {
           <CloseIcon onClick={onClickClose} />
         </IconLayout>
         <Head>
-          <Heading>Setting</Heading>
+          <Heading padding-top={8}>Setting</Heading>
         </Head>
         <TextInputField
           value={this.state.name}
