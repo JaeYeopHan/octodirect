@@ -2,8 +2,8 @@ import {
   UserInfo,
   setUserInfoToLocalStorage,
   getUserInfoToLocalStorage,
-} from './../service/userInfo.service';
-import { Actions, ActionTypes } from './../actions/actions';
+} from '../service/userInfo.service';
+import { Actions, ActionTypes } from '../actions/actions';
 import { Reducer } from 'redux';
 
 export interface UserInfoState {

@@ -1,4 +1,4 @@
-import { Actions, ActionTypes } from './../actions/actions';
+import { Actions, ActionTypes } from '../actions/actions';
 import { Reducer } from 'redux';
 
 type ViewType = 'main' | 'setting';

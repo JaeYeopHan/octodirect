@@ -1,4 +1,4 @@
-import { bookmarks as repoMock } from './mock';
+import { bookmarks as repoMock } from './mock.service';
 import { RepositoryInfo } from './githubRepository.service';
 import { HistoryItem } from './browserHistory.service';
 

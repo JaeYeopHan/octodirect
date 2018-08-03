@@ -59,17 +59,52 @@ export const repos = [
 export const bookmarks = [
   {
     id: '12',
-    name: 'bookamrka',
+    name: 'bookmarka',
     url: 'https://twitter.com/',
   },
   {
     id: '13',
-    name: 'bookamrkb',
+    name: 'bookmarkb',
     url: 'http://www.naver.com/',
   },
   {
     id: '14',
-    name: 'bookamrkc',
+    name: 'bookmarkc',
+    url: 'https://egghead.io/',
+  },
+  {
+    id: '15',
+    name: 'bookmarkc',
+    url: 'https://egghead.io/',
+  },
+  {
+    id: '16',
+    name: 'bookmarkc',
+    url: 'https://egghead.io/',
+  },
+  {
+    id: '17',
+    name: 'bookmarkc',
+    url: 'https://egghead.io/',
+  },
+  {
+    id: '18',
+    name: 'bookmarkc',
+    url: 'https://egghead.io/',
+  },
+  {
+    id: '19',
+    name: 'bookmarkc',
+    url: 'https://egghead.io/',
+  },
+  {
+    id: '20',
+    name: 'bookmarkc',
+    url: 'https://egghead.io/',
+  },
+  {
+    id: '21',
+    name: 'bookmarkc',
     url: 'https://egghead.io/',
   },
 ];

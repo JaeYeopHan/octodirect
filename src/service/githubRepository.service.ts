@@ -1,4 +1,4 @@
-import { repos as repoMock } from './mock';
+import { repos as repoMock } from './mock.service';
 import { getUserInfoToLocalStorage, UserInfo } from './userInfo.service';
 
 export interface RepositoryInfo {

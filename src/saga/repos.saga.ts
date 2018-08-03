@@ -2,8 +2,8 @@ import { all, put } from 'redux-saga/effects';
 import {
   fetchGitHubRepository,
   RepositoryInfo,
-} from './../service/githubRepository.service';
-import { actions } from './../actions/actions';
+} from '../service/githubRepository.service';
+import { actions } from '../actions/actions';
 import { getVisitedGitHubUrls } from '../service/browserHistory.service';
 
 export const enum FetchResponseType {

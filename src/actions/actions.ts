@@ -1,4 +1,4 @@
-import { UserInfo } from './../service/userInfo.service';
+import { UserInfo } from '../service/userInfo.service';
 import { createAction } from './createAction';
 import { ActionsUnion } from '../types';
 import { FetchDataResponse } from '../saga/repos.saga';

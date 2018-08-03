@@ -1,4 +1,4 @@
-import { ActionTypes, Actions } from './../actions/actions';
+import { ActionTypes, Actions } from '../actions/actions';
 import { Reducer } from 'redux';
 import { ItemType } from '../model/item.model';
 import { RepositoryInfo } from '../service/githubRepository.service';
