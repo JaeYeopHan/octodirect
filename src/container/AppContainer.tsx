@@ -15,6 +15,7 @@ interface AppContainerProps {
   repos: RepoState;
   view: ViewState;
   userInfo: UserInfoState;
+  onRefresh: () => void;
   onPressUpKey: () => void;
   onPressDownKey: () => void;
   onChange: (value: string) => void;
@@ -68,6 +69,7 @@ const mapStateToProps = (state: AppContainerProps) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
+  onRefresh: () => dispatch(actions.fetchRequest()),
   onPressUpKey: () => dispatch(actions.decrementIndex()),
   onPressDownKey: () => dispatch(actions.incrementIndex()),
   onChange: (value: string) => dispatch(actions.updateValue(value)),

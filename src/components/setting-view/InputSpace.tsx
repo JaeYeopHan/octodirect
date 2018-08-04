@@ -40,20 +40,22 @@ interface InputSpaceProps {
   onClickClose: () => void;
 }
 
-export class InputSpace extends Component<InputSpaceProps> {
-  public state = {
+interface InputSpaceState {
+  name: string;
+  token: string;
+}
+
+export class InputSpace extends Component<InputSpaceProps, InputSpaceState> {
+  public state: InputSpaceState = {
     name: '',
     token: '',
   };
 
   public componentDidMount() {
-    const userInfo = this.props.userInfo.info;
+    const { name, token } = this.props.userInfo.info;
 
-    if (userInfo.name !== '' && userInfo.token !== '') {
-      this.setState({
-        name: userInfo.name,
-        token: userInfo.token,
-      });
+    if (name !== '' && token !== '') {
+      this.setState({ name: name as string, token: token as string });
     }
   }
 
@@ -62,13 +64,15 @@ export class InputSpace extends Component<InputSpaceProps> {
     const { name: storageName, token: storageToken } = userInfo.info;
     const { name, token } = this.state;
     const { fetchResponseType } = repos;
-    let ButtonSection;
-
-    if (
+    const isDone =
       fetchResponseType === FetchResponseType.SUCCESS &&
       storageName === name &&
-      storageToken === token
-    ) {
+      storageToken === token &&
+      name !== '' &&
+      token !== '';
+    let ButtonSection;
+
+    if (isDone) {
       ButtonSection = (
         <Button onClick={onClickClose} appearance="green">
           Done
@@ -76,14 +80,7 @@ export class InputSpace extends Component<InputSpaceProps> {
       );
     } else {
       ButtonSection = (
-        <Button
-          onClick={() => {
-            this.handleSubmit();
-            toaster.success('Complete to connect!');
-          }}
-        >
-          Submit
-        </Button>
+        <Button onClick={() => this.handleSubmit()}>Submit</Button>
       );
     }
 
@@ -93,7 +90,7 @@ export class InputSpace extends Component<InputSpaceProps> {
           <CloseIcon onClick={onClickClose} />
         </IconLayout>
         <Head>
-          <Heading padding-top={8}>GitHub Setting</Heading>
+          <Heading>GitHub Setting</Heading>
         </Head>
         <TextInputField
           value={this.state.name}
@@ -101,7 +98,9 @@ export class InputSpace extends Component<InputSpaceProps> {
           placeholder="owner'sname"
           inputHeight={32}
           data-id="name"
-          onChange={(e: any) => this.handleUpdateValue(e)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            this.handleUpdateValue(event)
+          }
         />
         <TextInputField
           value={this.state.token}
@@ -110,7 +109,9 @@ export class InputSpace extends Component<InputSpaceProps> {
           placeholder="secret access token"
           inputHeight={32}
           data-id="token"
-          onChange={(e: any) => this.handleUpdateValue(e)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            this.handleUpdateValue(event)
+          }
         />
         <Center>{ButtonSection}</Center>
       </SettingViewLayout>
@@ -123,16 +124,17 @@ export class InputSpace extends Component<InputSpaceProps> {
 
     if (name !== '' && token !== '') {
       onClickSubmit({ name, token });
+      toaster.success('Complete to connect!');
+    } else {
+      toaster.warning('Invalid input!');
     }
   }
 
-  private handleUpdateValue(e: any) {
-    const target = e.target;
-    const key = target.dataset.id;
+  private handleUpdateValue({ target }: React.ChangeEvent<HTMLInputElement>) {
+    const key = target.dataset.id as keyof InputSpaceState;
     const value = target.value;
 
-    this.setState({
-      [key]: value,
-    });
+    // @ts-ignore
+    this.setState({ [key]: value });
   }
 }
