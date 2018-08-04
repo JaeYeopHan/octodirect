@@ -93,11 +93,11 @@ export class InputSpace extends Component<InputSpaceProps> {
           <CloseIcon onClick={onClickClose} />
         </IconLayout>
         <Head>
-          <Heading padding-top={8}>Setting</Heading>
+          <Heading padding-top={8}>GitHub Setting</Heading>
         </Head>
         <TextInputField
           value={this.state.name}
-          label="GitHub account"
+          label="Account name"
           placeholder="owner'sname"
           inputHeight={32}
           data-id="name"
@@ -105,8 +105,8 @@ export class InputSpace extends Component<InputSpaceProps> {
         />
         <TextInputField
           value={this.state.token}
-          label="GitHub access token"
-          description="Refer https://github.com/settings/tokens"
+          label="Access token"
+          description="Check, https://github.com/settings/tokens"
           placeholder="secret access token"
           inputHeight={32}
           data-id="token"
