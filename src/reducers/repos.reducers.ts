@@ -91,7 +91,9 @@ function filterList(repos: ItemType[], value: string): ItemType[] {
   if (value === '') {
     return repos;
   }
-  return repos.filter((repo: ItemType) => repo.name.includes(value));
+  return repos.filter((repo: ItemType) =>
+    repo.name.toLowerCase().includes(value.toLowerCase()),
+  );
 }
 
 function refineData(rawRepos: RepositoryInfo[]): ItemType[] {
