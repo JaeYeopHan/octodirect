@@ -28,18 +28,23 @@ export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
       }
     }
   }`;
-  const response = await fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ query }),
-  });
-  const json = await response.json();
+  try {
+    const response = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ query }),
+    });
+    const json = await response.json();
 
-  return json.data.user.repositories.edges.map(
-    ({ node }: { node: RepositoryInfo }) => node,
-  );
+    return json.data.user.repositories.edges.map(
+      ({ node }: { node: RepositoryInfo }) => node,
+    );
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
 };

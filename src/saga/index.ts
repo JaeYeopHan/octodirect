@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
-import { fetchData } from './repos.saga';
+import { fetchData, watchFetchRequest } from './repos.saga';
 
 export default function* rootSaga() {
-  yield all([fetchData()]);
+  yield all([fetchData(), watchFetchRequest()]);
 }

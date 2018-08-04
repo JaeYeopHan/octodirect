@@ -1,9 +1,9 @@
-import { all, put } from 'redux-saga/effects';
+import { all, call, put, takeEvery } from 'redux-saga/effects';
 import {
   fetchGitHubRepository,
   RepositoryInfo,
 } from '../service/githubRepository.service';
-import { actions } from '../actions/actions';
+import { actions, ActionTypes } from '../actions/actions';
 import { getVisitedGitHubUrls } from '../service/browserHistory.service';
 
 export const enum FetchResponseType {
@@ -21,13 +21,10 @@ export interface FetchDataResponse {
 
 export function* fetchData(action?: any): any {
   try {
-    const [githubReposPromise, visitedItemsPromise] = yield all([
-      fetchGitHubRepository,
-      getVisitedGitHubUrls,
+    const [githubRepos, visitedItems] = yield all([
+      call(fetchGitHubRepository),
+      call(getVisitedGitHubUrls),
     ]);
-
-    const githubRepos = yield githubReposPromise();
-    const visitedItems = yield visitedItemsPromise();
     const repos = githubRepos.concat(visitedItems);
 
     if (githubRepos.length === 0) {
@@ -53,4 +50,8 @@ export function* fetchData(action?: any): any {
       }),
     );
   }
+}
+
+export function* watchFetchRequest() {
+  yield takeEvery(ActionTypes.FETCH_REQUEST, fetchData);
 }
