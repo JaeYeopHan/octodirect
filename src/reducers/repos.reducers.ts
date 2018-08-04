@@ -49,8 +49,9 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
     }
 
     case ActionTypes.INCREMENT_INDEX: {
-      const changedIndex = state.index + 1;
-      const selectedValue = state.list[changedIndex].name;
+      const { index, list } = state;
+      const changedIndex = index + 1;
+      const selectedValue = list[changedIndex].name;
 
       return {
         ...state,
@@ -60,8 +61,9 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
     }
 
     case ActionTypes.DECREMENT_INDEX: {
-      const changedIndex = state.index - 1;
-      const selectedValue = state.list[changedIndex].name;
+      const { index, list } = state;
+      const changedIndex = index - 1;
+      const selectedValue = list[changedIndex].name;
 
       return {
         ...state,
@@ -71,11 +73,12 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
     }
 
     case ActionTypes.UPDATE_VALUE: {
-      const filtered = filterList(state.list, action.payload);
+      const value = action.payload;
+      const filtered = filterList(state.list, value);
 
       return {
         ...state,
-        value: action.payload,
+        value,
         filtered,
         index: 0,
         maxIndex: filtered.length - 1,
