@@ -2,32 +2,15 @@
     <img src="./assets/octodirect_logo.png" width="240px" alt="octodirect-logo">
 </div>
 
-# Octodirect (in progress)
+# Octodirect [![status](https://img.shields.io/badge/status-work%20in%20progress-orange.svg)](https://github.com/JaeYeopHan/octocard/issues)
 
 [![Build Status](https://travis-ci.org/JaeYeopHan/octodirect.svg?branch=master)](https://travis-ci.org/JaeYeopHan/octodirect)
 [![Coverage Status](https://coveralls.io/repos/github/JaeYeopHan/octodirect/badge.svg?branch=master)](https://coveralls.io/github/JaeYeopHan/octodirect?branch=master)
-[![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.png?v=101)](https://github.com/ellerbrock/typescript-badges/)
-[![status](https://img.shields.io/badge/status-work%20in%20progress-orange.svg)](https://github.com/JaeYeopHan/octocard/issues)
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)
 [![License: MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://opensource.org/licenses/MIT)
 
 This is Chrome extension app. This help to move your GitHub Repository directly.
-
-</br>
-
-#### Live Demo
-
-- [Octodirect (in progress)](#octodirect-in-progress)
-      - [Live Demo](#live-demo)
-  - [SetUp](#setup)
-  - [Usage](#usage)
-  - [Development Installation](#development-installation)
-  - [Bug Report](#bug-report)
-  - [Contribute](#contribute)
-  - [LICENSE](#license)
-
-## SetUp
 
 </br>
 
@@ -39,15 +22,9 @@ This is Chrome extension app. This help to move your GitHub Repository directly.
 
 </br>
 
-## Bug Report
-
-</br>
-
-## Contribute
-
-</br>
-
 ## LICENSE
+
+[MIT](https://github.com/JaeYeopHan/octodirect/blob/master/LICENSE)
 
 <p align="center">✌️</p>
 <p align="center">
