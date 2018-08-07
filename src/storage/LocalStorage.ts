@@ -1,7 +1,5 @@
-const localStorageKey = '#__octodirect_extension_key__#';
-
 export class LocalStorage {
-  public static getData<T>(): T | void {
+  public static getData<T>(localStorageKey: string): T | void {
     const rawData = window.localStorage.getItem(localStorageKey);
     if (!rawData) {
       return;
@@ -10,7 +8,7 @@ export class LocalStorage {
     }
   }
 
-  public static setData<T>(data: T): void {
+  public static setData<T>(localStorageKey: string, data: T): void {
     window.localStorage.setItem(localStorageKey, JSON.stringify(data));
   }
 }
