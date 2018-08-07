@@ -37,16 +37,18 @@ export const getVisitedGitHubUrls = async (): Promise<RepositoryInfo[]> => {
   );
 };
 
-function isFilterItem(item: HistoryItem) {
+export function getFilteringUrls() {
   const domainInfo = getDomainOptionToLocalStorage();
 
-  let filteringUrls: string[];
-
   if (domainInfo && domainInfo.length > 0) {
-    filteringUrls = domainInfo.concat([defaultFilteringUrl]);
+    return domainInfo.concat([defaultFilteringUrl]);
   } else {
-    filteringUrls = [defaultFilteringUrl];
+    return [defaultFilteringUrl];
   }
+}
+
+function isFilterItem(item: HistoryItem) {
+  const filteringUrls = getFilteringUrls();
 
   if (item.title && item.url) {
     for (const url of filteringUrls) {
