@@ -1,6 +1,7 @@
 import { bookmarks as repoMock } from './mock.service';
 import { RepositoryInfo } from './githubRepository.service';
 import { HistoryItem } from './browserHistory.service';
+import { getDomainOptionToLocalStorage } from './setting.service';
 
 export interface HistoryItem {
   id: string;
@@ -11,7 +12,7 @@ export interface HistoryItem {
   visitCount?: number;
 }
 
-const filteredUrl = 'https://github.com/';
+const defaultFilteringUrl = 'https://github.com/';
 const maxResults = 200;
 
 export const getVisitedGitHubUrls = async (): Promise<RepositoryInfo[]> => {
@@ -27,16 +28,31 @@ export const getVisitedGitHubUrls = async (): Promise<RepositoryInfo[]> => {
     );
   });
 
-  return items
-    .filter(
-      (item: HistoryItem) =>
-        item.title && item.url && item.url.includes(filteredUrl),
-    )
-    .map(
-      (item: HistoryItem): RepositoryInfo => ({
-        id: item.id,
-        name: item.title as string,
-        url: item.url as string,
-      }),
-    );
+  return items.filter(isFilterItem).map(
+    (item: HistoryItem): RepositoryInfo => ({
+      id: item.id,
+      name: item.title as string,
+      url: item.url as string,
+    }),
+  );
 };
+
+function isFilterItem(item: HistoryItem) {
+  const domainInfo = getDomainOptionToLocalStorage();
+
+  let filteringUrls: string[];
+
+  if (domainInfo && domainInfo.length > 0) {
+    filteringUrls = domainInfo.concat([defaultFilteringUrl]);
+  } else {
+    filteringUrls = [defaultFilteringUrl];
+  }
+
+  if (item.title && item.url) {
+    for (const url of filteringUrls) {
+      return item.url.includes(url);
+    }
+  }
+
+  return false;
+}
