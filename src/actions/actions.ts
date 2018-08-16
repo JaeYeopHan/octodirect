@@ -1,4 +1,4 @@
-import { UserInfo } from '../service/userInfo.service';
+import { UserInfoInterface } from '../service/user-info.service';
 import { createAction } from './createAction';
 import { ActionsUnion } from '../types';
 import { FetchDataResponse } from '../saga/repos.saga';
@@ -15,6 +15,7 @@ export const enum ActionTypes {
   TOGGLE_VIEW = 'TOGGLE_VIEW',
 
   INSERT_USERINFO = 'INSERT_USERINFO',
+  INSERT_DOMAININFO = 'INSERT_DOMAININFO',
 }
 
 export const actions = {
@@ -31,8 +32,10 @@ export const actions = {
 
   toggleView: () => createAction(ActionTypes.TOGGLE_VIEW),
 
-  insertUserInfo: (info: UserInfo) =>
+  insertUserInfo: (info: UserInfoInterface) =>
     createAction(ActionTypes.INSERT_USERINFO, info),
+  insertDomainInfo: (info: string) =>
+    createAction(ActionTypes.INSERT_DOMAININFO, info),
 };
 
 export type Actions = ActionsUnion<typeof actions>;

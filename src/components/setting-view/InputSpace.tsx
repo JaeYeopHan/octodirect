@@ -4,8 +4,8 @@ import {
   CloseIcon,
   // @ts-ignore
 } from 'evergreen-ui';
-import { UserInfo } from '../../service/userInfo.service';
-import { UserInfoState } from '../../reducers/userInfo.reducers';
+import { UserInfoInterface } from '../../service/user-info.service';
+import { SettingInfoState } from '../../reducers/setting-info.reducers';
 import { RepoState } from '../../reducers/repos.reducers';
 import { GitHubSetting } from './GitHubSetting';
 import { BookmarkSetting } from './BookmarkSetting';
@@ -30,14 +30,21 @@ const IconLayout = styled.div`
 
 interface InputSpaceProps {
   repos: RepoState;
-  userInfo: UserInfoState;
-  onClickSubmit: (info: UserInfo) => void;
+  settingInfo: SettingInfoState;
+  onClickSubmit: (info: UserInfoInterface) => void;
   onClickClose: () => void;
+  addDomainInfo: (domainInfo: string) => void;
 }
 
 export class InputSpace extends Component<InputSpaceProps> {
   render(): JSX.Element {
-    const { repos, userInfo, onClickSubmit, onClickClose } = this.props;
+    const {
+      repos,
+      settingInfo,
+      onClickSubmit,
+      onClickClose,
+      addDomainInfo,
+    } = this.props;
     return (
       <SettingViewLayout>
         <IconLayout>
@@ -45,16 +52,17 @@ export class InputSpace extends Component<InputSpaceProps> {
         </IconLayout>
         <GitHubSetting
           repos={repos}
-          userInfo={userInfo}
+          settingInfo={settingInfo}
           onClickSubmit={onClickSubmit}
           onClickClose={onClickClose}
         />
         <Division />
         <BookmarkSetting
           repos={repos}
-          userInfo={userInfo}
+          settingInfo={settingInfo}
           onClickSubmit={onClickSubmit}
           onClickClose={onClickClose}
+          addDomainInfo={addDomainInfo}
         />
       </SettingViewLayout>
     );

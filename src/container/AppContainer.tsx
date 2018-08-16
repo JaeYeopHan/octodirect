@@ -8,19 +8,20 @@ import { InputSpace } from '../components/setting-view/InputSpace';
 import { RepoState } from '../reducers/repos.reducers';
 import { actions } from '../actions/actions';
 import { ViewState } from '../reducers/view.reducers';
-import { UserInfo } from '../service/userInfo.service';
-import { UserInfoState } from '../reducers/userInfo.reducers';
+import { UserInfoInterface } from '../service/user-info.service';
+import { SettingInfoState } from '../reducers/setting-info.reducers';
 
 interface AppContainerProps {
   repos: RepoState;
   view: ViewState;
-  userInfo: UserInfoState;
+  settingInfo: SettingInfoState;
   onRefresh: () => void;
   onPressUpKey: () => void;
   onPressDownKey: () => void;
   onChange: (value: string) => void;
   onToggleView: () => void;
-  onClickSubmit: (info: UserInfo) => void;
+  onClickSubmit: (userInfo: UserInfoInterface) => void;
+  addDomainInfo: (domainInfo: string) => void;
 }
 
 class AppContainer extends React.Component<AppContainerProps> {
@@ -28,12 +29,13 @@ class AppContainer extends React.Component<AppContainerProps> {
     const {
       repos,
       view,
-      userInfo,
+      settingInfo,
       onPressUpKey,
       onPressDownKey,
       onChange,
       onToggleView,
       onClickSubmit,
+      addDomainInfo,
     } = this.props;
 
     const MainView: JSX.Element = (
@@ -52,9 +54,10 @@ class AppContainer extends React.Component<AppContainerProps> {
     const SettingView: JSX.Element = (
       <InputSpace
         repos={repos}
-        userInfo={userInfo}
+        settingInfo={settingInfo}
         onClickSubmit={onClickSubmit}
         onClickClose={onToggleView}
+        addDomainInfo={addDomainInfo}
       />
     );
 
@@ -65,7 +68,7 @@ class AppContainer extends React.Component<AppContainerProps> {
 const mapStateToProps = (state: AppContainerProps) => ({
   repos: state.repos,
   view: state.view,
-  userInfo: state.userInfo,
+  settingInfo: state.settingInfo,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -74,7 +77,10 @@ const mapDispatchToProps = (dispatch: any) => ({
   onPressDownKey: () => dispatch(actions.incrementIndex()),
   onChange: (value: string) => dispatch(actions.updateValue(value)),
   onToggleView: () => dispatch(actions.toggleView()),
-  onClickSubmit: (info: UserInfo) => dispatch(actions.insertUserInfo(info)),
+  onClickSubmit: (userInfo: UserInfoInterface) =>
+    dispatch(actions.insertUserInfo(userInfo)),
+  addDomainInfo: (domainInfo: string) =>
+    dispatch(actions.insertDomainInfo(domainInfo)),
 });
 
 export default connect(

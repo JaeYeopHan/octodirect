@@ -6,8 +6,8 @@ import {
   // @ts-ignore
 } from 'evergreen-ui';
 import styled from 'styled-components';
-import { UserInfo } from '../../service/userInfo.service';
-import { UserInfoState } from '../../reducers/userInfo.reducers';
+import { UserInfoInterface } from '../../service/user-info.service';
+import { SettingInfoState } from '../../reducers/setting-info.reducers';
 import { RepoState } from '../../reducers/repos.reducers';
 import { FetchResponseType } from '../../saga/repos.saga';
 import { Head } from './common/Head';
@@ -18,8 +18,8 @@ const Center = styled.div`
 
 interface GitHubSettingProps {
   repos: RepoState;
-  userInfo: UserInfoState;
-  onClickSubmit: (info: UserInfo) => void;
+  settingInfo: SettingInfoState;
+  onClickSubmit: (info: UserInfoInterface) => void;
   onClickClose: () => void;
 }
 
@@ -38,7 +38,7 @@ export class GitHubSetting extends Component<
   };
 
   componentDidMount() {
-    const { name, token } = this.props.userInfo.info;
+    const { name, token } = this.props.settingInfo.userInfo;
 
     if (name !== '' && token !== '') {
       this.setState({ name: name as string, token: token as string });
@@ -46,8 +46,8 @@ export class GitHubSetting extends Component<
   }
 
   render() {
-    const { onClickClose, repos, userInfo } = this.props;
-    const { name: storageName, token: storageToken } = userInfo.info;
+    const { onClickClose, repos, settingInfo } = this.props;
+    const { name: storageName, token: storageToken } = settingInfo.userInfo;
     const { name, token } = this.state;
     const { fetchResponseType } = repos;
     const isDone =
