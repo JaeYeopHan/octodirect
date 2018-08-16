@@ -4,7 +4,6 @@ import {
   Popover,
   TableRow,
   TextTableCell,
-  PopoverContent,
   Position,
   Button,
   // @ts-ignore
