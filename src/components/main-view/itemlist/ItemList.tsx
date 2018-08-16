@@ -14,7 +14,7 @@ interface ItemListProps {
 }
 
 const fixScroll = (index: number) => {
-  const height = 39;
+  const height = 30.9;
   const boxHeight = 80;
   const scrollElm: HTMLElement = $('#fix_scroll');
   const targetY = index * height - boxHeight;

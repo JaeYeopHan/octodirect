@@ -7,7 +7,7 @@ import {
 } from 'evergreen-ui';
 
 const DefaultItem = styled.li`
-  padding: 8px;
+  padding: 4px 0px 4px 10px;
   height: 100%;
   border-bottom: 1px solid #dddddd;
   border-left: 3px solid #fafbfc;
