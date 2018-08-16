@@ -1,5 +1,8 @@
 import { repos as repoMock } from './mock.service';
-import { getUserInfoToLocalStorage, UserInfo } from './userInfo.service';
+import {
+  getUserInfoToLocalStorage,
+  UserInfoInterface,
+} from './user-info.service';
 
 export interface RepositoryInfo {
   id: string;
@@ -12,8 +15,8 @@ export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
     return repoMock;
   }
   const info = getUserInfoToLocalStorage();
-  const name = (info as UserInfo).name;
-  const token = (info as UserInfo).token;
+  const name = (info as UserInfoInterface).name;
+  const token = (info as UserInfoInterface).token;
 
   const query = `query {
     user(login: ${name}) {

@@ -1,6 +1,6 @@
 import { bookmarks as repoMock } from './mock.service';
-import { RepositoryInfo } from './githubRepository.service';
-import { HistoryItem } from './browserHistory.service';
+import { RepositoryInfo } from './github-repository.service';
+import { HistoryItem } from './browser-history.service';
 import { getDomainOptionToLocalStorage } from './setting.service';
 
 export interface HistoryItem {
@@ -12,7 +12,7 @@ export interface HistoryItem {
   visitCount?: number;
 }
 
-const defaultFilteringUrl = 'https://github.com/';
+export const defaultFilteringUrls = ['https://github.com/'];
 const maxResults = 200;
 
 export const getVisitedGitHubUrls = async (): Promise<RepositoryInfo[]> => {
@@ -41,9 +41,9 @@ export function getFilteringUrls() {
   const domainInfo = getDomainOptionToLocalStorage();
 
   if (domainInfo && domainInfo.length > 0) {
-    return domainInfo.concat([defaultFilteringUrl]);
+    return domainInfo.concat(defaultFilteringUrls);
   } else {
-    return [defaultFilteringUrl];
+    return defaultFilteringUrls;
   }
 }
 
