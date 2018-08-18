@@ -61,12 +61,16 @@ export class GitHubSetting extends Component<
 
     if (isDone) {
       ButtonSection = (
-        <Button onClick={onClickClose} appearance="green">
+        <Button onClick={onClickClose} appearance="blue" height={28}>
           Done
         </Button>
       );
     } else {
-      ButtonSection = <Button onClick={this.handleSubmit}>Submit</Button>;
+      ButtonSection = (
+        <Button onClick={this.handleSubmit} height={28}>
+          Submit
+        </Button>
+      );
     }
 
     return (
