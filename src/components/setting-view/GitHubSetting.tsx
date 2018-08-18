@@ -6,6 +6,8 @@ import {
   // @ts-ignore
 } from 'evergreen-ui';
 import styled from 'styled-components';
+import autobind from 'autobind-decorator';
+
 import { UserInfoInterface } from '../../service/user-info.service';
 import { SettingInfoState } from '../../reducers/setting-info.reducers';
 import { RepoState } from '../../reducers/repos.reducers';
@@ -64,9 +66,7 @@ export class GitHubSetting extends Component<
         </Button>
       );
     } else {
-      ButtonSection = (
-        <Button onClick={() => this.handleSubmit()}>Submit</Button>
-      );
+      ButtonSection = <Button onClick={this.handleSubmit}>Submit</Button>;
     }
 
     return (
@@ -75,28 +75,25 @@ export class GitHubSetting extends Component<
           value={this.state.name}
           label="Account name"
           placeholder="owner'sname"
-          inputHeight={32}
+          inputHeight={28}
           data-id="name"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            this.handleUpdateValue(event)
-          }
+          onChange={this.handleUpdateValue}
         />
         <TextInputField
           value={this.state.token}
           label="Access token"
           description="Check, https://github.com/settings/tokens"
           placeholder="secret access token"
-          inputHeight={32}
+          inputHeight={28}
           data-id="token"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            this.handleUpdateValue(event)
-          }
+          onChange={this.handleUpdateValue}
         />
         <Center>{ButtonSection}</Center>
       </Fragment>
     );
   }
 
+  @autobind
   private handleSubmit() {
     const { onClickSubmit } = this.props;
     const { name, token } = this.state;
@@ -109,6 +106,7 @@ export class GitHubSetting extends Component<
     }
   }
 
+  @autobind
   private handleUpdateValue({ target }: React.ChangeEvent<HTMLInputElement>) {
     const key = target.dataset.id as keyof GitHubSettingState;
     const value = target.value;

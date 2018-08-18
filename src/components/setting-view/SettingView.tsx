@@ -100,7 +100,8 @@ export class SettingView extends Component<SettingViewProps, SettingViewState> {
         <ControllerLayout>
           <SegmentedControl
             width={'100%'}
-            height={28}
+            height={30}
+            name={'setting-option'}
             options={options}
             value={viewType}
             defaultValue={'github'}

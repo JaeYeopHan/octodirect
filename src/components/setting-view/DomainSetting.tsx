@@ -50,7 +50,7 @@ export class DomainSetting extends Component<
           <TextInputField
             label="Filtering domain"
             placeholder="https://**"
-            inputHeight={32}
+            inputHeight={28}
             data-id="domain"
             description="Add url by press Enter"
             onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) =>
