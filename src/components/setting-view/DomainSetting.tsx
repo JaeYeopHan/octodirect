@@ -12,7 +12,6 @@ import styled from 'styled-components';
 import { UserInfoInterface } from '../../service/user-info.service';
 import { SettingInfoState } from '../../reducers/setting-info.reducers';
 import { RepoState } from '../../reducers/repos.reducers';
-import { Head } from './common/Head';
 import { KeyUtils } from '../../utils/Key';
 
 const FieldLayout = styled.div`
@@ -24,11 +23,11 @@ const PopupLayout = styled.div`
   margin-top: -12px;
 `;
 
-interface BookmarkSettingState {
+interface DomainSettingState {
   domain: string;
 }
 
-interface BookmarkSettingProps {
+interface DomainSettingProps {
   repos: RepoState;
   settingInfo: SettingInfoState;
   onClickSubmit: (info: UserInfoInterface) => void;
@@ -36,22 +35,17 @@ interface BookmarkSettingProps {
   onKeyDown: (domain: string) => void;
 }
 
-export class BookmarkSetting extends Component<
-  BookmarkSettingProps,
-  BookmarkSettingState
+export class DomainSetting extends Component<
+  DomainSettingProps,
+  DomainSettingState
 > {
-  state: BookmarkSettingState = {
+  state: DomainSettingState = {
     domain: '',
   };
-
-  componentDidMount() {
-    console.log(`componentDidMount -> `, this.props.settingInfo);
-  }
 
   render() {
     return (
       <Fragment>
-        <Head content={'Bookmark Setting'} />
         <FieldLayout>
           <TextInputField
             label="Filtering domain"

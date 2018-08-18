@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import autobind from 'autobind-decorator';
 
 import { RepoState } from '../reducers/repos.reducers';
 import { Input } from '../components/main-view/input/Input';
@@ -17,14 +18,17 @@ interface MainContainerProps {
 }
 
 class MainContainer extends React.Component<MainContainerProps> {
+  @autobind
   handlePressUpKey() {
     this.props.decrementIndex();
   }
 
+  @autobind
   handlePressDownKey() {
     this.props.incrementIndex();
   }
 
+  @autobind
   handleInputChange(value: string) {
     this.props.updateValue(value);
   }
@@ -36,9 +40,9 @@ class MainContainer extends React.Component<MainContainerProps> {
       <React.Fragment>
         <Input
           repos={repos}
-          onPressUpKey={() => this.handlePressUpKey()}
-          onPressDownKey={() => this.handlePressDownKey()}
-          onChange={(value: string) => this.handleInputChange(value)}
+          onPressUpKey={this.handlePressUpKey}
+          onPressDownKey={this.handlePressDownKey}
+          onChange={this.handleInputChange}
         />
         <ItemList repos={repos} />
         <Info onToggleView={toggleView} />
@@ -47,12 +51,9 @@ class MainContainer extends React.Component<MainContainerProps> {
   }
 }
 
-const mapStateToProps = (state: MainContainerProps) => {
-  console.log(state);
-  return {
-    repos: state.repos,
-  };
-};
+const mapStateToProps = (state: MainContainerProps) => ({
+  repos: state.repos,
+});
 
 const mapDispatchToProps = (dispatch: any) => ({
   decrementIndex: () => dispatch(actions.decrementIndex()),

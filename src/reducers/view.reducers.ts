@@ -8,7 +8,7 @@ export interface ViewState {
 }
 
 const initialState: ViewState = {
-  type: 'main',
+  type: 'setting',
 };
 
 export const viewReducers: Reducer<Readonly<ViewState>> = (

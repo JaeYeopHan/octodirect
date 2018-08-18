@@ -10,7 +10,6 @@ import { UserInfoInterface } from '../../service/user-info.service';
 import { SettingInfoState } from '../../reducers/setting-info.reducers';
 import { RepoState } from '../../reducers/repos.reducers';
 import { FetchResponseType } from '../../saga/repos.saga';
-import { Head } from './common/Head';
 
 const Center = styled.div`
   text-align: center;
@@ -72,7 +71,6 @@ export class GitHubSetting extends Component<
 
     return (
       <Fragment>
-        <Head content={'GitHub Setting'} />
         <TextInputField
           value={this.state.name}
           label="Account name"

@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import autobind from 'autobind-decorator';
 
-import { InputSpace } from '../components/setting-view/InputSpace';
+import { SettingView } from '../components/setting-view/SettingView';
 import { RepoState } from '../reducers/repos.reducers';
 import { SettingInfoState } from '../reducers/setting-info.reducers';
 import { UserInfoInterface } from '../service/user-info.service';
@@ -16,21 +17,24 @@ interface SettingContainerProps {
 }
 
 class SettingContainer extends React.Component<SettingContainerProps> {
+  @autobind
   handleClickSubmit(userInfo: UserInfoInterface) {
     this.props.insertUserInfo(userInfo);
   }
 
+  @autobind
   handleClickClose() {
     this.props.toggleView();
   }
 
+  @autobind
   handleKeyDown(value: string) {
     this.props.addDomainInfo(value);
   }
 
   render(): JSX.Element {
     return (
-      <InputSpace
+      <SettingView
         repos={this.props.repos}
         settingInfo={this.props.settingInfo}
         onClickSubmit={this.handleClickSubmit}
