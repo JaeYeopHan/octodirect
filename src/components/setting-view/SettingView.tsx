@@ -6,7 +6,7 @@ import {
   // @ts-ignore
 } from 'evergreen-ui';
 
-import { Head } from './common/Head';
+import { Head } from './Head';
 import { UserInfoInterface } from '../../service/user-info.service';
 import { SettingInfoState } from '../../reducers/setting-info.reducers';
 import { RepoState } from '../../reducers/repos.reducers';

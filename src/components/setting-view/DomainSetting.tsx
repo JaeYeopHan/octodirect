@@ -6,6 +6,7 @@ import {
   TextTableCell,
   Position,
   Button,
+  toaster,
   // @ts-ignore
 } from 'evergreen-ui';
 import styled from 'styled-components';
@@ -84,6 +85,7 @@ export class DomainSetting extends Component<
 
       onKeyDown(value);
       currentTarget.value = '';
+      toaster.success('Success to add domain address');
     }
   }
 }
