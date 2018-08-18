@@ -8,7 +8,7 @@ export interface ViewState {
 }
 
 const initialState: ViewState = {
-  type: 'setting',
+  type: 'main',
 };
 
 export const viewReducers: Reducer<Readonly<ViewState>> = (
@@ -19,6 +19,7 @@ export const viewReducers: Reducer<Readonly<ViewState>> = (
     case ActionTypes.TOGGLE_VIEW:
       const currentViewType = state.type;
       const nextViewType = convertViewType(currentViewType);
+
       return { ...state, ...{ type: nextViewType } };
     default:
       return state;

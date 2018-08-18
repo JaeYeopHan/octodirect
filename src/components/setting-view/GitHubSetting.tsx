@@ -74,7 +74,7 @@ export class GitHubSetting extends Component<
         <TextInputField
           value={this.state.name}
           label="Account name"
-          placeholder="owner'sname"
+          placeholder="owner's name"
           inputHeight={28}
           data-id="name"
           onChange={this.handleUpdateValue}

@@ -2,6 +2,10 @@ import { bookmarks as repoMock } from './mock.service';
 import { RepositoryInfo } from './github-repository.service';
 import { HistoryItem } from './browser-history.service';
 import { getDomainOptionToLocalStorage } from './setting.service';
+import {
+  MAX_COUNT_OF_HISTORY,
+  DEFAULT_FILTERING_URLS,
+} from '../main/appConfig';
 
 export interface HistoryItem {
   id: string;
@@ -12,16 +16,13 @@ export interface HistoryItem {
   visitCount?: number;
 }
 
-export const defaultFilteringUrls = ['https://github.com/'];
-const maxResults = 200;
-
 export const getVisitedGitHubUrls = async (): Promise<RepositoryInfo[]> => {
   if (process.env.NODE_ENV === 'development') {
     return repoMock;
   }
   const items = await new Promise<HistoryItem[]>((resolve, _) => {
     chrome.history.search(
-      { text: '', maxResults },
+      { text: '', maxResults: MAX_COUNT_OF_HISTORY },
       (historyItems: HistoryItem[]) => {
         resolve(historyItems);
       },
@@ -41,9 +42,9 @@ export function getFilteringUrls() {
   const domainInfo = getDomainOptionToLocalStorage();
 
   if (domainInfo && domainInfo.length > 0) {
-    return domainInfo.concat(defaultFilteringUrls);
+    return domainInfo.concat(DEFAULT_FILTERING_URLS);
   } else {
-    return defaultFilteringUrls;
+    return DEFAULT_FILTERING_URLS;
   }
 }
 
