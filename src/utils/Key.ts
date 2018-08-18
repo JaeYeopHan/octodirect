@@ -1,4 +1,4 @@
-const enum KEY {
+export const enum KEY {
   ENTER = 13,
   UP = 38,
   DOWN = 40,
@@ -13,7 +13,7 @@ export const KeyUtils = {
     return keyCode === KEY.DOWN && index < maxIndex;
   },
 
-  isCorrectEnterKey: (keyCode: number, value: string) => {
-    return keyCode === KEY.ENTER && value !== '';
+  isEnterKey: (keyCode: number) => {
+    return keyCode === KEY.ENTER;
   },
 };
