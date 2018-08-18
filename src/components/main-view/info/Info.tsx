@@ -34,7 +34,8 @@ interface InfoProps {
 export const Info: React.SFC<InfoProps> = ({ onToggleView }) => (
   <Container>
     <Logo>
-      octodirect<a href="http://github.com/JaeYeopHan">@Jbee</a>
+      <a href="http://github.com/JaeYeopHan/octodirect">octodirect</a>
+      @0.1.0
     </Logo>
     <Button onClick={onToggleView}>Setting</Button>
   </Container>

@@ -10,7 +10,7 @@ import {
   DomainInfoInterface,
   setDomainOptionToLocalStorage,
 } from '../service/setting.service';
-import { defaultFilteringUrls } from '../service/browser-history.service';
+import { DEFAULT_FILTERING_URLS } from '../main/appConfig';
 
 export interface SettingInfoState {
   userInfo: UserInfoInterface;
@@ -22,7 +22,7 @@ const domainInfoFromStorage = getDomainOptionToLocalStorage();
 
 const initialState: SettingInfoState = {
   userInfo: userInfoFromStorage || { name: '', token: '' },
-  domainInfo: domainInfoFromStorage || defaultFilteringUrls,
+  domainInfo: domainInfoFromStorage || DEFAULT_FILTERING_URLS,
 };
 
 export const settingInfoReducers: Reducer<Readonly<SettingInfoState>> = (
