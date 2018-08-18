@@ -33,7 +33,7 @@ interface InputSpaceProps {
   settingInfo: SettingInfoState;
   onClickSubmit: (info: UserInfoInterface) => void;
   onClickClose: () => void;
-  addDomainInfo: (domainInfo: string) => void;
+  onKeyDown: (domainInfo: string) => void;
 }
 
 export class InputSpace extends Component<InputSpaceProps> {
@@ -43,7 +43,7 @@ export class InputSpace extends Component<InputSpaceProps> {
       settingInfo,
       onClickSubmit,
       onClickClose,
-      addDomainInfo,
+      onKeyDown,
     } = this.props;
     return (
       <SettingViewLayout>
@@ -62,7 +62,7 @@ export class InputSpace extends Component<InputSpaceProps> {
           settingInfo={settingInfo}
           onClickSubmit={onClickSubmit}
           onClickClose={onClickClose}
-          addDomainInfo={addDomainInfo}
+          onKeyDown={onKeyDown}
         />
       </SettingViewLayout>
     );

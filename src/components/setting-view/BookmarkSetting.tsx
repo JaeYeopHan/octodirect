@@ -33,7 +33,7 @@ interface BookmarkSettingProps {
   settingInfo: SettingInfoState;
   onClickSubmit: (info: UserInfoInterface) => void;
   onClickClose: () => void;
-  addDomainInfo: (domain: string) => void;
+  onKeyDown: (domain: string) => void;
 }
 
 export class BookmarkSetting extends Component<
@@ -85,10 +85,10 @@ export class BookmarkSetting extends Component<
     currentTarget,
   }: React.KeyboardEvent<HTMLInputElement>): void {
     if (KeyUtils.isCorrectEnterKey(keyCode, currentTarget.value)) {
-      const { addDomainInfo } = this.props;
+      const { onKeyDown } = this.props;
       const { value } = currentTarget;
 
-      addDomainInfo(value);
+      onKeyDown(value);
       currentTarget.value = '';
     }
   }
