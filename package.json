@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "autobind-decorator": "^2.1.0",
     "evergreen-ui": "^3.2.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -21,7 +22,7 @@
     "coveralls": "react-scripts-ts test --env=jsdom --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.71",
+    "@types/chrome": "0.0.72",
     "@types/enzyme": "^3.1.12",
     "@types/enzyme-adapter-react-16": "^1.0.2",
     "@types/jest": "^23.3.1",
