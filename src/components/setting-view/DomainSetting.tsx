@@ -79,10 +79,13 @@ export class DomainSetting extends Component<
     keyCode,
     currentTarget,
   }: React.KeyboardEvent<HTMLInputElement>): void {
-    if (KeyUtils.isCorrectEnterKey(keyCode, currentTarget.value)) {
+    if (KeyUtils.isEnterKey(keyCode)) {
       const { onKeyDown } = this.props;
       const { value } = currentTarget;
 
+      if (value === '') {
+        return;
+      }
       onKeyDown(value);
       currentTarget.value = '';
       toaster.success('Success to add domain address');

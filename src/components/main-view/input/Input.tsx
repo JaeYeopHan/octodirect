@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { KeyUtils } from '../../../utils/Key';
+import { KeyUtils, KEY } from '../../../utils/Key';
 import { RepoState } from '../../../reducers/repos.reducers';
+import { ItemType } from '../../../model/item.model';
+import { GOOGLE_SEARCH_URL } from '../../../main/appConfig';
 
 const StyledInput = styled.input`
   position: fixed;
@@ -56,9 +58,9 @@ export class Input extends React.Component<InputProps> {
       return;
     }
 
-    if (KeyUtils.isCorrectEnterKey(keyCode, currentTarget.placeholder)) {
-      const selectedItem = filtered[index];
-      const targetUrl = selectedItem.htmlUrl;
+    if (KeyUtils.isEnterKey(keyCode)) {
+      const { placeholder: value } = currentTarget;
+      const targetUrl = this.getTargetUrl(filtered, value, index);
 
       if (process.env.NODE_ENV === 'development') {
         console.log(targetUrl);
@@ -68,6 +70,13 @@ export class Input extends React.Component<InputProps> {
         setTimeout(() => window.close, 300);
       }
     }
+  }
+
+  private getTargetUrl(filtered: ItemType[], value: string, index: number) {
+    if (filtered.length === 0) {
+      return `${GOOGLE_SEARCH_URL}${value}`;
+    }
+    return filtered[index].htmlUrl;
   }
 
   private handleChange({
