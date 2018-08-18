@@ -25,7 +25,7 @@ export function* fetchData(action?: any): any {
       call(fetchGitHubRepository),
       call(getVisitedGitHubUrls),
     ]);
-    const repos = githubRepos.concat(visitedItems);
+    const repos = visitedItems.concat(githubRepos);
 
     if (githubRepos.length === 0) {
       yield put(
