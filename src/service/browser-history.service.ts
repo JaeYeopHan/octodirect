@@ -42,7 +42,6 @@ function getFilteringUrls(): string[] {
   const domainInfo = getDomainOptionToLocalStorage();
 
   if (domainInfo && domainInfo.length > 0) {
-    // domainInfo 에 default filtering url이 없을 경우, concat
     if (domainInfo.indexOf(DEFAULT_FILTERING_URL) >= 0) {
       return domainInfo;
     }

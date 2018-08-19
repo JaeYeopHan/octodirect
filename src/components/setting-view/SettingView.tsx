@@ -34,6 +34,7 @@ interface SettingViewProps {
   onClickSubmit: (info: UserInfoInterface) => void;
   onClickClose: () => void;
   onKeyDown: (domainInfo: string) => void;
+  onClickDelete: (domainInfo: string) => void;
 }
 
 interface ViewOption {
@@ -49,10 +50,10 @@ interface SettingViewState {
 export class SettingView extends Component<SettingViewProps, SettingViewState> {
   state = {
     options: [
-      { label: 'GitHub', value: 'github' },
       { label: 'Domain', value: 'domain' },
+      { label: 'GitHub', value: 'github' },
     ],
-    viewType: 'github',
+    viewType: 'domain',
   };
 
   handleChangeViewType(selected: string) {
@@ -68,6 +69,7 @@ export class SettingView extends Component<SettingViewProps, SettingViewState> {
       onClickSubmit,
       onClickClose,
       onKeyDown,
+      onClickDelete,
     } = this.props;
 
     const { options, viewType } = this.state;
@@ -88,6 +90,7 @@ export class SettingView extends Component<SettingViewProps, SettingViewState> {
         onClickSubmit={onClickSubmit}
         onClickClose={onClickClose}
         onKeyDown={onKeyDown}
+        onClickDelete={onClickDelete}
       />
     );
 

@@ -15,7 +15,9 @@ export const enum ActionTypes {
   TOGGLE_VIEW = 'TOGGLE_VIEW',
 
   INSERT_USERINFO = 'INSERT_USERINFO',
+
   INSERT_DOMAININFO = 'INSERT_DOMAININFO',
+  DELETE_DOMAININFO = 'DELETE_DOMAININFO',
 }
 
 export const actions = {
@@ -34,8 +36,11 @@ export const actions = {
 
   insertUserInfo: (info: UserInfoInterface) =>
     createAction(ActionTypes.INSERT_USERINFO, info),
+
   insertDomainInfo: (info: string) =>
     createAction(ActionTypes.INSERT_DOMAININFO, info),
+  deleteDomainInfo: (info: string) =>
+    createAction(ActionTypes.DELETE_DOMAININFO, info),
 };
 
 export type Actions = ActionsUnion<typeof actions>;

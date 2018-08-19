@@ -7,9 +7,12 @@ import {
   Position,
   Button,
   toaster,
+  CloseIcon,
   // @ts-ignore
 } from 'evergreen-ui';
 import styled from 'styled-components';
+import autobind from 'autobind-decorator';
+
 import { UserInfoInterface } from '../../service/user-info.service';
 import { SettingInfoState } from '../../reducers/setting-info.reducers';
 import { RepoState } from '../../reducers/repos.reducers';
@@ -24,6 +27,10 @@ const PopupLayout = styled.div`
   margin-top: -12px;
 `;
 
+const TableContent = styled.span`
+  margin-left: 8px;
+`;
+
 interface DomainSettingState {
   domain: string;
 }
@@ -34,6 +41,7 @@ interface DomainSettingProps {
   onClickSubmit: (info: UserInfoInterface) => void;
   onClickClose: () => void;
   onKeyDown: (domain: string) => void;
+  onClickDelete: (domainInfo: string) => void;
 }
 
 export class DomainSetting extends Component<
@@ -49,20 +57,24 @@ export class DomainSetting extends Component<
       <Fragment>
         <FieldLayout>
           <TextInputField
-            label="Filtering domain"
+            label="Filtering domains"
             placeholder="https://**"
             inputHeight={28}
             data-id="domain"
             description="Add url by press Enter"
-            onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) =>
-              this.handleKeyDown(event)
-            }
+            onKeyDown={this.handleKeyDown}
           />
           <PopupLayout>
             <Popover
               content={this.props.settingInfo.domainInfo.map((domain, i) => (
                 <TableRow key={i} isSelectable={true}>
-                  <TextTableCell>{domain}</TextTableCell>
+                  <TextTableCell
+                    onClick={this.handleClickItem}
+                    data-value={domain}
+                  >
+                    <CloseIcon size={16} iconWidth={10} iconHeight={10} />
+                    <TableContent>{domain}</TableContent>
+                  </TextTableCell>
                 </TableRow>
               ))}
               position={Position.BOTTOM}
@@ -75,6 +87,17 @@ export class DomainSetting extends Component<
     );
   }
 
+  @autobind
+  private handleClickItem({ currentTarget }: React.MouseEvent<HTMLElement>) {
+    const target = currentTarget.dataset.value;
+
+    if (target) {
+      this.props.onClickDelete(target);
+      toaster.success('Deleted!', { duration: 1 });
+    }
+  }
+
+  @autobind
   private handleKeyDown({
     keyCode,
     currentTarget,
@@ -88,7 +111,7 @@ export class DomainSetting extends Component<
       }
       onKeyDown(value);
       currentTarget.value = '';
-      toaster.success('Success to add domain address');
+      toaster.success('Success to add', { duration: 1 });
     }
   }
 }

@@ -14,6 +14,7 @@ interface SettingContainerProps {
   toggleView: () => void;
   insertUserInfo: (userInfo: UserInfoInterface) => void;
   addDomainInfo: (domainInfo: string) => void;
+  deleteDomainInfo: (domainInfo: string) => void;
 }
 
 class SettingContainer extends React.Component<SettingContainerProps> {
@@ -32,6 +33,11 @@ class SettingContainer extends React.Component<SettingContainerProps> {
     this.props.addDomainInfo(value);
   }
 
+  @autobind
+  handleClickDelete(target: string) {
+    this.props.deleteDomainInfo(target);
+  }
+
   render(): JSX.Element {
     return (
       <SettingView
@@ -40,6 +46,7 @@ class SettingContainer extends React.Component<SettingContainerProps> {
         onClickSubmit={this.handleClickSubmit}
         onClickClose={this.handleClickClose}
         onKeyDown={this.handleKeyDown}
+        onClickDelete={this.handleClickDelete}
       />
     );
   }
@@ -56,6 +63,8 @@ const mapDispatchToProps = (dispatch: any) => ({
     dispatch(actions.insertUserInfo(userInfo)),
   addDomainInfo: (domainInfo: string) =>
     dispatch(actions.insertDomainInfo(domainInfo)),
+  deleteDomainInfo: (domainInfo: string) =>
+    dispatch(actions.deleteDomainInfo(domainInfo)),
 });
 
 export default connect(

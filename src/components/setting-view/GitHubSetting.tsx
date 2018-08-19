@@ -104,9 +104,9 @@ export class GitHubSetting extends Component<
 
     if (name !== '' && token !== '') {
       onClickSubmit({ name, token });
-      toaster.success('Complete to connect!');
+      toaster.success('Complete to connect!', { duration: 1 });
     } else {
-      toaster.warning('Invalid input!');
+      toaster.warning('Invalid input!', { duration: 1 });
     }
   }
 

@@ -9,6 +9,7 @@ import {
   getDomainOptionToLocalStorage,
   DomainInfoInterface,
   setDomainOptionToLocalStorage,
+  deleteDomainOptionToLocalStorage,
 } from '../service/setting.service';
 import { DEFAULT_FILTERING_URL } from '../main/appConfig';
 
@@ -51,7 +52,19 @@ export const settingInfoReducers: Reducer<Readonly<SettingInfoState>> = (
         ...state,
         domainInfo: newDomainInfo,
       };
-      break;
+
+    case ActionTypes.DELETE_DOMAININFO:
+      const updatedDomainInfo = deleteDomainOptionToLocalStorage(
+        action.payload,
+      );
+
+      if (!updatedDomainInfo) {
+        return state;
+      }
+      return {
+        ...state,
+        domainInfo: updatedDomainInfo,
+      };
     default:
       return state;
   }
