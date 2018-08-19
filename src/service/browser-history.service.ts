@@ -2,10 +2,7 @@ import { bookmarks as repoMock } from './mock.service';
 import { RepositoryInfo } from './github-repository.service';
 import { HistoryItem } from './browser-history.service';
 import { getDomainOptionToLocalStorage } from './setting.service';
-import {
-  MAX_COUNT_OF_HISTORY,
-  DEFAULT_FILTERING_URLS,
-} from '../main/appConfig';
+import { MAX_COUNT_OF_HISTORY, DEFAULT_FILTERING_URL } from '../main/appConfig';
 
 export interface HistoryItem {
   id: string;
@@ -16,7 +13,7 @@ export interface HistoryItem {
   visitCount?: number;
 }
 
-export const getVisitedGitHubUrls = async (): Promise<RepositoryInfo[]> => {
+export const getVisitedUrls = async (): Promise<RepositoryInfo[]> => {
   if (process.env.NODE_ENV === 'development') {
     return repoMock;
   }
@@ -28,32 +25,39 @@ export const getVisitedGitHubUrls = async (): Promise<RepositoryInfo[]> => {
       },
     );
   });
+  const filteringUrls: string[] = getFilteringUrls();
 
-  return items.filter(isFilterItem).map(
-    (item: HistoryItem): RepositoryInfo => ({
-      id: item.id,
-      name: item.title as string,
-      url: item.url as string,
-    }),
-  );
+  return items
+    .filter((item: HistoryItem) => isFilterItem(item, filteringUrls))
+    .map(
+      (item: HistoryItem): RepositoryInfo => ({
+        id: item.id,
+        name: item.title as string,
+        url: item.url as string,
+      }),
+    );
 };
 
-export function getFilteringUrls() {
+function getFilteringUrls(): string[] {
   const domainInfo = getDomainOptionToLocalStorage();
 
   if (domainInfo && domainInfo.length > 0) {
-    return domainInfo.concat(DEFAULT_FILTERING_URLS);
+    // domainInfo 에 default filtering url이 없을 경우, concat
+    if (domainInfo.indexOf(DEFAULT_FILTERING_URL) >= 0) {
+      return domainInfo;
+    }
+    return domainInfo.concat(DEFAULT_FILTERING_URL);
   } else {
-    return DEFAULT_FILTERING_URLS;
+    return [DEFAULT_FILTERING_URL];
   }
 }
 
-function isFilterItem(item: HistoryItem) {
-  const filteringUrls = getFilteringUrls();
-
+function isFilterItem(item: HistoryItem, filteringUrls: string[]): boolean {
   if (item.title && item.url) {
     for (const url of filteringUrls) {
-      return item.url.includes(url);
+      if (item.url.includes(url)) {
+        return true;
+      }
     }
   }
 

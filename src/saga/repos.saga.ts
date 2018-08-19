@@ -4,7 +4,7 @@ import {
   RepositoryInfo,
 } from '../service/github-repository.service';
 import { actions, ActionTypes } from '../actions/actions';
-import { getVisitedGitHubUrls } from '../service/browser-history.service';
+import { getVisitedUrls } from '../service/browser-history.service';
 
 export const enum FetchResponseType {
   FETCH_READY = 'FETCH_READY',
@@ -23,7 +23,7 @@ export function* fetchData(action?: any): any {
   try {
     const [githubRepos, visitedItems] = yield all([
       call(fetchGitHubRepository),
-      call(getVisitedGitHubUrls),
+      call(getVisitedUrls),
     ]);
     const repos = visitedItems.concat(githubRepos);
 
