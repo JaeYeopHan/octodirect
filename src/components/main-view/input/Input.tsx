@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { KeyUtils, KEY } from '../../../utils/Key';
+import { KeyUtils } from '../../../utils/Key';
 import { RepoState } from '../../../reducers/repos.reducers';
 import { ItemType } from '../../../model/item.model';
 import { GOOGLE_SEARCH_URL } from '../../../main/appConfig';
