@@ -86,7 +86,7 @@ export class GitHubSetting extends Component<
         <TextInputField
           value={this.state.token}
           label="Access token"
-          description="Check, https://github.com/settings/tokens"
+          description="Check, https://github.com/JaeYeopHan/octodirect/issues/8"
           placeholder="secret access token"
           inputHeight={28}
           data-id="token"
