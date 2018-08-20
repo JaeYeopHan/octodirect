@@ -27,7 +27,15 @@ This is Chrome extension.
 
 ### `cmd` + `shift` + `k`
 
-> You can change hotkey in [chrome://extensions/shortcuts](chrome://extensions/shortcuts)
+<div align="center">
+
+| Main                                                           | Domain Setting                                                 | GitHub Setting                                                 |
+| :------------------------------------------------------------: | :------------------------------------------------------------: | :------------------------------------------------------------: |
+| <img src="./assets/octodirect_screenshot_1.png" width="200px"> | <img src="./assets/octodirect_screenshot_2.png" width="200px"> | <img src="./assets/octodirect_screenshot_3.png" width="200px"> |
+
+</div>
+
+> `INFO: ` You can change hotkey in [chrome://extensions/shortcuts](chrome://extensions/shortcuts)
 
 </br>
 
