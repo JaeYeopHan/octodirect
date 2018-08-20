@@ -27,8 +27,7 @@
         "mac": "Command+Shift+K",
         "default": "Ctrl+Shift+K"
       },
-      "description": "open_popup",
-      "global": true
+      "description": "open_popup"
     }
   }
 }
