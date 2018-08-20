@@ -1,0 +1,10 @@
+{
+   "appDescription": {
+      "description": "The description of the application",
+      "message": "Enables CORS for websites that block CORS for debugging cross-origin request errors."
+   },
+   "appName": {
+      "description": "The name of the application",
+      "message": "Moesif CORS Utility"
+   }
+}
