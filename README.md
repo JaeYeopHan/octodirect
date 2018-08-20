@@ -10,15 +10,36 @@
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)
 [![License: MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://opensource.org/licenses/MIT)
 
-This is Chrome extension app. This help to move your GitHub Repository directly.
+This is Chrome extension.
+
+### Directly, move your GitHub repository which...
+
+- you created
+- you visited
+
+> If your 'input' does not exist in both lists, it will automatically search google with `github:` prefix just type `enter`!.
 
 </br>
 
 ## Usage
 
+### [Chrome Web Store Download]()
+
+### `cmd` + `shift` + `k`
+
+> You can change hotkey in [chrome://extensions/shortcuts](chrome://extensions/shortcuts)
+
 </br>
 
 ## Development Installation
+
+```sh
+$ git clone https://github.com/JaeYeopHan/octodirect.git
+$ cd octodirect
+$ npm install
+$ npm start
+# npm test
+```
 
 </br>
 
