@@ -1,6 +1,6 @@
 import { LocalStorage } from '../storage/LocalStorage';
 
-const localStorageKey = '#__octodirect_extension_bookmark_key__#';
+const localStorageKey = '#__octodirect_extension_github_account_key__#';
 
 export interface UserInfoInterface {
   name?: string;
