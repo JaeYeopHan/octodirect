@@ -16,6 +16,7 @@
   "scripts": {
     "start": "react-app-rewired start --scripts-version react-scripts-ts",
     "build": "react-app-rewired build --scripts-version react-scripts-ts",
+    "prod": "npm run build && zip -r octodirect.zip build",
     "test": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts",
     "eject": "react-app-rewired eject --scripts-version react-scripts-ts",
     "typesync": "npx typesync && npm install",
