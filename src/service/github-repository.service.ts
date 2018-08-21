@@ -11,9 +11,9 @@ export interface RepositoryInfo {
 }
 
 export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
-  // if (process.env.NODE_ENV === 'development') {
-  //   return repoMock;
-  // }
+  if (process.env.NODE_ENV === 'development') {
+    return repoMock;
+  }
   const info = getUserInfoToLocalStorage();
 
   if (!info) {
