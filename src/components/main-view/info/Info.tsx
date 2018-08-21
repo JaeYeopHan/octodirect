@@ -35,7 +35,7 @@ export const Info: React.SFC<InfoProps> = ({ onToggleView }) => (
   <Container>
     <Logo>
       <a href="http://github.com/JaeYeopHan/octodirect">octodirect</a>
-      @0.1.0
+      @#__VERSION__#
     </Logo>
     <Button onClick={onToggleView}>Setting</Button>
   </Container>
