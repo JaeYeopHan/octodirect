@@ -12,6 +12,7 @@ import { UserInfoInterface } from '../../service/user-info.service';
 import { SettingInfoState } from '../../reducers/setting-info.reducers';
 import { RepoState } from '../../reducers/repos.reducers';
 import { FetchResponseType } from '../../saga/repos.saga';
+import { SETTING_GUIDE_LINK } from '../../main/appConfig';
 
 const Center = styled.div`
   text-align: center;
@@ -86,7 +87,7 @@ export class GitHubSetting extends Component<
         <TextInputField
           value={this.state.token}
           label="Access token"
-          description="Check, https://github.com/JaeYeopHan/octodirect/issues/8"
+          description={`Check, ${SETTING_GUIDE_LINK}`}
           placeholder="secret access token"
           inputHeight={28}
           data-id="token"
