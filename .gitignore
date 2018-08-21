@@ -25,3 +25,6 @@ yarn-error.log*
 
 # jest
 /src/**/__snapshots__
+
+# production
+octodirect.zip
