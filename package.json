@@ -14,12 +14,12 @@
     "redux-saga": "^0.16.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
+    "start": "react-app-rewired start --scripts-version react-scripts-ts",
+    "build": "react-app-rewired build --scripts-version react-scripts-ts",
+    "test": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts",
+    "eject": "react-app-rewired eject --scripts-version react-scripts-ts",
     "typesync": "npx typesync && npm install",
-    "coveralls": "react-scripts-ts test --env=jsdom --coverage && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "devDependencies": {
     "@types/chrome": "0.0.72",
@@ -43,6 +43,7 @@
     "ts-jest": "^23.1.4",
     "tslint-config-prettier": "^1.15.0",
     "typescript": "^3.0.1",
-    "typescript-styled-plugin": "^0.10.0"
+    "typescript-styled-plugin": "^0.10.0",
+    "webpack-bundle-analyzer": "^2.13.1"
   }
 }
