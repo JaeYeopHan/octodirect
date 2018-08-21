@@ -6,11 +6,12 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const manifestJson = require('./public/manifest.json');
 const StringReplacePlugin = require('string-replace-webpack-plugin');
+const signale = require('signale');
 
 module.exports = (config, env) => {
   if (env === 'production') {
     config = rewireUglifyJS(config, env);
-    config = rewireBundleAnalyzer(config, env);
+    // config = rewireBundleAnalyzer(config, env);
     config = rewireStringReplace(config, env);
   }
   return config;
@@ -32,12 +33,14 @@ function rewireUglifyJS(config, env) {
 }
 
 function rewireBundleAnalyzer(config, env) {
+  console.log(env);
+
   config.plugins.push(new BundleAnalyzerPlugin());
   return config;
 }
 
 function rewireStringReplace(config, env) {
-  console.log(`[INFO] octodirect version : ${manifestJson.version}`);
+  signale.info(`[INFO] octodirect version : ${manifestJson.version}`);
 
   config.module.rules.push({
     test: /(\.tsx)$/,
