@@ -11,10 +11,15 @@ export interface RepositoryInfo {
 }
 
 export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
-  if (process.env.NODE_ENV === 'development') {
-    return repoMock;
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   return repoMock;
+  // }
   const info = getUserInfoToLocalStorage();
+
+  if (!info) {
+    return [];
+  }
+
   const name = (info as UserInfoInterface).name;
   const token = (info as UserInfoInterface).token;
 
