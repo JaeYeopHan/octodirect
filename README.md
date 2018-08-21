@@ -23,7 +23,9 @@ This is Chrome extension.
 
 ## Usage
 
-### [Chrome Web Store Download]()
+### [Chrome Web Store Download](https://chrome.google.com/webstore/detail/octodirect/fmhgcellhhleloebmhbmdncogdddkkag?hl=ko)
+
+> `NOTE!` Current version is beta.
 
 ### `cmd` + `shift` + `k`
 
