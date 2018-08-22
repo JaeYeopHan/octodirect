@@ -1,15 +1,13 @@
 {
   "manifest_version": 2,
   "name": "octodirect",
-  "version": "0.0.5",
-
+  "version": "0.0.6",
   "description": "Move to GitHub repository directly",
   "browser_action": {
     "default_icon": "octodirect_48.png",
     "default_popup": "index.html"
   },
   "default_locale": "en",
-
   "icons": {
     "16": "octodirect_16.png",
     "48": "octodirect_48.png",
@@ -17,7 +15,6 @@
   },
   "homepage_url": "https://github.com/JaeYeopHan/octodirect",
   "permissions": ["activeTab", "tabs", "history", "storage"],
-
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
