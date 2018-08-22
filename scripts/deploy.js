@@ -1,6 +1,10 @@
+'use strict';
+
 const fs = require('fs');
 const inquirer = require('inquirer');
 const signale = require('signale');
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec);
 
 const manifestPath = './public/manifest.json';
 const manifestJsonFile = fs.readFileSync(manifestPath, {
@@ -20,14 +24,18 @@ inquirer
       choices: ['patch', 'minor', 'major'],
     },
   ])
-  .then(({ type }) => {
+  .then(async ({ type }) => {
     const updatedVersion = updateVersion(type, version);
 
     manifestJson.version = updatedVersion;
 
     fs.writeFileSync(manifestPath, JSON.stringify(manifestJson));
 
-    signale.note(`'Version update complete: v${updatedVersion}\n`);
+    signale.note(`'New version: v${updatedVersion}\n`);
+
+    await applyPrettier();
+    signale.note(`Apply prettier to ${manifestPath}\n`);
+    await releaseCommitAndPush(updatedVersion);
   });
 
 function updateVersion(type, version) {
@@ -44,4 +52,35 @@ function updateVersion(type, version) {
     case 'major':
       return [Number(majorTarget) + 1, minorTarget, patchTarget].join('.');
   }
+}
+
+async function releaseCommitAndPush(version) {
+  try {
+    await commit(version);
+    signale.success('commit completed!');
+    await push();
+    signale.success('push completed!');
+  } catch (e) {
+    signale.warn('Fail to commit or push!', e);
+    return false;
+  }
+}
+
+async function commit(version) {
+  return exec(
+    [
+      `git commit`,
+      `--allow-empty`,
+      `-m ':tada: v${version}'`,
+      `${manifestPath}`,
+    ].join(' '),
+  );
+}
+
+async function push() {
+  return exec('git push origin master');
+}
+
+async function applyPrettier() {
+  return exec('prettier --write ./public/manifest.json');
 }
