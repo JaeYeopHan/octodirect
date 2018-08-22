@@ -18,6 +18,7 @@
     "build": "react-app-rewired build --scripts-version react-scripts-ts",
     "prod": "rm -rf octodirect.zip && npm run build && npm run zipify",
     "zipify": "zip -r octodirect.zip build",
+    "prettier:manifest": "prettier --write ./public/manifest.json",
     "test": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts",
     "eject": "react-app-rewired eject --scripts-version react-scripts-ts",
     "typesync": "npx typesync && npm install",
