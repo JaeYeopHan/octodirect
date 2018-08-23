@@ -15,9 +15,14 @@ interface MainContainerProps {
   incrementIndex: () => void;
   updateValue: (value: string) => void;
   toggleView: () => void;
+  fetchRequest: () => void;
 }
 
 class MainContainer extends React.Component<MainContainerProps> {
+  componentDidMount() {
+    this.props.fetchRequest();
+  }
+
   @autobind
   handlePressUpKey() {
     this.props.decrementIndex();
@@ -60,6 +65,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   incrementIndex: () => dispatch(actions.incrementIndex()),
   updateValue: (value: string) => dispatch(actions.updateValue(value)),
   toggleView: () => dispatch(actions.toggleView()),
+  fetchRequest: () => dispatch(actions.fetchRequest()),
 });
 
 export default connect(
