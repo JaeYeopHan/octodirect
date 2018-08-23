@@ -34,6 +34,15 @@ export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
           }
         }
       }
+      starredRepositories(last: 100) {
+        edges {
+          node {
+            id
+            name
+            url
+          }
+        }
+      }
     }
   }`;
   try {
@@ -47,10 +56,15 @@ export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
       body: JSON.stringify({ query }),
     });
     const json = await response.json();
-
-    return json.data.user.repositories.edges.map(
+    const userInfo = json.data.user;
+    const userRepositories = userInfo.repositories.edges.map(
       ({ node }: { node: RepositoryInfo }) => node,
     );
+    const starredRepositories = userInfo.starredRepositories.edges.map(
+      ({ node }: { node: RepositoryInfo }) => node,
+    );
+
+    return userRepositories.concat(starredRepositories);
   } catch (e) {
     console.error(e);
     return [];
