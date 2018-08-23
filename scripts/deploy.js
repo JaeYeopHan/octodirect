@@ -48,9 +48,9 @@ function updateVersion(type, version) {
     case 'patch':
       return [majorTarget, minorTarget, Number(patchTarget) + 1].join('.');
     case 'minor':
-      return [majorTarget, Number(minorTarget) + 1, patchTarget].join('.');
+      return [majorTarget, Number(minorTarget) + 1, 0].join('.');
     case 'major':
-      return [Number(majorTarget) + 1, minorTarget, patchTarget].join('.');
+      return [Number(majorTarget) + 1, 0, 0].join('.');
   }
 }
 
