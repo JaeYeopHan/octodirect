@@ -2,7 +2,7 @@
     <img src="./assets/octodirect_logo.png" width="240px" alt="octodirect-logo">
 </div>
 
-# Octodirect [![status](https://img.shields.io/badge/status-work%20in%20progress-orange.svg)](https://github.com/JaeYeopHan/octocard/issues)
+# Octodirect [![extension-version](https://badgen.net/chrome-web-store/v/fmhgcellhhleloebmhbmdncogdddkkag)](https://chrome.google.com/webstore/detail/octodirect/fmhgcellhhleloebmhbmdncogdddkkag?hl=ko) [![price](https://badgen.net/chrome-web-store/price/fmhgcellhhleloebmhbmdncogdddkkag)](https://chrome.google.com/webstore/detail/octodirect/fmhgcellhhleloebmhbmdncogdddkkag?hl=ko)
 
 [![Build Status](https://travis-ci.org/JaeYeopHan/octodirect.svg?branch=master)](https://travis-ci.org/JaeYeopHan/octodirect)
 [![Coverage Status](https://coveralls.io/repos/github/JaeYeopHan/octodirect/badge.svg?branch=master)](https://coveralls.io/github/JaeYeopHan/octodirect?branch=master)
