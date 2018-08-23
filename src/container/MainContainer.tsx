@@ -50,7 +50,7 @@ class MainContainer extends React.Component<MainContainerProps> {
           onChange={this.handleInputChange}
         />
         <ItemList repos={repos} />
-        <Info onToggleView={toggleView} />
+        <Info authStatus={repos.fetchResponseType} onToggleView={toggleView} />
       </React.Fragment>
     );
   }

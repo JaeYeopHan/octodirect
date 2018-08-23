@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FetchResponseType } from '../../../saga/repos.saga';
 
 const Container = styled.div`
   position: relative;
@@ -20,24 +21,50 @@ const Logo = styled.span`
 `;
 
 const Button = styled.a`
-  margin-right: 8px;
+  display: inline-block;
+  position: absolute;
+  right: 0px;
   color: #0366d6;
-  float: right;
   font-size: 14px;
   :hover {
     color: #0366d6;
     text-decoration: none;
     cursor: pointer;
   }
+  @keyframes flutter {
+    0% {
+      transform: rotate(0deg);
+    }
+    35% {
+      transform: rotate(0deg);
+    }
+    40% {
+      transform: rotate(-5deg);
+    }
+    60% {
+      transform: rotate(5deg);
+    }
+    65% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  &.ani {
+    transform-origin: center;
+    animation: flutter 2s infinite linear;
+  }
 `;
 
 interface InfoProps {
   onToggleView: () => void;
+  authStatus: FetchResponseType;
 }
 
 const targetUrl = 'http://github.com/JaeYeopHan/octodirect';
 
-export const Info: React.SFC<InfoProps> = ({ onToggleView }) => {
+export const Info: React.SFC<InfoProps> = ({ onToggleView, authStatus }) => {
   const handleClick = () => {
     if (process.env.NODE_ENV === 'development') {
       console.log(`redirect to ${targetUrl}`);
@@ -50,7 +77,12 @@ export const Info: React.SFC<InfoProps> = ({ onToggleView }) => {
   return (
     <Container>
       <Logo onClick={() => handleClick()}>octodirect@#__VERSION__#</Logo>
-      <Button onClick={onToggleView}>Setting</Button>
+      <Button
+        className={authStatus === FetchResponseType.NOT_AUTHORIZED ? 'ani' : ''}
+        onClick={onToggleView}
+      >
+        Setting
+      </Button>
     </Container>
   );
 };
