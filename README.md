@@ -16,8 +16,9 @@ This is Chrome extension.
 
 ### Directly, move your GitHub repository which...
 
-- you created
-- you visited
+- ⚒️ you created.
+- 🏠 you visited.
+- ⭐ you starred.
 
 > If your 'input' does not exist in both lists, it will automatically search google with `github:` prefix just type `enter`!.
 
