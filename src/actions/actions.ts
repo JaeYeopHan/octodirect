@@ -1,7 +1,7 @@
 import { UserInfoInterface } from '../service/user-info.service';
 import { createAction } from './createAction';
-import { ActionsUnion } from '../types';
 import { FetchDataResponse } from '../saga/repos.saga';
+import { ActionsUnion } from './action-type-helper';
 
 export const enum ActionTypes {
   FETCH_REQUEST = 'FETCH_REQUEST',

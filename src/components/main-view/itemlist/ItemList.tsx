@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Item } from '../item/Item';
 import { ItemType } from '../../../model/item.model';
-import { ItemsLayout } from '../../../styled-components/ItemsLayout';
+import { ItemsLayout } from './ItemsLayout';
 import { NotFound } from './not-found/NotFound';
 import { $ } from '../../../utils/dom';
 import { RepoState } from '../../../reducers/repos.reducers';

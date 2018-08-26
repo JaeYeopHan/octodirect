@@ -5,7 +5,7 @@ import {
   // @ts-ignore
 } from 'evergreen-ui';
 
-import { ItemsLayout } from '../../../../styled-components/ItemsLayout';
+import { ItemsLayout } from '../ItemsLayout';
 
 const NotFoundElement = ItemsLayout.extend`
   height: 210px;

@@ -13,7 +13,14 @@ class AppContainer extends React.Component<AppContainerProps> {
   render(): JSX.Element {
     const { view } = this.props;
 
-    return view.type === 'main' ? <MainContainer /> : <SettingContainer />;
+    switch (view.type) {
+      case 'main':
+        return <MainContainer />;
+      case 'setting':
+        return <SettingContainer />;
+      default:
+        return <MainContainer />;
+    }
   }
 }
 

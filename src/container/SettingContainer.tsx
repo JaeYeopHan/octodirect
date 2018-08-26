@@ -7,6 +7,7 @@ import { RepoState } from '../reducers/repos.reducers';
 import { SettingInfoState } from '../reducers/setting-info.reducers';
 import { UserInfoInterface } from '../service/user-info.service';
 import { actions } from '../actions/actions';
+import { Dispatch } from 'redux';
 
 interface SettingContainerProps {
   repos: RepoState;
@@ -57,7 +58,7 @@ const mapStateToProps = (state: SettingContainerProps) => ({
   settingInfo: state.settingInfo,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   toggleView: () => dispatch(actions.toggleView()),
   insertUserInfo: (userInfo: UserInfoInterface) =>
     dispatch(actions.insertUserInfo(userInfo)),

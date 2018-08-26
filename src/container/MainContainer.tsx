@@ -7,6 +7,7 @@ import { Input } from '../components/main-view/input/Input';
 import { ItemList } from '../components/main-view/itemlist/ItemList';
 import { Info } from '../components/main-view/info/Info';
 import { actions } from '../actions/actions';
+import { Dispatch } from 'redux';
 
 interface MainContainerProps {
   repos: RepoState;
@@ -60,7 +61,7 @@ const mapStateToProps = (state: MainContainerProps) => ({
   repos: state.repos,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   decrementIndex: () => dispatch(actions.decrementIndex()),
   incrementIndex: () => dispatch(actions.incrementIndex()),
   updateValue: (value: string) => dispatch(actions.updateValue(value)),

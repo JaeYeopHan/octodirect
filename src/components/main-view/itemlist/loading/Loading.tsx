@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ItemsLayout } from '../../../../styled-components/ItemsLayout';
+import { ItemsLayout } from '../ItemsLayout';
 
 const LoadingElement = ItemsLayout.extend`
   height: 210px;
