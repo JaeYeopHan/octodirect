@@ -13,7 +13,7 @@ const manifestJsonFile = fs.readFileSync(manifestPath, {
 const manifestJson = JSON.parse(manifestJsonFile);
 const version = manifestJson.version;
 
-signale.note(`Current local version: v${version}\n`);
+signale.note(`Current version: v${version}`);
 
 inquirer
   .prompt([
@@ -31,11 +31,11 @@ inquirer
 
     fs.writeFileSync(manifestPath, JSON.stringify(manifestJson));
 
-    signale.note(`'New version: v${updatedVersion}\n`);
+    signale.note(`=> New version: v${updatedVersion}\n`);
 
     await applyPrettier();
-    signale.note(`Apply prettier to ${manifestPath}\n`);
-    await releaseCommitAndPush(updatedVersion);
+    signale.note(`Complete to update version. start to release!\n`);
+    await release(updatedVersion);
   });
 
 function updateVersion(type, version) {
@@ -54,12 +54,13 @@ function updateVersion(type, version) {
   }
 }
 
-async function releaseCommitAndPush(version) {
+async function release(version) {
   try {
     await commit(version);
-    signale.success('commit completed!');
+    await tag(version);
     await push();
-    signale.success('push completed!');
+    await pushTag();
+    signale.success('release completed!');
   } catch (e) {
     signale.warn('Fail to commit or push!', e);
     return false;
@@ -79,6 +80,14 @@ async function commit(version) {
 
 async function push() {
   return exec('git push origin master');
+}
+
+async function tag(version) {
+  return exec(`git tag ${version}`);
+}
+
+async function pushTag() {
+  return exec(`git push --tags`);
 }
 
 async function applyPrettier() {
