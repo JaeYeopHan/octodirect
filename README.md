@@ -39,15 +39,12 @@ This is Chrome extension.
 | <img src="./assets/octodirect_screenshot_1.png" width="200px">                                                                                     | <img src="./assets/octodirect_screenshot_2.png" width="200px">    | <img src="./assets/octodirect_screenshot_3.png" width="200px">             |
 | You can use :arrow_up: :arrow_down: for search. <br /> You can filter list by typing in `input` <br /> You can move by :leftwards_arrow_with_hook: | Add domain prefix for curating. <br/> like: `https://github.com`. | Add your account info to fetch <br/> you created and starred repositories. |
 
-:arrow_up:
-
-
 
 </div>
 
 ##### `INFO: ` You can change hotkey in [chrome://extensions/shortcuts](chrome://extensions/shortcuts)
 
-</br>
+<br />
 
 ## Development Installation
 
