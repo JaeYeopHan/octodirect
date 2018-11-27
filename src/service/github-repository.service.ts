@@ -47,7 +47,9 @@ export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
       }
     }
   }`;
-  return await axios
+
+  try {
+    const response = await axios
     .post('https://api.github.com/graphql', {
       headers: {
         'Content-Type': 'application/json',
@@ -55,19 +57,18 @@ export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ query }),
-    })
-    .then(res => {
-      const userInfo = res.data.user;
-      const userRepositories = userInfo.repositories.edges.map(
-        ({ node }: { node: RepositoryInfo }) => node,
-      );
-      const starredRepositories = userInfo.starredRepositories.edges.map(
-        ({ node }: { node: RepositoryInfo }) => node,
-      );
-      return userRepositories.concat(starredRepositories);
-    })
-    .catch(e => {
-      console.error(e);
-      return [];
     });
+    const userInfo = response.data.user;
+    const userRepositories = userInfo.repositories.edges.map(
+      ({ node }: { node: RepositoryInfo }) => node,
+    );
+    const starredRepositories = userInfo.starredRepositories.edges.map(
+      ({ node }: { node: RepositoryInfo }) => node,
+    );
+
+    return userRepositories.concat(starredRepositories);
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
 };
