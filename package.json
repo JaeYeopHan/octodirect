@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "autobind-decorator": "^2.1.0",
+    "axios": "^0.18.0",
     "evergreen-ui": "^3.2.4",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

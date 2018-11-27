@@ -1,4 +1,6 @@
 import { repos as repoMock } from './mock.service';
+import axios from 'axios';
+
 import {
   getUserInfoToLocalStorage,
   UserInfoInterface,
@@ -45,28 +47,27 @@ export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
       }
     }
   }`;
-  try {
-    const response = await fetch('https://api.github.com/graphql', {
-      method: 'POST',
+  return await axios
+    .post('https://api.github.com/graphql', {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ query }),
+    })
+    .then(res => {
+      const userInfo = res.data.user;
+      const userRepositories = userInfo.repositories.edges.map(
+        ({ node }: { node: RepositoryInfo }) => node,
+      );
+      const starredRepositories = userInfo.starredRepositories.edges.map(
+        ({ node }: { node: RepositoryInfo }) => node,
+      );
+      return userRepositories.concat(starredRepositories);
+    })
+    .catch(e => {
+      console.error(e);
+      return [];
     });
-    const json = await response.json();
-    const userInfo = json.data.user;
-    const userRepositories = userInfo.repositories.edges.map(
-      ({ node }: { node: RepositoryInfo }) => node,
-    );
-    const starredRepositories = userInfo.starredRepositories.edges.map(
-      ({ node }: { node: RepositoryInfo }) => node,
-    );
-
-    return userRepositories.concat(starredRepositories);
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
 };
