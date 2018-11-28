@@ -1,5 +1,5 @@
-import { repos as repoMock } from './mock.service';
 import axios from 'axios';
+import { repos as repoMock } from './mock.service';
 
 import {
   getUserInfoToLocalStorage,
