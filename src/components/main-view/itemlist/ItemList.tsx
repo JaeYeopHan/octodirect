@@ -4,7 +4,7 @@ import { Item } from '../item/Item';
 import { ItemType } from '../../../model/item.model';
 import { ItemsLayout } from './ItemsLayout';
 import { NotFound } from './not-found/NotFound';
-import { $ } from '../../../utils/dom';
+import { $ } from '../../../utils/Dom';
 import { RepoState } from '../../../reducers/repos.reducers';
 import { FetchResponseType } from '../../../saga/repos.saga';
 import { Loading } from './loading/Loading';
