@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { repos as repoMock } from './mock.service';
+
 import {
   getUserInfoToLocalStorage,
   UserInfoInterface,
@@ -45,9 +47,10 @@ export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
       }
     }
   }`;
+
   try {
-    const response = await fetch('https://api.github.com/graphql', {
-      method: 'POST',
+    const response = await axios
+    .post('https://api.github.com/graphql', {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -55,8 +58,7 @@ export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
       },
       body: JSON.stringify({ query }),
     });
-    const json = await response.json();
-    const userInfo = json.data.user;
+    const userInfo = response.data.user;
     const userRepositories = userInfo.repositories.edges.map(
       ({ node }: { node: RepositoryInfo }) => node,
     );
