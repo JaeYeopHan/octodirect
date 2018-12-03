@@ -18,8 +18,8 @@ describe('/actions/actions', () => {
     // When
 
     // Then
-    expect(incrementIndex).toEqual(actions.incrementIndex());
-    expect(decrementIndex).toEqual(actions.decrementIndex());
+    expect(actions.incrementIndex()).toEqual(incrementIndex);
+    expect(actions.decrementIndex()).toEqual(decrementIndex);
   });
 
   it('Test related value action', () => {
@@ -33,7 +33,7 @@ describe('/actions/actions', () => {
     // When
 
     // Then
-    expect(updateValue).toEqual(actions.updateValue(mockPayload));
+    expect(actions.updateValue(mockPayload)).toEqual(updateValue);
   });
 
   it('Test related ajax', () => {
@@ -57,9 +57,9 @@ describe('/actions/actions', () => {
     // When
 
     // Then
-    expect(fetchRequest).toEqual(actions.fetchRequest());
-    expect(fetchSuccess).toEqual(actions.fetchSuccess(mockPayload));
-    expect(fetchFail).toEqual(actions.fetchFail(mockPayload));
+    expect(actions.fetchRequest()).toEqual(fetchRequest);
+    expect(actions.fetchSuccess(mockPayload)).toEqual(fetchSuccess);
+    expect(actions.fetchFail(mockPayload)).toEqual(fetchFail);
   });
 
   it('Test related view', () => {
@@ -85,7 +85,7 @@ describe('/actions/actions', () => {
     // When
 
     // Then
-    expect(insertUserInfo).toEqual(actions.insertUserInfo(mockPayload));
+    expect(actions.insertUserInfo(mockPayload)).toEqual(insertUserInfo);
   });
 
   it('Test related domainInfo action', () => {
@@ -103,7 +103,7 @@ describe('/actions/actions', () => {
     // When
 
     // Then
-    expect(insertDomainInfo).toEqual(actions.insertDomainInfo(mockPayload));
-    expect(deleteDomainInfo).toEqual(actions.deleteDomainInfo(mockPayload));
+    expect(actions.insertDomainInfo(mockPayload)).toEqual(insertDomainInfo);
+    expect(actions.deleteDomainInfo(mockPayload)).toEqual(deleteDomainInfo);
   });
 });

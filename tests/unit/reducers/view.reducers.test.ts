@@ -15,11 +15,11 @@ describe('/reducers/view.reducers', () => {
 
     // When
     const result = viewReducers(state, toggleView);
+
+    // Then
     const expected = {
       type: 'setting',
     };
-
-    // Then
     expect(result).toEqual(expected);
   });
 
@@ -30,11 +30,11 @@ describe('/reducers/view.reducers', () => {
 
     // When
     const result = viewReducers(state, toggleView);
+
+    // Then
     const expected = {
       type: 'main',
     };
-
-    // Then
     expect(result).toEqual(expected);
   });
 });
