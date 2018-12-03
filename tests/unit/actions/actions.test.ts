@@ -6,7 +6,7 @@ import {
 import { actions, ActionTypes } from '../../../src/actions/actions';
 
 describe('/actions/actions', () => {
-  it('Test related index action', () => {
+  it('INCREMENT_INDEX, DECREMENT_INDEX', () => {
     // Given
     const incrementIndex = {
       type: ActionTypes.INCREMENT_INDEX,
@@ -22,7 +22,7 @@ describe('/actions/actions', () => {
     expect(actions.decrementIndex()).toEqual(decrementIndex);
   });
 
-  it('Test related value action', () => {
+  it('UPDATE_VALUE', () => {
     // Given
     const mockPayload = 'mock';
     const updateValue = {
@@ -36,7 +36,7 @@ describe('/actions/actions', () => {
     expect(actions.updateValue(mockPayload)).toEqual(updateValue);
   });
 
-  it('Test related ajax', () => {
+  it('FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAIL', () => {
     // Given
     const mockPayload: FetchDataResponse = {
       response: FetchResponseType.FETCH_READY,
@@ -62,7 +62,7 @@ describe('/actions/actions', () => {
     expect(actions.fetchFail(mockPayload)).toEqual(fetchFail);
   });
 
-  it('Test related view', () => {
+  it('TOGGLE_VIEW', () => {
     // Given
     const toggleView = {
       type: ActionTypes.TOGGLE_VIEW,
@@ -74,7 +74,7 @@ describe('/actions/actions', () => {
     expect(toggleView).toEqual(actions.toggleView());
   });
 
-  it('Test related userInfo action', () => {
+  it('INSERT_USERINFO', () => {
     // Given
     const mockPayload: UserInfoInterface = {};
     const insertUserInfo = {
@@ -88,7 +88,7 @@ describe('/actions/actions', () => {
     expect(actions.insertUserInfo(mockPayload)).toEqual(insertUserInfo);
   });
 
-  it('Test related domainInfo action', () => {
+  it('INSERT_DOMAININFO, DELETE_DOMAININFO', () => {
     // Given
     const mockPayload = '';
     const insertDomainInfo = {
