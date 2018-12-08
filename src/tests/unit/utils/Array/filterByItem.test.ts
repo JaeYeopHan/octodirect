@@ -1,4 +1,4 @@
-import { filterByItem } from '../../../../src/utils/Array';
+import { filterByItem } from '../../../../utils/Array';
 
 describe('utils/Array.ts', () => {
   type Item = {

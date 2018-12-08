@@ -3,7 +3,7 @@ import { createAction } from './createAction';
 import { FetchDataResponse } from '../saga/repos.saga';
 import { ActionsUnion } from './action-type-helper';
 
-export const enum ActionTypes {
+export enum ActionTypes {
   FETCH_REQUEST = 'FETCH_REQUEST',
   FETCH_SUCCESS = 'FETCH_SUCCESS',
   FETCH_FAIL = 'FETCH_FAIL',

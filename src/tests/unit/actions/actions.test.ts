@@ -1,9 +1,6 @@
-import { UserInfoInterface } from './../../../src/service/user-info.service';
-import {
-  FetchDataResponse,
-  FetchResponseType,
-} from './../../../src/saga/repos.saga';
-import { actions, ActionTypes } from '../../../src/actions/actions';
+import { ActionTypes, actions } from '../../../actions/actions';
+import { FetchResponseType, FetchDataResponse } from '../../../saga/repos.saga';
+import { UserInfoInterface } from '../../../service/user-info.service';
 
 describe('/actions/actions', () => {
   it('INCREMENT_INDEX, DECREMENT_INDEX', () => {

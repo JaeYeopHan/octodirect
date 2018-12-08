@@ -1,4 +1,4 @@
-import { KEY, KeyUtils } from '../../../src/utils/Key';
+import { KeyUtils } from '../../../utils/Key';
 
 describe('utils/Key.ts', () => {
   it('KeyUtils.isCorrectUpKey to false because of index', () => {
