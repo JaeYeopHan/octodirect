@@ -26,8 +26,8 @@
     "coveralls": "react-scripts test --coverage && cat ./coverage/lcov.info | coveralls",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test:watch": "react-scripts test --watch",
+    "test": "CI=true react-scripts test",
+    "test:watch": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
