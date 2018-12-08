@@ -36,7 +36,7 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
         ...state,
         list: fetchedList,
         filtered,
-        maxIndex: filtered.length - 1,
+        maxIndex: filtered.length > 0 ? filtered.length - 1 : 0,
         fetchResponseType: response,
       };
     }
