@@ -3,6 +3,7 @@ import { Reducer } from 'redux';
 import { ItemType } from '../model/item.model';
 import { RepositoryInfo } from '../service/github-repository.service';
 import { FetchResponseType } from '../saga/repos.saga';
+import { filterByItem } from '../../src/utils/Array';
 
 export interface RepoState {
   list: ItemType[];
@@ -30,13 +31,13 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
     case ActionTypes.FETCH_SUCCESS: {
       const { response, data } = action.payload;
       const fetchedList = refineData(data);
-      const filtered = filterList(fetchedList, state.value);
+      const filtered = filterByItem(fetchedList, state.value);
 
       return {
         ...state,
         list: fetchedList,
         filtered,
-        maxIndex: filtered.length - 1,
+        maxIndex: filtered.length > 0 ? filtered.length - 1 : 0,
         fetchResponseType: response,
       };
     }
@@ -75,7 +76,7 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
 
     case ActionTypes.UPDATE_VALUE: {
       const value = action.payload;
-      const filtered = filterList(state.list, value);
+      const filtered = filterByItem(state.list, value);
 
       return {
         ...state,
@@ -90,15 +91,6 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
       return state;
   }
 };
-
-function filterList(repos: ItemType[], value: string): ItemType[] {
-  if (value === '') {
-    return repos;
-  }
-  return repos.filter((repo: ItemType) =>
-    repo.name.toLowerCase().includes(value.toLowerCase()),
-  );
-}
 
 function refineData(rawRepos: RepositoryInfo[]): ItemType[] {
   if (!rawRepos) {

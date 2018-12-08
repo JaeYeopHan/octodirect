@@ -32,3 +32,12 @@ export function deleteItem<T>(arr: T[], item: T): T[] {
 
   return head.concat(tail);
 }
+
+export function filterByItem<T>(repos: T[], value: string): T[] {
+  if (value === '') {
+    return repos;
+  }
+  return repos.filter((repo: T) =>
+    (repo as any).name.toLowerCase().includes(value.toLowerCase()),
+  );
+}
