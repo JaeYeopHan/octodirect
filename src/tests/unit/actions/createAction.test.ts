@@ -1,4 +1,4 @@
-import { createAction } from '../../../src/actions/createAction';
+import { createAction } from '../../../actions/createAction';
 
 describe('/actions', () => {
   it('createAction() with only type', () => {

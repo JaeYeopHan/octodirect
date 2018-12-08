@@ -1,4 +1,4 @@
-import { deleteItem } from '../../../../src/utils/Array';
+import { deleteItem } from '../../../../utils/Array';
 
 describe('utils/Array.ts', () => {
   it('deleteItem() when empty array', () => {

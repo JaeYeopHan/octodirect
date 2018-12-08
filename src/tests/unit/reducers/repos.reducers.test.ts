@@ -1,10 +1,6 @@
-import { FetchDataResponse } from './../../../src/saga/repos.saga';
-import { actions } from './../../../src/actions/actions';
-import {
-  RepoState,
-  reposReducers,
-} from './../../../src/reducers/repos.reducers';
-import { FetchResponseType } from './../../../src/saga/repos.saga';
+import { RepoState, reposReducers } from '../../../reducers/repos.reducers';
+import { FetchResponseType, FetchDataResponse } from '../../../saga/repos.saga';
+import { actions } from '../../../actions/actions';
 
 describe('/reducers/repos.reducers', () => {
   function getInitialState(): RepoState {

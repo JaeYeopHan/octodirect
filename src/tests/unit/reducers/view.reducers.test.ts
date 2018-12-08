@@ -1,5 +1,5 @@
-import { viewReducers, ViewState } from '../../../src/reducers/view.reducers';
-import { actions } from '../../../src/actions/actions';
+import { actions } from '../../../actions/actions';
+import { viewReducers, ViewState } from '../../../reducers/view.reducers';
 
 describe('/reducers/view.reducers', () => {
   function getInitialState(viewType: any): ViewState {

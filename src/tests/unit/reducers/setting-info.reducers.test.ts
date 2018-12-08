@@ -1,10 +1,10 @@
+import { UserInfoInterface } from '../../../service/user-info.service';
+import { DomainInfoInterface } from '../../../service/setting.service';
 import {
   SettingInfoState,
   settingInfoReducers,
-} from '../../../src/reducers/setting-info.reducers';
-import { actions } from '../../../src/actions/actions';
-import { DomainInfoInterface } from 'src/service/setting.service';
-import { UserInfoInterface } from 'src/service/user-info.service';
+} from '../../../reducers/setting-info.reducers';
+import { actions } from '../../../actions/actions';
 
 describe('/reducers/setting-info.reducers', () => {
   beforeEach(() => {

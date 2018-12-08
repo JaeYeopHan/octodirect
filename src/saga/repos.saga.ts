@@ -6,7 +6,7 @@ import {
 import { actions, ActionTypes } from '../actions/actions';
 import { getVisitedUrls } from '../service/browser-history.service';
 
-export const enum FetchResponseType {
+export enum FetchResponseType {
   FETCH_READY = 'FETCH_READY',
   SUCCESS = 'SUCCESS',
   NOT_AUTHORIZED = 'NOT_AUTHORIZED',
