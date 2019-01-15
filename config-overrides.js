@@ -22,10 +22,12 @@ function rewireUglifyJS(config, env) {
   config.plugins.unshift(
     new UglifyJsPlugin({
       sourceMap: true,
-      compress: {
-        drop_console: true,
-        unused: true,
-        dead_code: true,
+      uglifyOptions: {
+        compress: {
+          drop_console: true,
+          unused: true,
+          dead_code: true,
+        },
       },
     }),
   );
