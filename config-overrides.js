@@ -11,6 +11,7 @@ const signale = require('signale');
 module.exports = (config, env) => {
   if (env === 'production') {
     config = rewireUglifyJS(config, env);
+  } else {
     config = rewireBundleAnalyzer(config, env);
   }
   config = rewireStringReplace(config, env);
