@@ -19,12 +19,12 @@
     "url-parse": "^1.4.4"
   },
   "scripts": {
-    "deploy:real": "npm-run-all build _versioning _clean:zip _zipify dashboard",
+    "deploy:real": "npm-run-all _versioning build _clean:zip _zipify dashboard",
     "dashboard": "open https://chrome.google.com/webstore/developer/dashboard",
     "typesync": "npx typesync && npm install",
     "coveralls": "react-scripts test --coverage && cat ./coverage/lcov.info | coveralls",
     "start": "react-app-rewired start",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build",
     "test": "CI=true react-scripts test",
     "test:watch": "react-scripts test",
     "_clean:zip": "rm -rf octodirect.zip",
