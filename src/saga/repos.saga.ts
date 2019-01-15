@@ -19,7 +19,7 @@ export interface FetchDataResponse {
   message?: string;
 }
 
-export function* fetchData(action?: any): any {
+export function* fetchData(): any {
   try {
     const [githubRepos, visitedItems] = yield all([
       call(fetchGitHubRepository),
