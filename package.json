@@ -16,19 +16,18 @@
     "redux-saga": "^0.16.0"
   },
   "scripts": {
-    "deploy": "npm-run-all versioning clean:zip build zipify dashboard",
-    "clean:zip": "rm -rf octodirect.zip",
-    "zipify": "zip -r octodirect.zip build",
-    "versioning": "node ./scripts/deploy.js",
+    "deploy:real": "npm-run-all build _versioning _clean:zip _zipify dashboard",
     "dashboard": "open https://chrome.google.com/webstore/developer/dashboard",
-    "prettier:manifest": "prettier --write ./public/manifest.json",
     "typesync": "npx typesync && npm install",
     "coveralls": "react-scripts test --coverage && cat ./coverage/lcov.info | coveralls",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "CI=true react-scripts test",
     "test:watch": "react-scripts test",
-    "eject": "react-scripts eject"
+    "_clean:zip": "rm -rf octodirect.zip",
+    "_zipify": "zip -r octodirect.zip build",
+    "_versioning": "node ./scripts/deploy.js",
+    "_eject": "react-scripts eject"
   },
   "devDependencies": {
     "@types/chrome": "0.0.75",
