@@ -11,6 +11,7 @@ import { Loading } from './loading/Loading';
 
 interface ItemListProps {
   repos: RepoState;
+  onClickItem: (url: string) => void;
 }
 
 const fixScroll = (index: number) => {
@@ -24,12 +25,18 @@ const fixScroll = (index: number) => {
   }
 };
 
-export const ItemList: React.SFC<ItemListProps> = ({ repos }) => {
+export const ItemList: React.SFC<ItemListProps> = ({ repos, onClickItem }) => {
   const { filtered, value, index, fetchResponseType } = repos;
   const Results = (
     <ItemsLayout id="fix_scroll">
       {filtered.map((repo: ItemType, i: number) => (
-        <Item key={i} index={i} curIndex={index} item={repo} />
+        <Item
+          key={i}
+          index={i}
+          curIndex={index}
+          item={repo}
+          onClickItem={onClickItem}
+        />
       ))}
     </ItemsLayout>
   );

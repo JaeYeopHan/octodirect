@@ -23,6 +23,7 @@ interface InputProps {
   onPressUpKey: () => void;
   onPressDownKey: () => void;
   onChange: (value: string) => void;
+  openTarget: (url: string) => void;
 }
 
 export class Input extends React.Component<InputProps> {
@@ -47,7 +48,8 @@ export class Input extends React.Component<InputProps> {
     keyCode,
     currentTarget,
   }: React.KeyboardEvent<HTMLInputElement>): void {
-    const { index, maxIndex, filtered } = this.props.repos;
+    const { openTarget, repos } = this.props;
+    const { index, maxIndex, filtered } = repos;
 
     if (KeyUtils.isCorrectUpKey(keyCode, index)) {
       return this.props.onPressUpKey();
@@ -65,9 +67,8 @@ export class Input extends React.Component<InputProps> {
       if (process.env.NODE_ENV === 'development') {
         console.log(targetUrl);
       } else {
-        chrome.tabs.create({ url: targetUrl });
+        openTarget(targetUrl);
         currentTarget.placeholder = '';
-        setTimeout(() => window.close, 300);
       }
     }
   }
