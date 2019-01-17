@@ -21,7 +21,7 @@
   "scripts": {
     "deploy:real": "npm-run-all _versioning build _clean:zip _zipify dashboard",
     "rollback": "node ./scripts/rollback.js",
-    "dashboard": "open https://chrome.google.com/webstore/developer/dashboard",
+    "dashboard": "open https://chrome.google.com/webstore/devconsole",
     "typesync": "npx typesync && npm install",
     "coveralls": "react-scripts test --coverage && cat ./coverage/lcov.info | coveralls",
     "start": "react-app-rewired start",
