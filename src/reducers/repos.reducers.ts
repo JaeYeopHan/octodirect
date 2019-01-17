@@ -33,12 +33,12 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
     case ActionTypes.FETCH_SUCCESS: {
       const { response, data } = action.payload;
       const list = refineData(data);
-      const items = _.uniqBy(list, getRepoId);
-      const filtered = filterByItem(items, state.value);
+      const refined = _.uniqBy(list, getRepoId);
+      const filtered = filterByItem(refined, state.value);
 
       return {
         ...state,
-        list,
+        list: refined,
         filtered,
         maxIndex: filtered.length > 0 ? filtered.length - 1 : 0,
         fetchResponseType: response,
