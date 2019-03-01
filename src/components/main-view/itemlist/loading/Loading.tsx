@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import { ItemsLayout } from '../ItemsLayout';
+import { ItemsLayout } from '../ItemsLayout'
 
 const LoadingElement = ItemsLayout.extend`
   height: 210px;
   font-size: 16px;
   text-align: center;
-`;
+`
 
 const DonutLoading = styled.div`
   @keyframes donut-spin {
@@ -26,10 +26,10 @@ const DonutLoading = styled.div`
   height: 24px;
   margin-top: 64px;
   animation: donut-spin 1.2s linear infinite;
-`;
+`
 
 export const Loading: React.SFC = () => (
   <LoadingElement>
     <DonutLoading />
   </LoadingElement>
-);
+)

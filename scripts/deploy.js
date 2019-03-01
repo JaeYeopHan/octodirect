@@ -1,19 +1,19 @@
-'use strict';
+'use strict'
 
-const fs = require('fs');
-const inquirer = require('inquirer');
-const signale = require('signale');
-const { promisify } = require('util');
-const exec = promisify(require('child_process').exec);
+const fs = require('fs')
+const inquirer = require('inquirer')
+const signale = require('signale')
+const { promisify } = require('util')
+const exec = promisify(require('child_process').exec)
 
-const manifestPath = './public/manifest.json';
+const manifestPath = './public/manifest.json'
 const manifestJsonFile = fs.readFileSync(manifestPath, {
   encoding: 'utf-8',
-});
-const manifestJson = JSON.parse(manifestJsonFile);
-const version = manifestJson.version;
+})
+const manifestJson = JSON.parse(manifestJsonFile)
+const version = manifestJson.version
 
-signale.note(`Current version: v${version}`);
+signale.note(`Current version: v${version}`)
 
 inquirer
   .prompt([
@@ -25,45 +25,45 @@ inquirer
     },
   ])
   .then(async ({ type }) => {
-    const updatedVersion = updateVersion(type, version);
+    const updatedVersion = updateVersion(type, version)
 
-    manifestJson.version = updatedVersion;
+    manifestJson.version = updatedVersion
 
-    fs.writeFileSync(manifestPath, JSON.stringify(manifestJson));
+    fs.writeFileSync(manifestPath, JSON.stringify(manifestJson))
 
-    signale.note(`=> New version: v${updatedVersion}\n`);
+    signale.note(`=> New version: v${updatedVersion}\n`)
 
-    await applyPrettier();
-    signale.note(`Complete to update version. start to release!\n`);
-    await release(updatedVersion);
-  });
+    await applyPrettier()
+    signale.note(`Complete to update version. start to release!\n`)
+    await release(updatedVersion)
+  })
 
 function updateVersion(type, version) {
-  const splittedVersion = version.split('.');
-  const patchTarget = splittedVersion[2];
-  const minorTarget = splittedVersion[1];
-  const majorTarget = splittedVersion[0];
+  const splittedVersion = version.split('.')
+  const patchTarget = splittedVersion[2]
+  const minorTarget = splittedVersion[1]
+  const majorTarget = splittedVersion[0]
 
   switch (type) {
     case 'patch':
-      return [majorTarget, minorTarget, Number(patchTarget) + 1].join('.');
+      return [majorTarget, minorTarget, Number(patchTarget) + 1].join('.')
     case 'minor':
-      return [majorTarget, Number(minorTarget) + 1, 0].join('.');
+      return [majorTarget, Number(minorTarget) + 1, 0].join('.')
     case 'major':
-      return [Number(majorTarget) + 1, 0, 0].join('.');
+      return [Number(majorTarget) + 1, 0, 0].join('.')
   }
 }
 
 async function release(version) {
   try {
-    await commit(version);
-    await tag(version);
-    await push();
-    await pushTag();
-    signale.success('release completed!');
+    await commit(version)
+    await tag(version)
+    await push()
+    await pushTag()
+    signale.success('release completed!')
   } catch (e) {
-    signale.warn('Fail to commit or push!', e);
-    return false;
+    signale.warn('Fail to commit or push!', e)
+    return false
   }
 }
 
@@ -75,21 +75,21 @@ async function commit(version) {
       `-m ':tada: v${version}'`,
       `${manifestPath}`,
     ].join(' '),
-  );
+  )
 }
 
 async function push() {
-  return exec('git push');
+  return exec('git push')
 }
 
 async function tag(version) {
-  return exec(`git tag ${version}`);
+  return exec(`git tag ${version}`)
 }
 
 async function pushTag() {
-  return exec(`git push --tags`);
+  return exec(`git push --tags`)
 }
 
 async function applyPrettier() {
-  return exec('prettier --write ./public/manifest.json');
+  return exec('prettier --write ./public/manifest.json')
 }

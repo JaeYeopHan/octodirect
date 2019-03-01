@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react'
 import {
   TextInputField,
   Popover,
@@ -9,39 +9,39 @@ import {
   toaster,
   CloseIcon,
   // @ts-ignore
-} from 'evergreen-ui';
-import styled from 'styled-components';
-import autobind from 'autobind-decorator';
+} from 'evergreen-ui'
+import styled from 'styled-components'
+import autobind from 'autobind-decorator'
 
-import { UserInfoInterface } from '../../service/user-info.service';
-import { SettingInfoState } from '../../reducers/setting-info.reducers';
-import { RepoState } from '../../reducers/repos.reducers';
-import { KeyUtils } from '../../utils/Key';
+import { UserInfoInterface } from '../../service/user-info.service'
+import { SettingInfoState } from '../../reducers/setting-info.reducers'
+import { RepoState } from '../../reducers/repos.reducers'
+import { KeyUtils } from '../../utils/Key'
 
 const FieldLayout = styled.div`
   height: 100%;
-`;
+`
 
 const PopupLayout = styled.div`
   text-align: center;
   margin-top: -12px;
-`;
+`
 
 const TableContent = styled.span`
   margin-left: 8px;
-`;
+`
 
 interface DomainSettingState {
-  domain: string;
+  domain: string
 }
 
 interface DomainSettingProps {
-  repos: RepoState;
-  settingInfo: SettingInfoState;
-  onClickSubmit: (info: UserInfoInterface) => void;
-  onClickClose: () => void;
-  onKeyDown: (domain: string) => void;
-  onClickDelete: (domainInfo: string) => void;
+  repos: RepoState
+  settingInfo: SettingInfoState
+  onClickSubmit: (info: UserInfoInterface) => void
+  onClickClose: () => void
+  onKeyDown: (domain: string) => void
+  onClickDelete: (domainInfo: string) => void
 }
 
 export class DomainSetting extends Component<
@@ -50,7 +50,7 @@ export class DomainSetting extends Component<
 > {
   state: DomainSettingState = {
     domain: '',
-  };
+  }
 
   render() {
     return (
@@ -84,16 +84,16 @@ export class DomainSetting extends Component<
           </PopupLayout>
         </FieldLayout>
       </Fragment>
-    );
+    )
   }
 
   @autobind
   private handleClickItem({ currentTarget }: React.MouseEvent<HTMLElement>) {
-    const target = currentTarget.dataset.value;
+    const target = currentTarget.dataset.value
 
     if (target) {
-      this.props.onClickDelete(target);
-      toaster.success('Deleted!', { duration: 1 });
+      this.props.onClickDelete(target)
+      toaster.success('Deleted!', { duration: 1 })
     }
   }
 
@@ -103,15 +103,15 @@ export class DomainSetting extends Component<
     currentTarget,
   }: React.KeyboardEvent<HTMLInputElement>): void {
     if (KeyUtils.isEnterKey(keyCode)) {
-      const { onKeyDown } = this.props;
-      const { value } = currentTarget;
+      const { onKeyDown } = this.props
+      const { value } = currentTarget
 
       if (value === '') {
-        return;
+        return
       }
-      onKeyDown(value);
-      currentTarget.value = '';
-      toaster.success('Success to add', { duration: 1 });
+      onKeyDown(value)
+      currentTarget.value = ''
+      toaster.success('Success to add', { duration: 1 })
     }
   }
 }

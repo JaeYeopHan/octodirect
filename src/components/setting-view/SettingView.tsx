@@ -1,50 +1,50 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import styled from 'styled-components'
 import {
   CloseIcon,
   SegmentedControl,
   // @ts-ignore
-} from 'evergreen-ui';
+} from 'evergreen-ui'
 
-import { Head } from './Head';
-import { UserInfoInterface } from '../../service/user-info.service';
-import { SettingInfoState } from '../../reducers/setting-info.reducers';
-import { RepoState } from '../../reducers/repos.reducers';
-import { GitHubSetting } from './GitHubSetting';
-import { DomainSetting } from './DomainSetting';
+import { Head } from './Head'
+import { UserInfoInterface } from '../../service/user-info.service'
+import { SettingInfoState } from '../../reducers/setting-info.reducers'
+import { RepoState } from '../../reducers/repos.reducers'
+import { GitHubSetting } from './GitHubSetting'
+import { DomainSetting } from './DomainSetting'
 
 const SettingViewLayout = styled.div`
   position: relative;
   margin: 16px;
-`;
+`
 
 const IconLayout = styled.div`
   position: absolute;
   right: -5px;
   top: -5px;
-`;
+`
 
 const ControllerLayout = styled.div`
   margin-bottom: 12px;
-`;
+`
 
 interface SettingViewProps {
-  repos: RepoState;
-  settingInfo: SettingInfoState;
-  onClickSubmit: (info: UserInfoInterface) => void;
-  onClickClose: () => void;
-  onKeyDown: (domainInfo: string) => void;
-  onClickDelete: (domainInfo: string) => void;
+  repos: RepoState
+  settingInfo: SettingInfoState
+  onClickSubmit: (info: UserInfoInterface) => void
+  onClickClose: () => void
+  onKeyDown: (domainInfo: string) => void
+  onClickDelete: (domainInfo: string) => void
 }
 
 interface ViewOption {
-  label: string;
-  value: string;
+  label: string
+  value: string
 }
 
 interface SettingViewState {
-  options: ViewOption[];
-  viewType: string;
+  options: ViewOption[]
+  viewType: string
 }
 
 export class SettingView extends Component<SettingViewProps, SettingViewState> {
@@ -54,12 +54,12 @@ export class SettingView extends Component<SettingViewProps, SettingViewState> {
       { label: 'GitHub', value: 'github' },
     ],
     viewType: 'domain',
-  };
+  }
 
   handleChangeViewType(selected: string) {
     this.setState({
       viewType: selected,
-    });
+    })
   }
 
   render(): JSX.Element {
@@ -70,9 +70,9 @@ export class SettingView extends Component<SettingViewProps, SettingViewState> {
       onClickClose,
       onKeyDown,
       onClickDelete,
-    } = this.props;
+    } = this.props
 
-    const { options, viewType } = this.state;
+    const { options, viewType } = this.state
 
     const GitHubSettingView = (
       <GitHubSetting
@@ -81,7 +81,7 @@ export class SettingView extends Component<SettingViewProps, SettingViewState> {
         onClickSubmit={onClickSubmit}
         onClickClose={onClickClose}
       />
-    );
+    )
 
     const DomainSettingView = (
       <DomainSetting
@@ -92,7 +92,7 @@ export class SettingView extends Component<SettingViewProps, SettingViewState> {
         onKeyDown={onKeyDown}
         onClickDelete={onClickDelete}
       />
-    );
+    )
 
     return (
       <SettingViewLayout>
@@ -113,6 +113,6 @@ export class SettingView extends Component<SettingViewProps, SettingViewState> {
         </ControllerLayout>
         {viewType === 'github' ? GitHubSettingView : DomainSettingView}
       </SettingViewLayout>
-    );
+    )
   }
 }

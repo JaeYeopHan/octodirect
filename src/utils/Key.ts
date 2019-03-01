@@ -6,14 +6,14 @@ export enum KEY {
 
 export const KeyUtils = {
   isCorrectUpKey: (keyCode: number, index: number) => {
-    return keyCode === KEY.UP && index > 0;
+    return keyCode === KEY.UP && index > 0
   },
 
   isCorrectDownKey: (keyCode: number, index: number, maxIndex: number) => {
-    return keyCode === KEY.DOWN && index < maxIndex;
+    return keyCode === KEY.DOWN && index < maxIndex
   },
 
   isEnterKey: (keyCode: number) => {
-    return keyCode === KEY.ENTER;
+    return keyCode === KEY.ENTER
   },
-};
+}

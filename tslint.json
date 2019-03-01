@@ -1,5 +1,13 @@
 {
-  "extends": ["tslint-react", "tslint-config-prettier"],
+  "extends": [
+    "tslint-react",
+    "tslint-config-prettier",
+    "tslint-sonarts",
+    "tslint-clean-code"
+  ],
+  "linterOptions": {
+    "exclude": ["**/tests/**"]
+  },
   "rules": {
     "align": [true, "parameters", "arguments", "statements"],
     "ban": false,
@@ -55,7 +63,7 @@
     ],
     "quotemark": [true, "single", "jsx-double"],
     "radix": true,
-    "semicolon": [true, "always"],
+    "semicolon": [false, "always"],
     "switch-default": true,
 
     "trailing-comma": [

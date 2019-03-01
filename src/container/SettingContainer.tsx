@@ -1,42 +1,42 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import autobind from 'autobind-decorator';
+import React from 'react'
+import { connect } from 'react-redux'
+import autobind from 'autobind-decorator'
 
-import { SettingView } from '../components/setting-view/SettingView';
-import { RepoState } from '../reducers/repos.reducers';
-import { SettingInfoState } from '../reducers/setting-info.reducers';
-import { UserInfoInterface } from '../service/user-info.service';
-import { actions } from '../actions/actions';
-import { Dispatch } from 'redux';
+import { SettingView } from '../components/setting-view/SettingView'
+import { RepoState } from '../reducers/repos.reducers'
+import { SettingInfoState } from '../reducers/setting-info.reducers'
+import { UserInfoInterface } from '../service/user-info.service'
+import { actions } from '../actions/actions'
+import { Dispatch } from 'redux'
 
 interface SettingContainerProps {
-  repos: RepoState;
-  settingInfo: SettingInfoState;
-  toggleView: () => void;
-  insertUserInfo: (userInfo: UserInfoInterface) => void;
-  addDomainInfo: (domainInfo: string) => void;
-  deleteDomainInfo: (domainInfo: string) => void;
+  repos: RepoState
+  settingInfo: SettingInfoState
+  toggleView: () => void
+  insertUserInfo: (userInfo: UserInfoInterface) => void
+  addDomainInfo: (domainInfo: string) => void
+  deleteDomainInfo: (domainInfo: string) => void
 }
 
 class SettingContainer extends React.Component<SettingContainerProps> {
   @autobind
   handleClickSubmit(userInfo: UserInfoInterface) {
-    this.props.insertUserInfo(userInfo);
+    this.props.insertUserInfo(userInfo)
   }
 
   @autobind
   handleClickClose() {
-    this.props.toggleView();
+    this.props.toggleView()
   }
 
   @autobind
   handleKeyDown(value: string) {
-    this.props.addDomainInfo(value);
+    this.props.addDomainInfo(value)
   }
 
   @autobind
   handleClickDelete(target: string) {
-    this.props.deleteDomainInfo(target);
+    this.props.deleteDomainInfo(target)
   }
 
   render(): JSX.Element {
@@ -49,14 +49,14 @@ class SettingContainer extends React.Component<SettingContainerProps> {
         onKeyDown={this.handleKeyDown}
         onClickDelete={this.handleClickDelete}
       />
-    );
+    )
   }
 }
 
 const mapStateToProps = (state: SettingContainerProps) => ({
   repos: state.repos,
   settingInfo: state.settingInfo,
-});
+})
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   toggleView: () => dispatch(actions.toggleView()),
@@ -66,9 +66,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(actions.insertDomainInfo(domainInfo)),
   deleteDomainInfo: (domainInfo: string) =>
     dispatch(actions.deleteDomainInfo(domainInfo)),
-});
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SettingContainer);
+)(SettingContainer)
