@@ -1,10 +1,11 @@
 export class LocalStorage {
-  public static getData<T>(localStorageKey: string): T | void {
+  public static getData<T>(localStorageKey: string): T | undefined {
     const rawData = window.localStorage.getItem(localStorageKey);
+
     if (!rawData) {
-      return;
+      return undefined;
     } else {
-      return JSON.parse(rawData as string);
+      return JSON.parse(rawData);
     }
   }
 
