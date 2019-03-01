@@ -2,22 +2,22 @@ export const repos = [
   {
     id: '1',
     name: 'testa',
-    url: 'https://github.com/',
+    url: 'https://github.com/a/a/issues',
   },
   {
     id: '2',
     name: 'testb',
-    url: 'https://www.facebook.com/',
+    url: 'https://github.com/a/b',
   },
   {
     id: '3',
     name: 'testc',
-    url: 'https://twitter.com/',
+    url: 'https://github.com/a/a',
   },
   {
     id: '4',
     name: 'testd',
-    url: 'http://www.naver.com/',
+    url: 'https://github.com/a/b/issues',
   },
   {
     id: '5',

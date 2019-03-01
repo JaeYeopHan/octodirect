@@ -79,7 +79,7 @@ async function commit(version) {
 }
 
 async function push() {
-  return exec('git push origin master');
+  return exec('git push');
 }
 
 async function tag(version) {

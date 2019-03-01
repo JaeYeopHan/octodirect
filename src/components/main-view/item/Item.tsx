@@ -34,19 +34,29 @@ interface ItemProps {
   item: ItemType;
   index: number;
   curIndex: number;
+  onClickItem: (url: string) => void;
 }
 
-export const Item: React.SFC<ItemProps> = ({ item, index, curIndex }) => {
+export const Item: React.SFC<ItemProps> = ({
+  item,
+  index,
+  curIndex,
+  onClickItem,
+}) => {
   const { id, name, htmlUrl } = item;
   const defaultItem = (
-    <DefaultItem key={id}>
+    <DefaultItem key={id} onClick={() => onClickItem(htmlUrl)}>
       <Text color="#435a6f">
         <a href={htmlUrl}>{name}</a>
       </Text>
     </DefaultItem>
   );
   const activeItem = (
-    <ActiveItem key={id} aria-selected="true">
+    <ActiveItem
+      key={id}
+      aria-selected="true"
+      onClick={() => onClickItem(htmlUrl)}
+    >
       <Text color="#435a6f">
         <a href={htmlUrl}>{name}</a>
         <DetailSpan>({htmlUrl})</DetailSpan>

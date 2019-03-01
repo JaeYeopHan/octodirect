@@ -1,8 +1,11 @@
-import { ActionTypes, Actions } from '../actions/actions';
+import _ from 'lodash';
+import parse from 'url-parse';
 import { Reducer } from 'redux';
 import { ItemType } from '../model/item.model';
 import { RepositoryInfo } from '../service/github-repository.service';
 import { FetchResponseType } from '../saga/repos.saga';
+import { filterByItem } from '../../src/utils/Array';
+import { ActionTypes, Actions } from '../actions/actions';
 
 export interface RepoState {
   list: ItemType[];
@@ -29,14 +32,15 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
   switch (action.type) {
     case ActionTypes.FETCH_SUCCESS: {
       const { response, data } = action.payload;
-      const fetchedList = refineData(data);
-      const filtered = filterList(fetchedList, state.value);
+      const list = refineData(data);
+      const refined = _.uniqBy(list, getRepoId);
+      const filtered = filterByItem(refined, state.value);
 
       return {
         ...state,
-        list: fetchedList,
+        list: refined,
         filtered,
-        maxIndex: filtered.length - 1,
+        maxIndex: filtered.length > 0 ? filtered.length : 0, // for search item
         fetchResponseType: response,
       };
     }
@@ -75,14 +79,14 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
 
     case ActionTypes.UPDATE_VALUE: {
       const value = action.payload;
-      const filtered = filterList(state.list, value);
+      const filtered = filterByItem(state.list, value);
 
       return {
         ...state,
         value,
         filtered,
         index: 0,
-        maxIndex: filtered.length - 1,
+        maxIndex: filtered.length, // for search item
       };
     }
 
@@ -90,15 +94,6 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
       return state;
   }
 };
-
-function filterList(repos: ItemType[], value: string): ItemType[] {
-  if (value === '') {
-    return repos;
-  }
-  return repos.filter((repo: ItemType) =>
-    repo.name.toLowerCase().includes(value.toLowerCase()),
-  );
-}
 
 function refineData(rawRepos: RepositoryInfo[]): ItemType[] {
   if (!rawRepos) {
@@ -109,4 +104,13 @@ function refineData(rawRepos: RepositoryInfo[]): ItemType[] {
     name,
     htmlUrl,
   }));
+}
+
+function getRepoId(item: ItemType): string {
+  const { htmlUrl: url } = item;
+  const { pathname } = parse(url);
+  return pathname
+    .split('/')
+    .slice(0, 3)
+    .join('/');
 }

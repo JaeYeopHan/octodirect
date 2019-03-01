@@ -4,13 +4,14 @@ import { Item } from '../item/Item';
 import { ItemType } from '../../../model/item.model';
 import { ItemsLayout } from './ItemsLayout';
 import { NotFound } from './not-found/NotFound';
-import { $ } from '../../../utils/dom';
+import { $ } from '../../../utils/Dom';
 import { RepoState } from '../../../reducers/repos.reducers';
 import { FetchResponseType } from '../../../saga/repos.saga';
 import { Loading } from './loading/Loading';
 
 interface ItemListProps {
   repos: RepoState;
+  onClickItem: (url: string) => void;
 }
 
 const fixScroll = (index: number) => {
@@ -24,13 +25,32 @@ const fixScroll = (index: number) => {
   }
 };
 
-export const ItemList: React.SFC<ItemListProps> = ({ repos }) => {
+export const ItemList: React.SFC<ItemListProps> = ({ repos, onClickItem }) => {
   const { filtered, value, index, fetchResponseType } = repos;
   const Results = (
     <ItemsLayout id="fix_scroll">
       {filtered.map((repo: ItemType, i: number) => (
-        <Item key={i} index={i} curIndex={index} item={repo} />
+        <Item
+          key={`item_${i}`}
+          index={i}
+          curIndex={index}
+          item={repo}
+          onClickItem={onClickItem}
+        />
       ))}
+      {value && (
+        <Item
+          key={`item_${filtered.length}`}
+          index={filtered.length}
+          curIndex={index}
+          item={{
+            id: 'search_in_google',
+            name: `github: ${value}`,
+            htmlUrl: value,
+          }}
+          onClickItem={onClickItem}
+        />
+      )}
     </ItemsLayout>
   );
   const NoResult = <NotFound value={value} />;
