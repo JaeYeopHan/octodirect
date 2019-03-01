@@ -6,7 +6,7 @@
   "dependencies": {
     "autobind-decorator": "^2.1.0",
     "axios": "^0.18.0",
-    "evergreen-ui": "^3.2.4",
+    "evergreen-ui": "^4.13.0",
     "lodash": "^4.17.11",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
