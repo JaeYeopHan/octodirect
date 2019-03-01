@@ -3,5 +3,5 @@
  * @param selector string
  */
 export const $ = (selector: string): HTMLElement => {
-  return document.querySelector(selector) as HTMLElement;
-};
+  return document.querySelector(selector) as HTMLElement
+}

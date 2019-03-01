@@ -1,10 +1,10 @@
-import { all, call, put, takeEvery } from 'redux-saga/effects';
+import { all, call, put, takeEvery } from 'redux-saga/effects'
 import {
   fetchGitHubRepository,
   RepositoryInfo,
-} from '../service/github-repository.service';
-import { actions, ActionTypes } from '../actions/actions';
-import { getVisitedUrls } from '../service/browser-history.service';
+} from '../service/github-repository.service'
+import { actions, ActionTypes } from '../actions/actions'
+import { getVisitedUrls } from '../service/browser-history.service'
 
 export enum FetchResponseType {
   FETCH_READY = 'FETCH_READY',
@@ -14,9 +14,9 @@ export enum FetchResponseType {
 }
 
 export interface FetchDataResponse {
-  response: FetchResponseType;
-  data: RepositoryInfo[];
-  message?: string;
+  response: FetchResponseType
+  data: RepositoryInfo[]
+  message?: string
 }
 
 export function* fetchData(): any {
@@ -24,8 +24,8 @@ export function* fetchData(): any {
     const [githubRepos, visitedItems] = yield all([
       call(fetchGitHubRepository),
       call(getVisitedUrls),
-    ]);
-    const repos = visitedItems.concat(githubRepos);
+    ])
+    const repos = visitedItems.concat(githubRepos)
 
     if (githubRepos.length === 0) {
       yield put(
@@ -33,14 +33,14 @@ export function* fetchData(): any {
           response: FetchResponseType.NOT_AUTHORIZED,
           data: repos,
         }),
-      );
+      )
     } else {
       yield put(
         actions.fetchSuccess({
           response: FetchResponseType.SUCCESS,
           data: repos,
         }),
-      );
+      )
     }
   } catch (error) {
     yield put(
@@ -48,10 +48,10 @@ export function* fetchData(): any {
         response: FetchResponseType.UNKNOWN_ERROR,
         data: [],
       }),
-    );
+    )
   }
 }
 
 export function* watchFetchRequest() {
-  yield takeEvery(ActionTypes.FETCH_REQUEST, fetchData);
+  yield takeEvery(ActionTypes.FETCH_REQUEST, fetchData)
 }
