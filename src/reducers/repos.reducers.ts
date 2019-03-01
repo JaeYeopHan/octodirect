@@ -56,6 +56,14 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
     case ActionTypes.INCREMENT_INDEX: {
       const { index, list } = state
       const changedIndex = index + 1
+
+      if (!list[changedIndex]) {
+        return {
+          ...state,
+          index: changedIndex,
+        }
+      }
+
       const selectedValue = list[changedIndex].name
 
       return {
