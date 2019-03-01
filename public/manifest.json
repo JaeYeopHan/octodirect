@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "octodirect",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "Move to GitHub repository directly",
   "browser_action": {
     "default_icon": "octodirect_48.png",
@@ -27,5 +27,6 @@
       "description": "open_popup"
     }
   },
-  "content_security_policy": "script-src 'self' 'sha256-GgRxrVOKNdB4LrRsVPDSbzvfdV4UqglmviH9GoBJ5jk='; object-src 'self'"
+  "content_security_policy":
+    "script-src 'self' 'sha256-GgRxrVOKNdB4LrRsVPDSbzvfdV4UqglmviH9GoBJ5jk='; object-src 'self'"
 }
