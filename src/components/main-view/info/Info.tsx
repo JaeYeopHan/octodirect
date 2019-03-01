@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FetchResponseType } from '../../../saga/repos.saga';
+import React from 'react'
+import styled from 'styled-components'
+import { FetchResponseType } from '../../../saga/repos.saga'
 
 const Container = styled.div`
   position: relative;
@@ -8,7 +8,7 @@ const Container = styled.div`
   margin: auto;
   margin-top: 52px;
   margin-bottom: 8px;
-`;
+`
 
 const Logo = styled.span`
   margin-left: 4px;
@@ -18,7 +18,7 @@ const Logo = styled.span`
     color: #0366d6;
     cursor: pointer;
   }
-`;
+`
 
 const Button = styled.a`
   display: inline-block;
@@ -55,24 +55,24 @@ const Button = styled.a`
     transform-origin: center;
     animation: flutter 2s infinite linear;
   }
-`;
+`
 
 interface InfoProps {
-  onToggleView: () => void;
-  authStatus: FetchResponseType;
+  onToggleView: () => void
+  authStatus: FetchResponseType
 }
 
-const targetUrl = 'http://github.com/JaeYeopHan/octodirect';
+const targetUrl = 'http://github.com/JaeYeopHan/octodirect'
 
 export const Info: React.SFC<InfoProps> = ({ onToggleView, authStatus }) => {
   const handleClick = () => {
     if (process.env.NODE_ENV === 'development') {
-      console.log(`redirect to ${targetUrl}`);
+      console.log(`redirect to ${targetUrl}`)
     } else {
-      chrome.tabs.create({ url: targetUrl });
-      setTimeout(() => window.close, 300);
+      chrome.tabs.create({ url: targetUrl })
+      setTimeout(() => window.close, 300)
     }
-  };
+  }
 
   return (
     <Container>
@@ -84,5 +84,5 @@ export const Info: React.SFC<InfoProps> = ({ onToggleView, authStatus }) => {
         Setting
       </Button>
     </Container>
-  );
-};
+  )
+}

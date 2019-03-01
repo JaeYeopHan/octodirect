@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const ItemsLayout = styled.ul`
   position: relative;
@@ -15,4 +15,4 @@ export const ItemsLayout = styled.ul`
   border: solid 1px #e2e4e8;
   border-radius: 3px;
   overflow-y: scroll;
-`;
+`

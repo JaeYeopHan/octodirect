@@ -1,23 +1,23 @@
-'use strict';
+'use strict'
 
-const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
-const manifestJson = require('./public/manifest.json');
-const StringReplacePlugin = require('string-replace-webpack-plugin');
-const signale = require('signale');
+  .BundleAnalyzerPlugin
+const manifestJson = require('./public/manifest.json')
+const StringReplacePlugin = require('string-replace-webpack-plugin')
+const signale = require('signale')
 
 module.exports = (config, env) => {
   if (env === 'production') {
-    config = rewireUglifyJS(config, env);
+    config = rewireUglifyJS(config, env)
   } else {
-    config = rewireBundleAnalyzer(config, env);
+    config = rewireBundleAnalyzer(config, env)
   }
-  config = rewireStringReplace(config, env);
+  config = rewireStringReplace(config, env)
 
-  return config;
-};
+  return config
+}
 
 function rewireUglifyJS(config, env) {
   config.plugins.unshift(
@@ -31,20 +31,20 @@ function rewireUglifyJS(config, env) {
         },
       },
     }),
-  );
+  )
 
-  return config;
+  return config
 }
 
 function rewireBundleAnalyzer(config, env) {
-  config.plugins.push(new BundleAnalyzerPlugin());
-  return config;
+  config.plugins.push(new BundleAnalyzerPlugin())
+  return config
 }
 
 function rewireStringReplace(config, env) {
-  const version = env === 'production' ? manifestJson.version : '0.0.0';
+  const version = env === 'production' ? manifestJson.version : '0.0.0'
 
-  signale.info(`[INFO] octodirect version : ${version}`);
+  signale.info(`[INFO] octodirect version : ${version}`)
 
   config.module.rules.push({
     test: /(\.tsx)$/,
@@ -53,13 +53,13 @@ function rewireStringReplace(config, env) {
         {
           pattern: /#__VERSION__#/gi,
           replacement: function(match, p1, offset, string) {
-            return version;
+            return version
           },
         },
       ],
     }),
-  });
-  config.plugins.push(new StringReplacePlugin());
+  })
+  config.plugins.push(new StringReplacePlugin())
 
-  return config;
+  return config
 }
