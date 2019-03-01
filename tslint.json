@@ -1,5 +1,10 @@
 {
-  "extends": ["tslint-react", "tslint-config-prettier", "tslint-sonarts"],
+  "extends": [
+    "tslint-react",
+    "tslint-config-prettier",
+    "tslint-sonarts",
+    "tslint-clean-code"
+  ],
   "linterOptions": {
     "exclude": ["**/tests/**"]
   },
