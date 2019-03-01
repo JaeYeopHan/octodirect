@@ -74,7 +74,7 @@ export class Input extends React.Component<InputProps> {
   }
 
   private getTargetUrl(filtered: ItemType[], value: string, index: number) {
-    if (filtered.length === 0) {
+    if (filtered.length === 0 || index === filtered.length) {
       return `${GOOGLE_SEARCH_URL}${value}`;
     }
     return filtered[index].htmlUrl;

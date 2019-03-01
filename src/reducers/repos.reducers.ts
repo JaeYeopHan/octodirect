@@ -40,7 +40,7 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
         ...state,
         list: refined,
         filtered,
-        maxIndex: filtered.length > 0 ? filtered.length - 1 : 0,
+        maxIndex: filtered.length > 0 ? filtered.length : 0, // for search item
         fetchResponseType: response,
       };
     }
@@ -86,7 +86,7 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
         value,
         filtered,
         index: 0,
-        maxIndex: filtered.length - 1,
+        maxIndex: filtered.length, // for search item
       };
     }
 

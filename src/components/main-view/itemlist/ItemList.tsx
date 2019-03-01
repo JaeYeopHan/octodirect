@@ -31,13 +31,26 @@ export const ItemList: React.SFC<ItemListProps> = ({ repos, onClickItem }) => {
     <ItemsLayout id="fix_scroll">
       {filtered.map((repo: ItemType, i: number) => (
         <Item
-          key={i}
+          key={`item_${i}`}
           index={i}
           curIndex={index}
           item={repo}
           onClickItem={onClickItem}
         />
       ))}
+      {value && (
+        <Item
+          key={`item_${filtered.length}`}
+          index={filtered.length}
+          curIndex={index}
+          item={{
+            id: 'search_in_google',
+            name: `github: ${value}`,
+            htmlUrl: value,
+          }}
+          onClickItem={onClickItem}
+        />
+      )}
     </ItemsLayout>
   );
   const NoResult = <NotFound value={value} />;

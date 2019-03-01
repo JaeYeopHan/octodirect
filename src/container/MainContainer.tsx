@@ -46,7 +46,6 @@ class MainContainer extends React.Component<MainContainerProps> {
 
   @autobind
   onClickItem(url: string) {
-    console.log(url);
     this.openTarget(url);
   }
 
