@@ -1,7 +1,7 @@
-import { UserInfoInterface } from '../service/user-info.service';
-import { createAction } from './createAction';
-import { FetchDataResponse } from '../saga/repos.saga';
-import { ActionsUnion } from './action-type-helper';
+import { UserInfoInterface } from '../service/user-info.service'
+import { createAction } from './createAction'
+import { FetchDataResponse } from '../saga/repos.saga'
+import { ActionsUnion } from './action-type-helper'
 
 export enum ActionTypes {
   FETCH_REQUEST = 'FETCH_REQUEST',
@@ -41,6 +41,6 @@ export const actions = {
     createAction(ActionTypes.INSERT_DOMAININFO, info),
   deleteDomainInfo: (info: string) =>
     createAction(ActionTypes.DELETE_DOMAININFO, info),
-};
+}
 
-export type Actions = ActionsUnion<typeof actions>;
+export type Actions = ActionsUnion<typeof actions>
