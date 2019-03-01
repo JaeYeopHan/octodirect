@@ -21,8 +21,7 @@ export const fetchGitHubRepository = async (): Promise<RepositoryInfo[]> => {
     return [];
   }
 
-  const name = (info as UserInfoInterface).name;
-  const token = (info as UserInfoInterface).token;
+  const { name, token } = info;
 
   const query = `query {
     user(login: ${name}) {

@@ -17,7 +17,7 @@ export function getDomainOptionToLocalStorage():
   if (domainInfo) {
     return domainInfo;
   }
-  return;
+  return undefined;
 }
 
 export function deleteDomainOptionToLocalStorage(

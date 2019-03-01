@@ -17,5 +17,5 @@ export function getUserInfoToLocalStorage(): UserInfoInterface | undefined {
   if (userInfo) {
     return userInfo;
   }
-  return;
+  return undefined;
 }
