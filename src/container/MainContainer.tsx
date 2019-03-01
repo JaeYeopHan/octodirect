@@ -24,11 +24,6 @@ class MainContainer extends React.Component<MainContainerProps> {
     this.props.fetchRequest();
   }
 
-  private openTarget(url: string) {
-    chrome.tabs.create({ url });
-    setTimeout(() => window.close, 300);
-  }
-
   @autobind
   handlePressUpKey() {
     this.props.decrementIndex();
@@ -65,6 +60,11 @@ class MainContainer extends React.Component<MainContainerProps> {
         <Info authStatus={repos.fetchResponseType} onToggleView={toggleView} />
       </React.Fragment>
     );
+  }
+
+  private openTarget(url: string) {
+    chrome.tabs.create({ url });
+    setTimeout(() => window.close, 300);
   }
 }
 

@@ -15,6 +15,7 @@ export const viewReducers: Reducer<Readonly<ViewState>> = (
   state: ViewState = initialState,
   action: Actions,
 ) => {
+  // tslint:disable-next-line:no-small-switch
   switch (action.type) {
     case ActionTypes.TOGGLE_VIEW:
       const currentViewType = state.type;
