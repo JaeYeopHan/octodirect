@@ -12,6 +12,7 @@ import { Loading } from './loading/Loading'
 interface ItemListProps {
   repos: RepoState
   onClickItem: (url: string) => void
+  currentTargetValue: string
 }
 
 const fixScroll = (index: number) => {
@@ -25,7 +26,11 @@ const fixScroll = (index: number) => {
   }
 }
 
-export const ItemList: React.SFC<ItemListProps> = ({ repos, onClickItem }) => {
+export const ItemList: React.SFC<ItemListProps> = ({
+  repos,
+  onClickItem,
+  currentTargetValue,
+}) => {
   const { filtered, value, index, fetchResponseType } = repos
   const Results = (
     <ItemsLayout id="fix_scroll">
@@ -38,15 +43,15 @@ export const ItemList: React.SFC<ItemListProps> = ({ repos, onClickItem }) => {
           onClickItem={onClickItem}
         />
       ))}
-      {value && (
+      {currentTargetValue && (
         <Item
           key={`item_${filtered.length}`}
           index={filtered.length}
           curIndex={index}
           item={{
             id: 'search_in_google',
-            name: `github: ${value}`,
-            htmlUrl: value,
+            name: `github: ${currentTargetValue}`,
+            htmlUrl: currentTargetValue,
           }}
           onClickItem={onClickItem}
         />

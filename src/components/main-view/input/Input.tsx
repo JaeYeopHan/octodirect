@@ -20,6 +20,7 @@ const StyledInput = styled.input`
 
 interface InputProps {
   repos: RepoState
+  currentTargetValue: string
   onPressUpKey: () => void
   onPressDownKey: () => void
   onChange: (value: string) => void
@@ -48,14 +49,15 @@ export class Input extends React.Component<InputProps> {
     keyCode,
     currentTarget,
   }: React.KeyboardEvent<HTMLInputElement>): void {
-    const { openTarget, repos } = this.props
+    const { openTarget, repos, currentTargetValue } = this.props
     const { index, maxIndex, filtered } = repos
+    const lastIndex = currentTargetValue ? maxIndex : maxIndex - 1
 
     if (KeyUtils.isCorrectUpKey(keyCode, index)) {
       return this.props.onPressUpKey()
     }
 
-    if (KeyUtils.isCorrectDownKey(keyCode, index, maxIndex)) {
+    if (KeyUtils.isCorrectDownKey(keyCode, index, lastIndex)) {
       this.props.onPressDownKey()
       return
     }
@@ -74,7 +76,10 @@ export class Input extends React.Component<InputProps> {
   }
 
   private getTargetUrl(filtered: ItemType[], value: string, index: number) {
-    if (filtered.length === 0 || index === filtered.length) {
+    if (index === filtered.length) {
+      return `${GOOGLE_SEARCH_URL}${this.props.currentTargetValue}`
+    }
+    if (filtered.length === 0) {
       return `${GOOGLE_SEARCH_URL}${value}`
     }
     return filtered[index].htmlUrl
