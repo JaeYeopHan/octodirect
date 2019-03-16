@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import {
   Text,
   DangerIcon,
@@ -7,7 +8,7 @@ import {
 
 import { ItemsLayout } from '../ItemsLayout'
 
-const NotFoundElement = ItemsLayout.extend`
+const NotFoundElement = styled(ItemsLayout)`
   height: 210px;
   font-size: 16px;
   text-align: center;
