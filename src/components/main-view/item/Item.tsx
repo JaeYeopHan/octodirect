@@ -18,7 +18,7 @@ const DefaultItem = styled.li`
   text-overflow: ellipsis;
 `
 
-const ActiveItem = DefaultItem.extend`
+const ActiveItem = styled(DefaultItem)`
   border-left: 3px solid #0366d6;
   background-color: #f3f9ff;
 `

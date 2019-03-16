@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { ItemsLayout } from '../ItemsLayout'
 
-const LoadingElement = ItemsLayout.extend`
+const LoadingElement = styled(ItemsLayout)`
   height: 210px;
   font-size: 16px;
   text-align: center;
