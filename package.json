@@ -65,7 +65,7 @@
     "tslint": "^5.13.1",
     "tslint-clean-code": "^0.2.9",
     "tslint-config-prettier": "^1.17.0",
-    "tslint-react": "^3.6.0",
+    "tslint-react": "^4.0.0",
     "tslint-sonarts": "^1.9.0",
     "typescript": "^3.2.2",
     "typescript-styled-plugin": "^0.14.0",
