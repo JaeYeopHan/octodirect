@@ -11,7 +11,7 @@ Just follow `ISSUE_TEMPLATE`. done!
 This repository managed based on forked pull request strategy
 
 ```sh
-# Fort this repository to you
+# Fork this repository to you
 $ git clone [YOUR_REPOSITORY_URL]
 $ cd octodirect
 $ npm install
