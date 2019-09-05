@@ -20,6 +20,10 @@ interface MainContainerProps {
 }
 
 class MainContainer extends React.Component<MainContainerProps> {
+  state = {
+    inputValue: '',
+  }
+
   componentDidMount() {
     this.props.fetchRequest()
   }
@@ -37,6 +41,9 @@ class MainContainer extends React.Component<MainContainerProps> {
   @autobind
   handleInputChange(value: string) {
     this.props.updateValue(value)
+    this.setState({
+      inputValue: value,
+    })
   }
 
   @autobind
@@ -45,6 +52,7 @@ class MainContainer extends React.Component<MainContainerProps> {
   }
 
   render(): JSX.Element {
+    const { inputValue } = this.state
     const { repos, toggleView } = this.props
 
     return (
@@ -56,7 +64,11 @@ class MainContainer extends React.Component<MainContainerProps> {
           onChange={this.handleInputChange}
           openTarget={this.openTarget}
         />
-        <ItemList repos={repos} onClickItem={this.onClickItem} />
+        <ItemList
+          inputValue={inputValue}
+          repos={repos}
+          onClickItem={this.onClickItem}
+        />
         <Info authStatus={repos.fetchResponseType} onToggleView={toggleView} />
       </React.Fragment>
     )
