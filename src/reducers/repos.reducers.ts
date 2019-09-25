@@ -103,20 +103,26 @@ export const reposReducers: Reducer<Readonly<RepoState>> = (
   }
 }
 
-function refineData(rawRepos: RepositoryInfo[]): ItemType[] {
+export function refineData(rawRepos: RepositoryInfo[]): ItemType[] {
   if (!rawRepos) {
     return []
   }
-  return rawRepos.map(({ id, name, url: htmlUrl }: RepositoryInfo) => ({
-    id,
-    name,
-    htmlUrl,
-  }))
+
+  return rawRepos
+    .sort(
+      ({ url: prevUrl }, { url: nextUrl }) => prevUrl.length - nextUrl.length,
+    )
+    .map(({ id, name, url: htmlUrl }: RepositoryInfo) => ({
+      id,
+      name,
+      htmlUrl,
+    }))
 }
 
-function getRepoId(item: ItemType): string {
+export function getRepoId(item: ItemType): string {
   const { htmlUrl: url } = item
   const { pathname } = parse(url)
+
   return pathname
     .split('/')
     .slice(0, 3)
