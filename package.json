@@ -26,7 +26,7 @@
     "coveralls": "react-scripts test --coverage && cat ./coverage/lcov.info | coveralls",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "lint": "tslint --project ./tsconfig.json 'src/**/*.{ts,tsx}' --exclude \"**/tests/**\"",
+    "lint": "tslint --project ./tsconfig.json 'src/**/*.{ts,tsx}' --exclude \"**/__tests__/**\"",
     "test": "CI=true react-scripts test",
     "test:watch": "react-scripts test",
     "_clean:zip": "rm -rf octodirect.zip",

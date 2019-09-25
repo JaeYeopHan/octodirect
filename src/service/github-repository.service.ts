@@ -1,4 +1,4 @@
-import { repos as repoMock } from '../tests/mock/mock.service'
+import { repos as repoMock } from '../utils/mock/mock.service'
 
 import {
   getUserInfoToLocalStorage,
