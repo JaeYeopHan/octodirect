@@ -1,4 +1,4 @@
-import { bookmarks as repoMock } from '../tests/mock/mock.service'
+import { bookmarks as repoMock } from '../utils/mock/mock.service'
 import { RepositoryInfo } from './github-repository.service'
 import { HistoryItem } from './browser-history.service'
 import { getDomainOptionToLocalStorage } from './setting.service'

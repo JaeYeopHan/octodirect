@@ -27,7 +27,7 @@ export const repos = [
   {
     id: '6',
     name: 'testf',
-    url: 'https://egghead.io/',
+    url: 'https://egghead.io/1',
   },
   {
     id: '7',
@@ -52,9 +52,9 @@ export const repos = [
   {
     id: '11',
     name: 'testk',
-    url: 'https://egghead.io/',
+    url: 'https://egghead.io/2',
   },
-];
+]
 
 export const bookmarks = [
   {
@@ -70,41 +70,41 @@ export const bookmarks = [
   {
     id: '14',
     name: 'bookmarkc',
-    url: 'https://egghead.io/',
+    url: 'https://egghead.io/3',
   },
   {
     id: '15',
     name: 'bookmarkc',
-    url: 'https://egghead.io/',
+    url: 'https://egghead.io/4',
   },
   {
     id: '16',
     name: 'bookmarkc',
-    url: 'https://egghead.io/',
+    url: 'https://egghead.io/5',
   },
   {
     id: '17',
     name: 'bookmarkc',
-    url: 'https://egghead.io/',
+    url: 'https://egghead.io/6',
   },
   {
     id: '18',
     name: 'bookmarkc',
-    url: 'https://egghead.io/',
+    url: 'https://egghead.io/7',
   },
   {
     id: '19',
     name: 'bookmarkc',
-    url: 'https://egghead.io/',
+    url: 'https://egghead.io/8',
   },
   {
     id: '20',
     name: 'bookmarkc',
-    url: 'https://egghead.io/',
+    url: 'https://egghead.io/9',
   },
   {
     id: '21',
     name: 'bookmarkc',
     url: 'https://egghead.io/',
   },
-];
+]
