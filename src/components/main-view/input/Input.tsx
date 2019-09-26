@@ -64,7 +64,12 @@ export class Input extends React.Component<InputProps> {
 
     if (KeyUtils.isEnterKey(keyCode)) {
       const { placeholder: value } = currentTarget
-      const targetUrl = this.getTargetUrl(filtered, value, index)
+      const targetUrl = getTargetUrl(
+        filtered,
+        value,
+        index,
+        this.props.currentTargetValue,
+      )
 
       if (process.env.NODE_ENV === 'development') {
         console.log(targetUrl)
@@ -75,19 +80,24 @@ export class Input extends React.Component<InputProps> {
     }
   }
 
-  private getTargetUrl(filtered: ItemType[], value: string, index: number) {
-    if (index === filtered.length) {
-      return `${GOOGLE_SEARCH_URL}${this.props.currentTargetValue}`
-    }
-    if (filtered.length === 0) {
-      return `${GOOGLE_SEARCH_URL}${value}`
-    }
-    return filtered[index].htmlUrl
-  }
-
   private handleChange({
     currentTarget,
   }: React.ChangeEvent<HTMLInputElement>): void {
     return this.props.onChange(currentTarget.value)
   }
+}
+
+export function getTargetUrl(
+  filtered: ItemType[],
+  value: string,
+  index: number,
+  inputValue: string,
+) {
+  if (index === filtered.length) {
+    return `${GOOGLE_SEARCH_URL}${inputValue}`
+  }
+  if (filtered.length === 0) {
+    return `${GOOGLE_SEARCH_URL}${value}`
+  }
+  return filtered[index].htmlUrl
 }
