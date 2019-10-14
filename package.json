@@ -35,7 +35,7 @@
     "_eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.89",
+    "@types/chrome": "0.0.91",
     "@types/enzyme": "^3.1.15",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/jest": "^24.0.9",
