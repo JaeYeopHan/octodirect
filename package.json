@@ -52,7 +52,7 @@
     "coveralls": "^3.0.2",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.2.0",
-    "husky": "^3.0.0",
+    "husky": "^4.2.4",
     "inquirer": "^6.1.0",
     "jest": "^23.6.0",
     "npm-run-all": "^4.1.3",
