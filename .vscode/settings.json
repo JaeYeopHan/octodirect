@@ -1,3 +1,18 @@
 {
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.options": {
+        "extensions": [
+            ".html",
+            ".ts",
+            ".js",
+            ".tsx"
+        ]
+    },
+    "files.autoSave": "onFocusChange",
+    "files.autoSaveDelay": 500,
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.tslint": true
+    }
 }
