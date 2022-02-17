@@ -16,7 +16,7 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
     "uglifyjs-webpack-plugin": "^2.1.1",
-    "url-parse": "^1.4.4"
+    "url-parse": "^1.5.6"
   },
   "scripts": {
     "deploy:real": "npm-run-all _versioning build _clean:zip _zipify dashboard",
